@@ -1603,61 +1603,16 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
 </style>
 
 
-<style id="clean-dashboard-launch-css">
-html:not(.zo-ready) .modal-overlay,
-html:not(.zo-ready) .modal-backdrop,
-html:not(.zo-ready) .modal {
-  display:none !important;
-  opacity:0 !important;
-  visibility:hidden !important;
-  pointer-events:none !important;
-}
-</style>
 
 
-<style id="dashboard-no-flash-css">
-html:not(.zo-initialized) .modal-overlay,
-html:not(.zo-initialized) .modal-backdrop { display:none !important; }
-</style>
 
 
-<style id="dashboard-date-filter-visible-final">
-body.dashboard-active #dateDropdown{display:block!important;}
-body:not(.dashboard-active) #dateDropdown{display:none!important;}
-</style>
 
 
-<style id="dashboard-today-filter-header-final">
-#dateDropdown{
-  display:block;
-  position:relative;
-}
-body.dashboard-active #dateDropdown{display:block!important;}
-#dateDropdown .dd-trigger{
-  height:38px;
-  min-width:110px;
-  padding:0 13px;
-  border:1px solid var(--zo-border);
-  border-radius:8px;
-  background:#fff;
-  color:var(--zo-navy);
-  font-size:13px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  box-shadow:none;
-}
-#dateDropdown .dd-trigger:hover{
-  border-color:#b9c8e5;
-  background:#f9fbff;
-}
-#dateDropdown .dd-trigger svg{
-  width:16px;
-  height:16px;
-}
-</style>
+
+
+
+
 
 
 <style id="dashboard-visible-today-filter-final">
@@ -1769,24 +1724,7 @@ body.dashboard-active .dashboard-today-trigger .chevron{
 </style>
 
 
-<style id="dashboard-date-filter-hard-fix">
-#dashboardTodayFilter{
-  display:block !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  position:relative !important;
-  margin-left:auto !important;
-  flex:0 0 auto !important;
-}
-#dashboardTodayFilter .dashboard-today-trigger{
-  display:flex !important;
-  visibility:visible !important;
-  opacity:1 !important;
-}
-#dashboardView[style*="display: none"] ~ * #dashboardTodayFilter{
-  display:none;
-}
-</style>
+
 
 
 <style id="dashboard-date-filter-single-source-final">
@@ -1825,67 +1763,7 @@ body.dashboard-active #dateDropdown{
 </style>
 
 
-<style id="dashboard-date-filter-reference-final">
-/* Dashboard date filter — match supplied reference */
-body.dashboard-active .page-header-row{
-  align-items:flex-start!important;
-}
-body.dashboard-active #dateDropdown{
-  display:inline-block!important;
-  position:relative!important;
-  margin-left:auto!important;
-}
-#dateDropdown .date-pill{
-  height:34px!important;
-  min-width:109px!important;
-  padding:0 12px!important;
-  border:1px solid #D9E0EC!important;
-  border-radius:8px!important;
-  background:#fff!important;
-  color:#173B8F!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:8px!important;
-  font-size:13px!important;
-  font-weight:700!important;
-  box-shadow:0 1px 2px rgba(16,24,40,.03)!important;
-}
-#dateDropdown .custom-dropdown-panel{
-  width:210px!important;
-  min-width:210px!important;
-  right:0!important;
-  left:auto!important;
-  top:calc(100% + 8px)!important;
-  padding:8px!important;
-  background:#fff!important;
-  border:1px solid #E1E5EC!important;
-  border-radius:11px!important;
-  box-shadow:0 10px 28px rgba(16,24,40,.14)!important;
-  z-index:1200!important;
-}
-#dateDropdown.open .custom-dropdown-panel{display:block!important;}
-#dateDropdown .dropdown-option{
-  height:38px!important;
-  display:flex!important;
-  align-items:center!important;
-  padding:0 13px!important;
-  border-radius:7px!important;
-  background:#fff!important;
-  color:#101828!important;
-  font-size:13px!important;
-  font-weight:600!important;
-}
-#dateDropdown .dropdown-option:hover{background:#F5F7FB!important;}
-#dateDropdown .dropdown-option.selected{
-  background:#EEF2FF!important;
-  color:#173B8F!important;
-  font-weight:700!important;
-}
-#dateDropdown .dropdown-custom-range{
-  padding:9px 4px 3px!important;
-}
-</style>
+
 
 
 <style id="dashboard-header-date-filter-guaranteed">
@@ -1917,68 +1795,7 @@ body.dashboard-active .topbar-actions{display:flex!important;align-items:center!
 #dashboardHeaderDateMenu.open{display:block!important}
 </style>
 
-<style id="dashboard-date-filter-real-fix">
-#dashboardHeaderDateFilter{display:none!important;}
-body.dashboard-active #dateDropdown{
-  display:block!important;
-  visibility:visible!important;
-  opacity:1!important;
-  position:relative!important;
-  margin-left:auto!important;
-}
-body:not(.dashboard-active) #dateDropdown{display:none!important;}
-body.dashboard-active .page-header-row{
-  display:flex!important;
-  align-items:flex-start!important;
-}
-#dateDropdown .date-pill{
-  height:34px!important;
-  min-width:109px!important;
-  padding:0 12px!important;
-  border:1px solid #d9e0ec!important;
-  border-radius:8px!important;
-  background:#fff!important;
-  color:#173b8f!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:8px!important;
-  font-size:13px!important;
-  font-weight:700!important;
-  cursor:pointer!important;
-}
-#dateDropdown .custom-dropdown-panel{
-  display:none;
-  width:210px!important;
-  min-width:210px!important;
-  top:42px!important;
-  right:0!important;
-  left:auto!important;
-  padding:8px!important;
-  border:1px solid #e1e5ec!important;
-  border-radius:11px!important;
-  background:#fff!important;
-  box-shadow:0 10px 28px rgba(16,24,40,.14)!important;
-  z-index:3000!important;
-}
-#dateDropdown.open .custom-dropdown-panel{display:block!important;}
-#dateDropdown .dropdown-option{
-  height:38px!important;
-  display:flex!important;
-  align-items:center!important;
-  padding:0 13px!important;
-  border-radius:7px!important;
-  color:#101828!important;
-  font-size:13px!important;
-  font-weight:600!important;
-  cursor:pointer!important;
-}
-#dateDropdown .dropdown-option.selected{
-  background:#eef2ff!important;
-  color:#173b8f!important;
-  font-weight:700!important;
-}
-</style>
+
 
 
 <style id="dashboard-top-nav-consistency-fix">
@@ -2149,6 +1966,56 @@ body.dashboard-active #dateDropdown{
 }
 </style>
 
+
+
+
+
+<style id="dashboard-clean-first-paint-final">
+/* Dashboard is the initial page. No JS/timer is needed to reveal its date filter. */
+#dashboardView{display:block;}
+#dateDropdown{
+  display:block;
+  visibility:visible;
+  opacity:1;
+  position:relative;
+}
+#dateDropdown .custom-dropdown-panel{display:none;}
+#dateDropdown.open .custom-dropdown-panel{display:block;}
+/* showView() handles this inline when navigating away/back */
+</style>
+
+
+<style id="dashboard-hide-create-app-final">
+body.dashboard-active #createAppBtn {
+  display:none !important;
+}
+</style>
+
+
+<style id="dashboard-safe-landing-fix">
+/* Dashboard-only landing fix; shared page navigation remains untouched. */
+body.dashboard-active #createAppBtn{display:none!important;}
+body.dashboard-active #dateDropdown{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+#dateDropdown .custom-dropdown-panel{display:none;}
+#dateDropdown.open .custom-dropdown-panel{display:block;}
+</style>
+
+
+<style id="installations-subscriptions-count-only-final">
+td.installations-cell .sub,
+td.installations-cell .meta,
+td.installations-cell small,
+td.subscriptions-cell .sub,
+td.subscriptions-cell .meta,
+td.subscriptions-cell small {
+  display:none !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2191,9 +2058,7 @@ body.dashboard-active #dateDropdown{
 </div>
 
 
-<script id="dashboard-active-initial-state">
-document.body.classList.add('dashboard-active');
-</script>
+
 
 <div class="main">
   <div class="topbar">
@@ -2472,15 +2337,15 @@ document.body.classList.add('dashboard-active');
   </div>
   <div class="clients-table">
     <div class="clients-row clients-head"><div>Client</div><div>Source</div><div>Status</div><div>Last Login</div><div>Actions</div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">CL</span><div><strong>Client</strong><small>client@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/14/2026, 9:51:51 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">DA</span><div><strong>Deepa</strong><small>deepazenatech@gmail.com</small></div></div><div><span class="source-pill">☁ ZooOffice</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/12/2026, 2:02:59 PM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">CL</span><div><strong>Client</strong><small>client@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 14, 2026, 9:51:51 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">DA</span><div><strong>Deepa</strong><small>deepazenatech@gmail.com</small></div></div><div><span class="source-pill">☁ ZooOffice</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 12, 2026, 2:02:59 PM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
     <div class="clients-row"><div class="client-person"><span class="client-avatar">DH</span><div><strong>Deepa Zenatech</strong><small>deepa@gmail.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>—</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">DH</span><div><strong>Deepa Zenatech</strong><small>deepa@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/13/2026, 10:45:41 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">DH</span><div><strong>Deepa Zenatech</strong><small>deepa@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 13, 2026, 10:45:41 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
     <div class="clients-row"><div class="client-person"><span class="client-avatar">GZ</span><div><strong>Gerardo Rodriguez</strong><small>gerardo.ortiz@zenatech.com</small></div></div><div><span class="source-pill">☁ ZooOffice</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>—</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">JE</span><div><strong>Jame</strong><small>umair.khan@epazz.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/11/2026, 4:55:08 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">JE</span><div><strong>Jame</strong><small>umair.khan@epazz.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 11, 2026, 4:55:08 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
     <div class="clients-row"><div class="client-person"><span class="client-avatar">JN</span><div><strong>Jocasta Hon</strong><small>jocasta@zenatech.com</small></div></div><div><span class="source-pill">☁ ZooOffice</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>—</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">RA</span><div><strong>Riya</strong><small>riya2345@gmail.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/6/2026, 12:14:28 PM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
-    <div class="clients-row"><div class="client-person"><span class="client-avatar">SA</span><div><strong>Sajjad</strong><small>sajjad@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>8/14/2026, 11:01:52 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">RA</span><div><strong>Riya</strong><small>riya2345@gmail.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 6, 2026, 12:14:28 PM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
+    <div class="clients-row"><div class="client-person"><span class="client-avatar">SA</span><div><strong>Sajjad</strong><small>sajjad@zenatech.com</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch on"></span>Active</div><div>Aug, 14, 2026, 11:01:52 AM</div><div class="client-actions"><button class="client-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div></div>
     <div class="clients-footer"><span>1–9 of 9</span><span>Clients only · roles managed elsewhere</span></div>
   </div>
 </div>
@@ -2497,11 +2362,11 @@ document.body.classList.add('dashboard-active');
       <div class="panel-header"><div class="panel-title-group"><div class="panel-title">Open Deals</div></div></div>
       <div class="setup-table">
         <div class="setup-row setup-head"><div>Deal</div><div>Client</div><div>Stage</div><div>Value</div><div>Close Date</div></div>
-        <div class="setup-row"><div class="setup-product">Platform Rollout</div><div class="setup-client"><span class="name">Northstar Labs</span></div><div><span class="status-pill" style="background:var(--zo-info-bg);color:var(--zo-info);">Negotiation</span></div><div>$18,000</div><div>Aug 22, 2026</div></div>
-        <div class="setup-row"><div class="setup-product">Provitrac Upgrade</div><div class="setup-client"><span class="name">Summit Group</span></div><div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);">Proposal Sent</span></div><div>$9,600</div><div>Aug 26, 2026</div></div>
-        <div class="setup-row"><div class="setup-product">WorkAware Renewal</div><div class="setup-client"><span class="name">Atlas Works</span></div><div><span class="status-pill" style="background:var(--zo-success-bg);color:var(--zo-success);">Verbal Yes</span></div><div>$4,800</div><div>Aug 15, 2026</div></div>
-        <div class="setup-row"><div class="setup-product">New Logo — K9SKY</div><div class="setup-client"><span class="name">Brightside Co.</span></div><div><span class="status-pill" style="background:var(--zo-neutral-bg);color:var(--zo-neutral);">Discovery</span></div><div>$3,600</div><div>Sep 5, 2026</div></div>
-        <div class="setup-row"><div class="setup-product">Zinergy Pilot</div><div class="setup-client"><span class="name">Zenatech</span></div><div><span class="status-pill" style="background:var(--zo-info-bg);color:var(--zo-info);">Negotiation</span></div><div>$12,000</div><div>Sep 10, 2026</div></div>
+        <div class="setup-row"><div class="setup-product">Platform Rollout</div><div class="setup-client"><span class="name">Northstar Labs</span></div><div><span class="status-pill" style="background:var(--zo-info-bg);color:var(--zo-info);">Negotiation</span></div><div>$18,000</div><div>Aug, 22, 2026</div></div>
+        <div class="setup-row"><div class="setup-product">Provitrac Upgrade</div><div class="setup-client"><span class="name">Summit Group</span></div><div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);">Proposal Sent</span></div><div>$9,600</div><div>Aug, 26, 2026</div></div>
+        <div class="setup-row"><div class="setup-product">WorkAware Renewal</div><div class="setup-client"><span class="name">Atlas Works</span></div><div><span class="status-pill" style="background:var(--zo-success-bg);color:var(--zo-success);">Verbal Yes</span></div><div>$4,800</div><div>Aug, 15, 2026</div></div>
+        <div class="setup-row"><div class="setup-product">New Logo — K9SKY</div><div class="setup-client"><span class="name">Brightside Co.</span></div><div><span class="status-pill" style="background:var(--zo-neutral-bg);color:var(--zo-neutral);">Discovery</span></div><div>$3,600</div><div>Sep, 5, 2026</div></div>
+        <div class="setup-row"><div class="setup-product">Zinergy Pilot</div><div class="setup-client"><span class="name">Zenatech</span></div><div><span class="status-pill" style="background:var(--zo-info-bg);color:var(--zo-info);">Negotiation</span></div><div>$12,000</div><div>Sep, 10, 2026</div></div>
       </div>
     </div>
   </div>
@@ -2683,161 +2548,25 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
 
 
 
-<script id="single-dashboard-initializer">
-(function(){
-  function init(){
-    document.querySelectorAll('.modal-overlay').forEach(function(el){
-      el.style.display='none';
-      el.classList.remove('show','open','active');
-    });
-    document.querySelectorAll('.modal-backdrop').forEach(function(el){
-      el.classList.remove('show','open','active');
-    });
-    if(typeof showView==='function') showView('dashboard');
-    document.body.classList.add('dashboard-active');
-    var dateFilter=document.getElementById('dateDropdown');
-    if(dateFilter) dateFilter.style.display='block';
-    document.documentElement.classList.add('zo-initialized');
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  } else {
-    init();
-  }
-})();
-</script>
 
 
-<script id="dashboard-date-filter-routing">
-document.addEventListener('click', function(){
-  setTimeout(function(){
-    var dashboard=document.getElementById('dashboardView');
-    if(!dashboard)return;
-    var active=getComputedStyle(dashboard).display!=='none';
-    document.body.classList.toggle('dashboard-active',active);
-    var dateFilter=document.getElementById('dateDropdown');
-    if(dateFilter)dateFilter.style.display=active?'block':'none';
-  },0);
-});
-</script>
 
 
-<script id="dashboard-visible-today-filter-js">
-function toggleDashboardTodayMenu(e){
-  if(e)e.stopPropagation();
-  var menu=document.getElementById('dashboardTodayMenu');
-  if(menu)menu.classList.toggle('open');
-}
-function selectDashboardDate(label){
-  var el=document.getElementById('dashboardTodayLabel');
-  if(el)el.textContent=label;
-  var menu=document.getElementById('dashboardTodayMenu');
-  if(menu)menu.classList.remove('open');
-}
-document.addEventListener('click',function(){
-  var menu=document.getElementById('dashboardTodayMenu');
-  if(menu)menu.classList.remove('open');
-});
-(function(){
-  function sync(){
-    var dashboard=document.getElementById('dashboardView');
-    var active=dashboard && getComputedStyle(dashboard).display!=='none';
-    document.body.classList.toggle('dashboard-active',!!active);
-    var filter=document.getElementById('dashboardTodayFilter');
-    if(filter)filter.style.display=active?'block':'none';
-  }
-  document.addEventListener('DOMContentLoaded',sync);
-  window.addEventListener('load',sync);
-  document.addEventListener('click',function(){setTimeout(sync,0);});
-})();
-</script>
 
 
-<script id="dashboard-date-filter-hard-routing">
-(function(){
-  function syncDashboardHeader(){
-    var dash=document.getElementById('dashboardView');
-    var filter=document.getElementById('dashboardTodayFilter');
-    if(!dash||!filter)return;
-    var onDashboard=getComputedStyle(dash).display!=='none';
-    filter.style.setProperty('display', onDashboard ? 'block' : 'none', 'important');
-    filter.style.setProperty('visibility', onDashboard ? 'visible' : 'hidden', 'important');
-    filter.style.setProperty('opacity', onDashboard ? '1' : '0', 'important');
-  }
-  document.addEventListener('DOMContentLoaded',syncDashboardHeader);
-  window.addEventListener('load',syncDashboardHeader);
-  document.addEventListener('click',function(){setTimeout(syncDashboardHeader,0);});
-  setTimeout(syncDashboardHeader,0);
-})();
-</script>
 
 
-<script id="dashboard-date-filter-single-source-routing">
-(function(){
-  function sync(){
-    var dash=document.getElementById('dashboardView');
-    var filter=document.getElementById('dateDropdown');
-    if(!dash||!filter)return;
-    var active=getComputedStyle(dash).display!=='none';
-    document.body.classList.toggle('dashboard-active',active);
-    filter.style.setProperty('display',active?'inline-block':'none','important');
-    filter.style.setProperty('visibility',active?'visible':'hidden','important');
-    filter.style.setProperty('opacity',active?'1':'0','important');
-    if(!active) filter.classList.remove('open');
-  }
-  document.addEventListener('DOMContentLoaded',sync);
-  window.addEventListener('load',sync);
-  document.addEventListener('click',function(){setTimeout(sync,0);});
-})();
-</script>
 
 
-<script id="dashboard-header-date-filter-guaranteed-js">
-function setDashboardHeaderDate(label,btn){
- var labelEl=document.getElementById('dashboardHeaderDateLabel');
- if(labelEl) labelEl.textContent=label;
- document.querySelectorAll('#dashboardHeaderDateMenu button').forEach(function(b){b.classList.remove('active')});
- if(btn)btn.classList.add('active');
- var menu=document.getElementById('dashboardHeaderDateMenu'); if(menu)menu.classList.remove('open');
-}
-document.addEventListener('click',function(){
- var menu=document.getElementById('dashboardHeaderDateMenu'); if(menu)menu.classList.remove('open');
-});
-(function(){
- function sync(){
-  var dash=document.getElementById('dashboardView');
-  var f=document.getElementById('dashboardHeaderDateFilter');
-  if(!dash||!f)return;
-  var visible=getComputedStyle(dash).display!=='none';
-  document.body.classList.toggle('dashboard-active',visible);
-  f.style.setProperty('display',visible?'block':'none','important');
- }
- document.addEventListener('DOMContentLoaded',sync);
- window.addEventListener('load',sync);
- document.addEventListener('click',function(){setTimeout(sync,0)});
-})();
-</script>
 
 
-<script id="dashboard-date-filter-final-update-js">
-(function(){
-  function updateDashboardHeader(){
-    var dash=document.getElementById('dashboardView');
-    var filter=document.getElementById('dashboardHeaderDateFilter');
-    if(!dash||!filter)return;
-    var active=getComputedStyle(dash).display!=='none';
-    document.body.classList.toggle('dashboard-active',active);
-    filter.style.setProperty('display',active?'block':'none','important');
-    if(!active){
-      var menu=document.getElementById('dashboardHeaderDateMenu');
-      if(menu)menu.classList.remove('open');
-    }
-  }
-  document.addEventListener('DOMContentLoaded',updateDashboardHeader);
-  window.addEventListener('load',updateDashboardHeader);
-  document.addEventListener('click',function(){setTimeout(updateDashboardHeader,0);});
-})();
-</script>
+
+
+
+
+
+
+
 
 <script id="custom-date-range-reference-js">
 (function(){
@@ -2869,6 +2598,123 @@ function applyDashboardCustomDate(e){
   var dd=document.getElementById('dateDropdown');
   if(dd){dd.classList.remove('custom-range-open');dd.classList.remove('open');}
 }
+</script>
+
+
+
+
+
+
+
+
+<script id="dashboard-safe-landing-init">
+(function(){
+  function initDashboardLanding(){
+    document.body.classList.add('dashboard-active');
+
+    var createBtn=document.getElementById('createAppBtn');
+    if(createBtn) createBtn.style.display='none';
+
+    var filter=document.getElementById('dateDropdown');
+    if(filter){
+      filter.style.display='block';
+      filter.classList.remove('open','custom-range-open');
+    }
+
+    /* Use the app's existing router rather than replacing it. */
+    if(typeof showView==='function') showView('dashboard');
+
+    /* Restore dashboard-only header state in case the existing router resets it. */
+    document.body.classList.add('dashboard-active');
+    if(createBtn) createBtn.style.display='none';
+    if(filter) filter.style.display='block';
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initDashboardLanding,{once:true});
+  }else{
+    initDashboardLanding();
+  }
+})();
+</script>
+
+
+<script id="global-mmm-d-yyyy-date-format">
+function formatZooDate(value){
+  if(value===null || value===undefined || value==='') return value;
+  var raw=String(value).trim();
+  var d=null;
+
+  var iso=raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T\s].*)?$/);
+  if(iso) d=new Date(Number(iso[1]),Number(iso[2])-1,Number(iso[3]));
+
+  var slash=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(!d && slash) d=new Date(Number(slash[3]),Number(slash[1])-1,Number(slash[2]));
+
+  if(!d){
+    var parsed=new Date(raw);
+    if(!isNaN(parsed.getTime())) d=parsed;
+  }
+  if(!d || isNaN(d.getTime())) return value;
+
+  return d.toLocaleDateString('en-US',{
+    month:'short',
+    day:'numeric',
+    year:'numeric'
+  }).replace(/^([A-Z][a-z]{2}) /,'$1, ');
+}
+
+/* Format visible date cells after each render without changing date input values. */
+function normalizeVisibleZooDates(root){
+  root=root||document;
+  var selectors=[
+    'td','th','.date','.date-value','.created-date','.updated-date',
+    '[data-date]','[data-created]','[data-updated]'
+  ];
+  root.querySelectorAll(selectors.join(',')).forEach(function(el){
+    if(el.children.length) return;
+    var t=el.textContent.trim();
+    if(/^(\d{4}-\d{1,2}-\d{1,2}|\d{1,2}\/\d{1,2}\/\d{4}|[A-Za-z]{3,9}\s+\d{1,2},\s+\d{4})$/.test(t)){
+      el.textContent=formatZooDate(t);
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){normalizeVisibleZooDates(document);});
+</script>
+
+
+<script id="promo-client-dropdown-js">
+(function(){
+  var originalOpen = window.openPromoModal;
+  window.openPromoModal = function(index){
+    if(typeof originalOpen === 'function') originalOpen(index);
+    var select = document.getElementById('promoClientInput');
+    if(!select) return;
+    if(typeof index === 'number' && window.promoCodesData && promoCodesData[index]){
+      select.value = promoCodesData[index].client || 'all';
+    } else {
+      select.value = 'all';
+    }
+  };
+
+  var originalSave = window.savePromoCode;
+  window.savePromoCode = function(){
+    var select = document.getElementById('promoClientInput');
+    var selected = select ? select.value : 'all';
+    var editing = (typeof promoEditingIndex === 'number') ? promoEditingIndex : -1;
+    var before = window.promoCodesData ? promoCodesData.length : 0;
+
+    if(typeof originalSave === 'function') originalSave();
+
+    if(window.promoCodesData){
+      if(editing >= 0 && promoCodesData[editing]){
+        promoCodesData[editing].client = selected;
+      } else if(promoCodesData.length > before){
+        promoCodesData[0].client = selected;
+      }
+    }
+  };
+})();
 </script>
 
 </body>
@@ -3020,15 +2866,15 @@ function applyDashboardCustomDate(e){
 <div class=&quot;modal-backdrop&quot; id=&quot;newTicketModal&quot;><div class=&quot;modal&quot;><div class=&quot;modal-head&quot;><h2>Create New Ticket</h2><button class=&quot;close&quot; id=&quot;closeModal&quot;>×</button></div><div class=&quot;modal-body&quot;><div class=&quot;field&quot;><label>Subject</label><input id=&quot;newSubject&quot; placeholder=&quot;Briefly describe the issue&quot;></div><div class=&quot;two&quot;><div class=&quot;field&quot;><label>Category</label><select id=&quot;newCategory&quot;><option>Technical</option><option>Billing</option><option>Account</option></select></div><div class=&quot;field&quot;><label>Priority</label><select id=&quot;newPriority&quot;><option>Medium</option><option>Urgent</option><option>Low</option></select></div></div><div class=&quot;field&quot;><label>Message</label><textarea id=&quot;newMessage&quot; placeholder=&quot;Tell us what happened...&quot;></textarea></div></div><div class=&quot;modal-actions&quot;><button class=&quot;secondary&quot; id=&quot;cancelModal&quot;>Cancel</button><button class=&quot;primary&quot; id=&quot;createTicket&quot;>Create Ticket</button></div></div></div>
 <script>
 const tickets=[
-{id:'TKT-001',title:'Test Support Ticket Issue reported',priority:'Urgent',status:'Open',category:'Technical',date:'7/24/2026',message:'Experiencing critical issue with the API integration that is blocking production usage.'},
-{id:'TKT-002',title:'Test Ticket',priority:'Medium',status:'Open',category:'General',date:'7/22/2026',message:'I need help understanding the setup steps for my account.'},
-{id:'TKT-003',title:'Billing discrepancy on July invoice',priority:'Low',status:'Closed',category:'Billing',date:'7/18/2026',message:'The July invoice appears to include a charge I do not recognize.'}
+{id:'TKT-001',title:'Test Support Ticket Issue reported',priority:'Urgent',status:'Open',category:'Technical',date:'Jul, 24, 2026',message:'Experiencing critical issue with the API integration that is blocking production usage.'},
+{id:'TKT-002',title:'Test Ticket',priority:'Medium',status:'Open',category:'General',date:'Jul, 22, 2026',message:'I need help understanding the setup steps for my account.'},
+{id:'TKT-003',title:'Billing discrepancy on July invoice',priority:'Low',status:'Closed',category:'Billing',date:'Jul, 18, 2026',message:'The July invoice appears to include a charge I do not recognize.'}
 ];let selected=0;
 const cls=p=>p.toLowerCase();
 function renderList(){const q=supportSearch.value.toLowerCase(),f=statusFilter.value;ticketItems.innerHTML=tickets.map((t,i)=>({t,i})).filter(x=>x.t.title.toLowerCase().includes(q)&amp;&amp;(f==='all'||x.t.status.toLowerCase()===f)).map(({t,i})=>`<button class=&quot;ticket ${i===selected?'active':''}&quot; data-i=&quot;${i}&quot;><div class=&quot;ticket-top&quot;><span class=&quot;ticket-title&quot;>${t.title}</span><span class=&quot;priority ${cls(t.priority)}&quot;>${t.priority}</span></div><div class=&quot;ticket-bottom&quot;><span class=&quot;ticket-id&quot;>${t.id}</span><span class=&quot;state-mini&quot;><span class=&quot;dot ${t.status==='Closed'?'closed':''}&quot;></span>${t.status}</span></div></button>`).join('');document.querySelectorAll('.ticket').forEach(b=>b.onclick=()=>{selected=+b.dataset.i;renderList();renderTicket()})}
 function renderTicket(){const t=tickets[selected];ticketId.textContent=t.id;ticketTitle.textContent=t.title;headPriority.textContent=t.priority;headPriority.className='priority '+cls(t.priority);ticketDate.textContent=t.date;ticketMessage.textContent=t.message;detailCategory.textContent=t.category;detailDate.textContent=t.date;sidePriority.textContent=t.priority;sidePriority.className='priority '+cls(t.priority);ticketStatus.className='status-pill'+(t.status==='Closed'?' closed':'');ticketStatus.innerHTML=`<span class=&quot;dot ${t.status==='Closed'?'closed':''}&quot;></span><span>${t.status}</span>`;composer.innerHTML=t.status==='Closed'?'<div class=&quot;closed-note&quot;>This ticket is closed.</div>':'<textarea class=&quot;reply&quot; id=&quot;replyText&quot; placeholder=&quot;Write a reply...&quot;></textarea><div class=&quot;reply-row&quot;><span>Replying as Support Agent</span><button class=&quot;primary&quot; id=&quot;sendReply&quot;>Send Reply</button></div>';const send=document.getElementById('sendReply');if(send)send.onclick=()=>{const r=document.getElementById('replyText');if(r.value.trim()){r.value='';alert('Reply sent')}}}
 supportSearch.oninput=renderList;statusFilter.onchange=renderList;helpDocs.onclick=()=>parent.postMessage({page:'helpdocs'},'*');
-const modal=newTicketModal;newBtn.onclick=()=>modal.classList.add('show');closeModal.onclick=cancelModal.onclick=()=>modal.classList.remove('show');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};createTicket.onclick=()=>{if(!newSubject.value.trim())return alert('Please enter a subject.');tickets.unshift({id:'TKT-'+String(tickets.length+1).padStart(3,'0'),title:newSubject.value.trim(),priority:newPriority.value,status:'Open',category:newCategory.value,date:'7/30/2026',message:newMessage.value.trim()||'No additional details provided.'});selected=0;modal.classList.remove('show');renderList();renderTicket();newSubject.value='';newMessage.value=''};
+const modal=newTicketModal;newBtn.onclick=()=>modal.classList.add('show');closeModal.onclick=cancelModal.onclick=()=>modal.classList.remove('show');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};createTicket.onclick=()=>{if(!newSubject.value.trim())return alert('Please enter a subject.');tickets.unshift({id:'TKT-'+String(tickets.length+1).padStart(3,'0'),title:newSubject.value.trim(),priority:newPriority.value,status:'Open',category:newCategory.value,date:'Jul, 30, 2026',message:newMessage.value.trim()||'No additional details provided.'});selected=0;modal.classList.remove('show');renderList();renderTicket();newSubject.value='';newMessage.value=''};
 renderList();renderTicket();
 </script>
 <style id="plans-fullwidth-final">
@@ -3144,8 +2990,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div>Sale</div>
           <div class="not-set">Not set</div>
           <div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Pending Setup</span></div>
-          <div class="deal-date">8/4/2026</div>
-          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Jadian','Client','client@zenatech.com','Sale','8/4/2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
+          <div class="deal-date">Aug, 4, 2026</div>
+          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Jadian','Client','client@zenatech.com','Sale','Aug, 4, 2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
         </div>
 
         <div class="full-row">
@@ -3154,8 +3000,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div>Sale</div>
           <div class="not-set">Not set</div>
           <div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Pending Setup</span></div>
-          <div class="deal-date">7/27/2026</div>
-          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Jadian','Sale','sale@zenatech.com','Sale','7/27/2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
+          <div class="deal-date">Jul, 27, 2026</div>
+          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Jadian','Sale','sale@zenatech.com','Sale','Jul, 27, 2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
         </div>
 
         <div class="full-row">
@@ -3164,8 +3010,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div>Sale</div>
           <div class="not-set">Not set</div>
           <div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Pending Setup</span></div>
-          <div class="deal-date">7/24/2026</div>
-          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Pace+','Testing User','test@yopmail.com','Sale','7/24/2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
+          <div class="deal-date">Jul, 24, 2026</div>
+          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Pace+','Testing User','test@yopmail.com','Sale','Jul, 24, 2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
         </div>
 
         <div class="full-row">
@@ -3174,8 +3020,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div style="color:var(--zo-warning);font-weight:600;">Unassigned</div>
           <div class="not-set">Not set</div>
           <div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Pending Setup</span></div>
-          <div class="deal-date">7/24/2026</div>
-          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Provitrac','Client','client@zenatech.com','Unassigned','7/24/2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
+          <div class="deal-date">Jul, 24, 2026</div>
+          <div class="setup-action"><button class="btn-outline-configure" onclick="openConfigModal('Provitrac','Client','client@zenatech.com','Unassigned','Jul, 24, 2026')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="13" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg> Configure</button></div>
         </div>
       </div>
     </div>
@@ -3410,8 +3256,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div class="promo-field"><label>Client Name *</label><div class="invoice-client-picker" id="invoiceClientPicker"><button type="button" class="invoice-client-trigger placeholder" id="invoiceClientTrigger" onclick="toggleInvoiceClientDropdown(event)"><span id="invoiceClientLabel">Select a client...</span><span>⌄</span></button><div class="invoice-client-menu" id="invoiceClientMenu"><div class="invoice-client-search">⌕ <input id="invoiceClientSearch" autocomplete="off" placeholder="Search or enter a client name..." oninput="renderInvoiceClientOptions()"></div><div class="invoice-client-options" id="invoiceClientOptions"></div></div></div></div>
           <div class="promo-field"><label>Email *</label><input id="newInvoiceEmail" type="email" placeholder="Select a client or enter email" oninput="validateNewInvoice()"></div>
           <div class="promo-field"><label>Company</label><input></div><div class="promo-field"><label>Address</label><input></div>
-          <div class="promo-field"><label>Issue Date</label><input type="date" value="2026-08-10"></div>
-          <div class="promo-field"><label>Due Date *</label><input id="newInvoiceDueDate" type="date" value="2026-09-09" onchange="validateNewInvoice()"></div>
+          <div class="promo-field"><label>Issue Date</label><input type="date" value="Aug, 10, 2026"></div>
+          <div class="promo-field"><label>Due Date *</label><input id="newInvoiceDueDate" type="date" value="Sep, 9, 2026" onchange="validateNewInvoice()"></div>
           <div class="promo-field full" style="border-bottom:1px solid var(--zo-line);padding:5px 0 8px;display:flex;justify-content:space-between;align-items:center;"><label style="color:var(--zo-muted);letter-spacing:.08em;font-size:10px;margin:0;">LINE ITEMS</label><button type="button" class="btn-back" style="margin:0;" onclick="addInvoiceLine()">+ Add line</button></div>
           <div class="promo-field full" id="invoiceLineItems"><div class="invoice-line-row"><div><label>Description *</label><input class="invoice-line-desc" placeholder="Description" oninput="validateNewInvoice()"></div><div><label>Qty *</label><input class="invoice-line-qty" type="number" min="1" value="1" oninput="validateNewInvoice()"></div><div><label>Unit Price *</label><input class="invoice-line-price" type="number" min="0" step="0.01" value="0.00" oninput="validateNewInvoice()"></div><button class="invoice-delete-btn" type="button" aria-label="Delete line item" onclick="deleteInvoiceLine(this)" disabled>×</button></div></div>
           <div class="promo-field"><label>Tax Rate (%)</label><input type="number" value="0"></div>
@@ -3468,25 +3314,25 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
           <div><div class="promo-code">5OFF <button class="promo-copy" title="Copy code" onclick="copyPromoCode(0)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div><div class="promo-code-sub">5% off flash sale</div></div>
           <div style="font-weight:700;color:var(--zo-heading);">5% off</div>
           <div class="promo-uses"><div class="promo-progress"><span style="width:24%"></span></div><span class="promo-use-text">6/∞</span></div>
-          <div style="color:var(--zo-muted);">Aug 10, 2026</div><div><span class="status-pill" style="background:var(--zo-success-bg);color:var(--zo-success);">Active</span></div>
+          <div style="color:var(--zo-muted);">Aug, 10, 2026</div><div><span class="status-pill" style="background:var(--zo-success-bg);color:var(--zo-success);">Active</span></div>
           <div class="promo-action-set"><button class="promo-action-btn" title="Share" onclick="sharePromoCode(0)">↗</button><button class="promo-action-btn" title="Edit" onclick="openPromoModal(0)">✎</button><button class="promo-action-btn delete" title="Delete" onclick="openPromoDelete(0)">⌫</button></div>
         </div>
         <div class="promo-row">
           <div><div class="promo-code">DFT12TY</div><div class="promo-code-sub">$5 Discount</div></div><div style="font-weight:700;color:var(--zo-heading);">$5.00 off</div>
           <div class="promo-uses"><div class="promo-progress"><span style="width:100%"></span></div><span class="promo-use-text">4/4</span></div>
-          <div style="color:var(--zo-muted);">Jul 27, 2026</div><div><span class="status-pill" style="background:#FFF0F0;color:#D92D20;">Expired</span></div>
+          <div style="color:var(--zo-muted);">Jul, 27, 2026</div><div><span class="status-pill" style="background:#FFF0F0;color:#D92D20;">Expired</span></div>
           <div class="promo-action-set"><button class="promo-action-btn" onclick="sharePromoCode(1)">↗</button><button class="promo-action-btn" onclick="openPromoModal(1)">✎</button><button class="promo-action-btn delete" onclick="openPromoDelete(1)">⌫</button></div>
         </div>
         <div class="promo-row">
           <div><div class="promo-code">SAVE10</div><div class="promo-code-sub">Save 10%</div></div><div style="font-weight:700;color:var(--zo-heading);">10% off</div>
           <div class="promo-uses"><div class="promo-progress"><span style="width:66.7%"></span></div><span class="promo-use-text">8/12</span></div>
-          <div style="color:var(--zo-muted);">Jul 28, 2026</div><div><span class="status-pill" style="background:#FFF0F0;color:#D92D20;">Expired</span></div>
+          <div style="color:var(--zo-muted);">Jul, 28, 2026</div><div><span class="status-pill" style="background:#FFF0F0;color:#D92D20;">Expired</span></div>
           <div class="promo-action-set"><button class="promo-action-btn" onclick="sharePromoCode(2)">↗</button><button class="promo-action-btn" onclick="openPromoModal(2)">✎</button><button class="promo-action-btn delete" onclick="openPromoDelete(2)">⌫</button></div>
         </div>
         <div class="promo-row">
           <div><div class="promo-code">FALL25</div><div class="promo-code-sub">Fall launch offer</div></div><div style="font-weight:700;color:var(--zo-heading);">25% off</div>
           <div class="promo-uses"><div class="promo-progress"><span style="width:0%"></span></div><span class="promo-use-text">0/50</span></div>
-          <div style="color:var(--zo-muted);">Sep 30, 2026</div><div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);">Scheduled</span></div>
+          <div style="color:var(--zo-muted);">Sep, 30, 2026</div><div><span class="status-pill" style="background:var(--zo-warning-bg);color:var(--zo-warning);">Scheduled</span></div>
           <div class="promo-action-set"><button class="promo-action-btn" onclick="sharePromoCode(3)">↗</button><button class="promo-action-btn" onclick="openPromoModal(3)">✎</button><button class="promo-action-btn delete" onclick="openPromoDelete(3)">⌫</button></div>
         </div>
       </div>
@@ -3527,7 +3373,7 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
       <div class="info-grid">
         <div><div class="info-label">Client</div><div class="info-value-bold" id="configClientName">Sale</div><div class="info-value-muted" id="configClientEmail">sale@zenatech.com</div></div>
         <div><div class="info-label">Assigned Sales Rep</div><div class="info-value-bold" id="configRep">Sale</div></div>
-        <div><div class="info-label">Created</div><div class="info-value-bold" id="configCreated">7/27/2026</div></div>
+        <div><div class="info-label">Created</div><div class="info-value-bold" id="configCreated">Jul, 27, 2026</div></div>
         <div><div class="info-label">Activated</div><div class="info-value-bold">—</div></div>
       </div>
 
@@ -3686,8 +3532,8 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
   <div class="meeting-table-wrap">
     <div class="meeting-table-head"><div>Meeting</div><div>Type</div><div>Client</div><div>Status</div><div>Date &amp; Time</div><div>Meeting</div><div>Actions</div></div>
     <div id="meetingRows2">
-<div class="meeting-data-row"><div class="meeting-name"><span class="meeting-symbol">▣</span><div><strong>Product Demo</strong><small>Demo Request</small></div></div><div>Demo</div><div class="host-cell"><strong>Client</strong><small>client@zenatech.com</small></div><div><span class="status-chip await">Awaiting Your Response</span></div><div class="date-cell"><strong>Aug 12, 2026</strong><small>2:00 PM (30 min)</small></div><div>Available after confirmation</div><div>Not available</div><div><button class="respond-btn" onclick="respondMeeting()">Respond</button></div></div>
-<div class="meeting-data-row"><div class="meeting-name"><span class="meeting-symbol">▣</span><div><strong>Analytics Platform Demo</strong><small>Demo Request</small></div></div><div>Demo</div><div class="host-cell"><strong>Client</strong><small>client@zenatech.com</small></div><div><span class="status-chip saleswait">Awaiting Sales Confirmation</span></div><div class="date-cell"><strong>Aug 20, 2026</strong><small>11:00 AM (30 min)</small></div><div>Available once confirmed</div><div>Not available</div><div><button class="icon-action meeting-view-icon" data-tooltip="View" aria-label="View" onclick="openMeetingDetails()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div>
+<div class="meeting-data-row"><div class="meeting-name"><span class="meeting-symbol">▣</span><div><strong>Product Demo</strong><small>Demo Request</small></div></div><div>Demo</div><div class="host-cell"><strong>Client</strong><small>client@zenatech.com</small></div><div><span class="status-chip await">Awaiting Your Response</span></div><div class="date-cell"><strong>Aug, 12, 2026</strong><small>2:00 PM (30 min)</small></div><div>Available after confirmation</div><div>Not available</div><div><button class="respond-btn" onclick="respondMeeting()">Respond</button></div></div>
+<div class="meeting-data-row"><div class="meeting-name"><span class="meeting-symbol">▣</span><div><strong>Analytics Platform Demo</strong><small>Demo Request</small></div></div><div>Demo</div><div class="host-cell"><strong>Client</strong><small>client@zenatech.com</small></div><div><span class="status-chip saleswait">Awaiting Sales Confirmation</span></div><div class="date-cell"><strong>Aug, 20, 2026</strong><small>11:00 AM (30 min)</small></div><div>Available once confirmed</div><div>Not available</div><div><button class="icon-action meeting-view-icon" data-tooltip="View" aria-label="View" onclick="openMeetingDetails()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div>
 </div>
   </div>
 </div>
@@ -3756,7 +3602,25 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
         <div class="promo-field"><label>Min. Purchase ($) <span>(optional)</span></label><input id="promoMinPurchaseInput" type="number" min="0" step="0.01" placeholder="0.00"></div>
         <div class="promo-field"><label>Valid From</label><input id="promoValidFromInput" type="date"></div>
         <div class="promo-field"><label>Expires At</label><input id="promoExpiresInput" type="date"></div>
-        <div class="promo-field full"><label>Products *</label><div class="promo-product-picker"><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="all" checked onchange="togglePromoProductSelection()"> <span><strong>All products</strong><small>Code can be used with any product</small></span></label><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="specific" onchange="togglePromoProductSelection()"> <span><strong>Specific products</strong><small>Choose which products accept this code</small></span></label><div id="promoProductOptions" class="promo-product-options" style="display:none;"><label><input type="checkbox" value="K9SKY"> K9SKY</label><label><input type="checkbox" value="Othership"> Othership</label><label><input type="checkbox" value="Pace+"> Pace+</label><label><input type="checkbox" value="Provitrac"> Provitrac</label><label><input type="checkbox" value="PsPortals"> PsPortals</label><label><input type="checkbox" value="TSentra"> TSentra</label><label><input type="checkbox" value="WorkAware"> WorkAware</label><label><input type="checkbox" value="Zinergy"> Zinergy</label></div></div></div>
+        
+<div class="promo-field full" id="promoClientDropdownField">
+  <label>Client <span>(optional)</span></label>
+  <select id="promoClientInput">
+    <option value="all">All clients</option>
+    <option value="client@zenatech.com">Client — client@zenatech.com</option>
+    <option value="deepazenatech@gmail.com">Deepa — deepazenatech@gmail.com</option>
+    <option value="deepa@gmail.com">Deepa Zenatech — deepa@gmail.com</option>
+    <option value="deepa@zenatech.com">Deepa Zenatech — deepa@zenatech.com</option>
+    <option value="gerardo.ortiz@zenatech.com">Gerardo Rodriguez — gerardo.ortiz@zenatech.com</option>
+    <option value="umair.khan@epazz.com">Jame — umair.khan@epazz.com</option>
+    <option value="jocasta@zenatech.com">Jocasta Hon — jocasta@zenatech.com</option>
+    <option value="riya2345@gmail.com">Riya — riya2345@gmail.com</option>
+    <option value="sajjad@zenatech.com">Sajjad — sajjad@zenatech.com</option>
+  </select>
+  <div class="config-hint">Choose a specific client for this promo code, or leave it available to all clients.</div>
+</div>
+
+<div class="promo-field full"><label>Products *</label><div class="promo-product-picker"><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="all" checked onchange="togglePromoProductSelection()"> <span><strong>All products</strong><small>Code can be used with any product</small></span></label><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="specific" onchange="togglePromoProductSelection()"> <span><strong>Specific products</strong><small>Choose which products accept this code</small></span></label><div id="promoProductOptions" class="promo-product-options" style="display:none;"><label><input type="checkbox" value="K9SKY"> K9SKY</label><label><input type="checkbox" value="Othership"> Othership</label><label><input type="checkbox" value="Pace+"> Pace+</label><label><input type="checkbox" value="Provitrac"> Provitrac</label><label><input type="checkbox" value="PsPortals"> PsPortals</label><label><input type="checkbox" value="TSentra"> TSentra</label><label><input type="checkbox" value="WorkAware"> WorkAware</label><label><input type="checkbox" value="Zinergy"> Zinergy</label></div></div></div>
         <div class="promo-field full"><label>Notes <span>(optional)</span></label><textarea id="promoNotesInput" placeholder="Internal notes (optional)"></textarea></div>
       </div>
     </div>
@@ -3862,10 +3726,10 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
   var promoEditingIndex = null;
   var promoDeletingIndex = null;
   var promoCodesData = [
-    { code:'5OFF', name:'5% off flash sale', type:'Percentage', discount:5, uses:6, maxUses:null, minPurchase:0, validFrom:'2026-08-01', expires:'2026-08-10', notes:'', products:['All products'] },
-    { code:'DFT12TY', name:'$5 Discount', type:'Fixed', discount:5, uses:4, maxUses:4, minPurchase:0, validFrom:'2026-07-01', expires:'2026-07-27', notes:'', products:['Pace+','Provitrac'] },
-    { code:'SAVE10', name:'Save 10%', type:'Percentage', discount:10, uses:8, maxUses:12, minPurchase:0, validFrom:'2026-07-01', expires:'2026-07-28', notes:'', products:['All products'] },
-    { code:'FALL25', name:'Fall launch offer', type:'Percentage', discount:25, uses:0, maxUses:50, minPurchase:0, validFrom:'2026-09-01', expires:'2026-09-30', notes:'Fall launch campaign', products:['K9SKY','WorkAware','Zinergy'] }
+    { code:'5OFF', name:'5% off flash sale', type:'Percentage', discount:5, uses:6, maxUses:null, minPurchase:0, validFrom:'Aug, 1, 2026', expires:'Aug, 10, 2026', notes:'', products:['All products'] },
+    { code:'DFT12TY', name:'$5 Discount', type:'Fixed', discount:5, uses:4, maxUses:4, minPurchase:0, validFrom:'Jul, 1, 2026', expires:'Jul, 27, 2026', notes:'', products:['Pace+','Provitrac'] },
+    { code:'SAVE10', name:'Save 10%', type:'Percentage', discount:10, uses:8, maxUses:12, minPurchase:0, validFrom:'Jul, 1, 2026', expires:'Jul, 28, 2026', notes:'', products:['All products'] },
+    { code:'FALL25', name:'Fall launch offer', type:'Percentage', discount:25, uses:0, maxUses:50, minPurchase:0, validFrom:'Sep, 1, 2026', expires:'Sep, 30, 2026', notes:'Fall launch campaign', products:['K9SKY','WorkAware','Zinergy'] }
   ];
 
   function promoStatus(p){
@@ -4030,8 +3894,18 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
   }
 
   function showView(view){
+    var createAppBtn = document.getElementById('createAppBtn');
+    if (createAppBtn) {
+      createAppBtn.style.display = view === 'appmgmt' ? 'inline-flex' : 'none';
+    }
+
     document.body.classList.toggle('dashboard-active', view === 'dashboard');
-    var views = { dashboard:'dashboardView', setup:'setupView', invoices:'invoicesView', promo:'promoView', audit:'auditView', newinvoice:'newInvoiceView', marketplace:'marketplaceView', meetings:'meetingsView', appmgmt:'appMgmtView', createapp:'createAppView', editapp:'editAppView', clients:'clientsView', salesops:'salesOpsView', analytics:'analyticsView', marketing:'marketingView', integrations:'integrationsView', roles:'rolesView', settings:'settingsView', support:'supportView', helpdocs:'helpdocsView' };
+    var dashboardDateFilter = document.getElementById('dateDropdown');
+    if (dashboardDateFilter) {
+      dashboardDateFilter.style.display = view === 'dashboard' ? 'block' : 'none';
+      if (view !== 'dashboard') dashboardDateFilter.classList.remove('open','custom-range-open');
+    }
+var views = { dashboard:'dashboardView', setup:'setupView', invoices:'invoicesView', promo:'promoView', audit:'auditView', newinvoice:'newInvoiceView', marketplace:'marketplaceView', meetings:'meetingsView', appmgmt:'appMgmtView', createapp:'createAppView', editapp:'editAppView', clients:'clientsView', salesops:'salesOpsView', analytics:'analyticsView', marketing:'marketingView', integrations:'integrationsView', roles:'rolesView', settings:'settingsView', support:'supportView', helpdocs:'helpdocsView' };
     var titles = {
       dashboard: ['Dashboard', 'System overview and metrics for today'],
       setup: ['App Setup Requests', '3 apps are waiting on your configuration.'],
@@ -4113,31 +3987,31 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
     {
       id: 'client', name: 'Client', email: 'client@zenatech.com', initial: 'C',
       invoices: [
-        { inv: 'INV-2026-0009', date: 'Aug 3, 2026', app: 'Jadian', desc: 'Subscription: Jadian — Enterprise (monthly)', amount: '$3,598.80', status: 'Paid' },
-        { inv: 'INV-2026-0008', date: 'Aug 3, 2026', app: 'Othership', desc: 'Subscription: Othership — Business (monthly)', amount: '$238.80', status: 'Paid' },
-        { inv: 'INV-2026-0006', date: 'Aug 3, 2026', app: 'Provitrac', desc: 'Plan Upgrade: Provitrac → Enterprise', amount: '$500.00', status: 'Paid' }
+        { inv: 'INV-2026-0009', date: 'Aug, 3, 2026', app: 'Jadian', desc: 'Subscription: Jadian — Enterprise (monthly)', amount: '$3,598.80', status: 'Paid' },
+        { inv: 'INV-2026-0008', date: 'Aug, 3, 2026', app: 'Othership', desc: 'Subscription: Othership — Business (monthly)', amount: '$238.80', status: 'Paid' },
+        { inv: 'INV-2026-0006', date: 'Aug, 3, 2026', app: 'Provitrac', desc: 'Plan Upgrade: Provitrac → Enterprise', amount: '$500.00', status: 'Paid' }
       ],
       installations: [
-        { app: 'TSentra', status: 'Purchased', installed: '8/7/2026, 11:20:40 AM', trialEnds: '—' },
-        { app: 'Zoo Office', status: 'Trial', installed: '8/5/2026, 4:07:37 AM', trialEnds: '9/4/2026, 4:07:37 AM' },
-        { app: 'Jadian', status: 'Purchased', installed: '8/4/2026, 10:38:23 AM', trialEnds: '—' },
-        { app: 'Othership', status: 'Purchased', installed: '8/4/2026, 10:38:10 AM', trialEnds: '—' },
-        { app: 'Provitrac', status: 'Purchased', installed: '8/4/2026, 10:38:02 AM', trialEnds: '—' }
+        { app: 'TSentra', status: 'Purchased', installed: 'Aug, 7, 2026, 11:20:40 AM', trialEnds: '—' },
+        { app: 'Zoo Office', status: 'Trial', installed: 'Aug, 5, 2026, 4:07:37 AM', trialEnds: 'Sep, 4, 2026, 4:07:37 AM' },
+        { app: 'Jadian', status: 'Purchased', installed: 'Aug, 4, 2026, 10:38:23 AM', trialEnds: '—' },
+        { app: 'Othership', status: 'Purchased', installed: 'Aug, 4, 2026, 10:38:10 AM', trialEnds: '—' },
+        { app: 'Provitrac', status: 'Purchased', installed: 'Aug, 4, 2026, 10:38:02 AM', trialEnds: '—' }
       ],
       subscriptions: [
-        { app: 'Jadian', plan: 'Enterprise', cadence: 'Monthly', amount: '$2,999.00', nextBilling: '9/4/2026, 10:38:23 AM', status: 'Active' },
-        { app: 'Othership', plan: 'Business', cadence: 'Monthly', amount: '$199.00', nextBilling: '9/4/2026, 10:38:10 AM', status: 'Active' },
-        { app: 'Provitrac', plan: 'Enterprise', cadence: 'Monthly', amount: '$599.00', nextBilling: '8/24/2026, 9:28:19 AM', status: 'Active' }
+        { app: 'Jadian', plan: 'Enterprise', cadence: 'Monthly', amount: '$2,999.00', nextBilling: 'Sep, 4, 2026, 10:38:23 AM', status: 'Active' },
+        { app: 'Othership', plan: 'Business', cadence: 'Monthly', amount: '$199.00', nextBilling: 'Sep, 4, 2026, 10:38:10 AM', status: 'Active' },
+        { app: 'Provitrac', plan: 'Enterprise', cadence: 'Monthly', amount: '$599.00', nextBilling: 'Aug, 24, 2026, 9:28:19 AM', status: 'Active' }
       ]
     },
     {
       id: 'sale', name: 'Sale', email: 'sale@zenatech.com', initial: 'S',
       invoices: [
-        { inv: 'INV-2026-0010', date: 'Aug 4, 2026', app: 'WorkAware', desc: 'Subscription: WorkAware — Enterprise (monthly)', amount: '$1,798.80', status: 'Paid' }
+        { inv: 'INV-2026-0010', date: 'Aug, 4, 2026', app: 'WorkAware', desc: 'Subscription: WorkAware — Enterprise (monthly)', amount: '$1,798.80', status: 'Paid' }
       ],
       installations: [
-        { app: 'K9SKY', status: 'Purchased', installed: '7/27/2026, 3:44:22 PM', trialEnds: '—' },
-        { app: 'Jadian', status: 'Purchased', installed: '7/27/2026, 3:44:19 PM', trialEnds: '—' }
+        { app: 'K9SKY', status: 'Purchased', installed: 'Jul, 27, 2026, 3:44:22 PM', trialEnds: '—' },
+        { app: 'Jadian', status: 'Purchased', installed: 'Jul, 27, 2026, 3:44:19 PM', trialEnds: '—' }
       ],
       subscriptions: [
         { app: 'WorkAware', plan: 'Enterprise', cadence: 'Monthly', amount: '$1,499.00', nextBilling: '—', status: 'Paused' }
@@ -4146,13 +4020,13 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
     {
       id: 'testing', name: 'Testing User', email: 'test@yopmail.com', initial: 'T',
       invoices: [
-        { inv: 'INV-2026-0005', date: 'Jul 23, 2026', app: 'Pace+', desc: 'Subscription: Pace+ — Professional (monthly)', amount: '$824.82', status: 'Paid' }
+        { inv: 'INV-2026-0005', date: 'Jul, 23, 2026', app: 'Pace+', desc: 'Subscription: Pace+ — Professional (monthly)', amount: '$824.82', status: 'Paid' }
       ],
       installations: [
-        { app: 'Pace+', status: 'Purchased', installed: '7/24/2026, 9:28:59 AM', trialEnds: '—' }
+        { app: 'Pace+', status: 'Purchased', installed: 'Jul, 24, 2026, 9:28:59 AM', trialEnds: '—' }
       ],
       subscriptions: [
-        { app: 'Pace+', plan: 'Professional', cadence: 'Monthly', amount: '$699.00', nextBilling: '8/24/2026, 9:28:59 AM', status: 'Active' }
+        { app: 'Pace+', plan: 'Professional', cadence: 'Monthly', amount: '$699.00', nextBilling: 'Aug, 24, 2026, 9:28:59 AM', status: 'Active' }
       ]
     }
   ];
@@ -4714,7 +4588,7 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
     var desc=rows.map(function(r){var d=r.querySelector('.invoice-line-desc').value.trim(),q=Number(r.querySelector('.invoice-line-qty').value),pr=Number(r.querySelector('.invoice-line-price').value); total+=q*pr; return d;}).join('; ');
     var max=0; clientsData.forEach(function(cl){cl.invoices.forEach(function(i){var m=(i.inv||'').match(/(\d+)$/);if(m)max=Math.max(max,Number(m[1]));});});
     var inv='INV-2026-'+String(max+1).padStart(4,'0');
-    c.invoices.unshift({inv:inv,date:'Aug 10, 2026',app:'Custom',desc:desc,amount:'$'+total.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),status:'Outstanding'});
+    c.invoices.unshift({inv:inv,date:'Aug, 10, 2026',app:'Custom',desc:desc,amount:'$'+total.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),status:'Outstanding'});
     document.querySelector('.main').classList.remove('invoice-mode'); var head=document.querySelector('.main > .page-header-row'); if(head)head.style.display='flex';
     showView('invoices'); showClientDetail(c.id); switchBillingTab('invoices');
     if(typeof showPromoToast==='function')showPromoToast('Invoice '+inv+' created');
@@ -4796,15 +4670,15 @@ function openMeetingDemo(){alert('Book a Product Demo popup opened');}
 <script>
 var meetingGroup2 = 'all';
 var meetingData2 = [
- {name:'Product Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Your Response',date:'Aug 12, 2026',time:'2:00 PM (30 min)',host:'Sarah Johnson',role:'Sales',access:'Available after confirmation',group:'requests',product:'Zoo CRM',client:'Client',email:'client@zenatech.com',recording:'Not available'},
- {name:'Quarterly Review',sub:'Sales Meeting',type:'Sales',status:'Awaiting Your Response',date:'Aug 14, 2026',time:'2:00 PM (30 min)',host:'Michael Brown',role:'Account Manager',access:'Available after confirmation',group:'invitations',product:'People Hub',client:'Acme Health',email:'contact@acmehealth.com',recording:'Not available'},
- {name:'Product Check-in',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Aug 18, 2026',time:'10:00 AM (45 min)',host:'Sarah Johnson',role:'Sales',access:'Join Meeting',group:'all',product:'Zoo CRM',client:'Northstar Labs',email:'team@northstarlabs.com',recording:'Not available'},
- {name:'Analytics Platform Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Sales Confirmation',date:'Aug 20, 2026',time:'11:00 AM (30 min)',host:'Sales Team',role:'Assignment pending',access:'Available once confirmed',group:'requests',product:'Analytics Platform',client:'Client',email:'client@zenatech.com',recording:'Not available'},
- {name:'Platform Walkthrough',sub:'Demo',type:'Demo',status:'Confirmed',date:'Aug 25, 2026',time:'1:00 PM (30 min)',host:'Michael Brown',role:'Account Manager',access:'Join Meeting',group:'all',product:'Platform',client:'Pace+',email:'client@zenatech.com',recording:'Not available'},
- {name:'Onboarding Call',sub:'Sales Meeting',type:'Sales',status:'Completed',date:'Jul 15, 2026',time:'9:00 AM (30 min)',host:'James Lee',role:'Sales',access:'View Recording',group:'past',product:'People Hub',client:'Brightside Co.',email:'ops@brightside.co',recording:'View Recording'},
- {name:'Security Review',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Aug 27, 2026',time:'3:30 PM (45 min)',host:'Sale',role:'Sales',access:'Join Meeting',group:'all',product:'Platform',client:'Northstar Labs',email:'team@northstarlabs.com',recording:'Not available'},
- {name:'People Hub Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Your Response',date:'Aug 29, 2026',time:'11:30 AM (30 min)',host:'Sale',role:'Sales',access:'Available after confirmation',group:'requests',product:'People Hub',client:'Summit Group',email:'hello@summitgroup.com',recording:'Not available'},
- {name:'CRM Follow-up',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Sep 2, 2026',time:'1:15 PM (30 min)',host:'Sale',role:'Sales',access:'Join Meeting',group:'all',product:'Zoo CRM',client:'Atlas Works',email:'ops@atlasworks.com',recording:'Not available'}
+ {name:'Product Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Your Response',date:'Aug, 12, 2026',time:'2:00 PM (30 min)',host:'Sarah Johnson',role:'Sales',access:'Available after confirmation',group:'requests',product:'Zoo CRM',client:'Client',email:'client@zenatech.com',recording:'Not available'},
+ {name:'Quarterly Review',sub:'Sales Meeting',type:'Sales',status:'Awaiting Your Response',date:'Aug, 14, 2026',time:'2:00 PM (30 min)',host:'Michael Brown',role:'Account Manager',access:'Available after confirmation',group:'invitations',product:'People Hub',client:'Acme Health',email:'contact@acmehealth.com',recording:'Not available'},
+ {name:'Product Check-in',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Aug, 18, 2026',time:'10:00 AM (45 min)',host:'Sarah Johnson',role:'Sales',access:'Join Meeting',group:'all',product:'Zoo CRM',client:'Northstar Labs',email:'team@northstarlabs.com',recording:'Not available'},
+ {name:'Analytics Platform Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Sales Confirmation',date:'Aug, 20, 2026',time:'11:00 AM (30 min)',host:'Sales Team',role:'Assignment pending',access:'Available once confirmed',group:'requests',product:'Analytics Platform',client:'Client',email:'client@zenatech.com',recording:'Not available'},
+ {name:'Platform Walkthrough',sub:'Demo',type:'Demo',status:'Confirmed',date:'Aug, 25, 2026',time:'1:00 PM (30 min)',host:'Michael Brown',role:'Account Manager',access:'Join Meeting',group:'all',product:'Platform',client:'Pace+',email:'client@zenatech.com',recording:'Not available'},
+ {name:'Onboarding Call',sub:'Sales Meeting',type:'Sales',status:'Completed',date:'Jul, 15, 2026',time:'9:00 AM (30 min)',host:'James Lee',role:'Sales',access:'View Recording',group:'past',product:'People Hub',client:'Brightside Co.',email:'ops@brightside.co',recording:'View Recording'},
+ {name:'Security Review',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Aug, 27, 2026',time:'3:30 PM (45 min)',host:'Sale',role:'Sales',access:'Join Meeting',group:'all',product:'Platform',client:'Northstar Labs',email:'team@northstarlabs.com',recording:'Not available'},
+ {name:'People Hub Demo',sub:'Demo Request',type:'Demo',status:'Awaiting Your Response',date:'Aug, 29, 2026',time:'11:30 AM (30 min)',host:'Sale',role:'Sales',access:'Available after confirmation',group:'requests',product:'People Hub',client:'Summit Group',email:'hello@summitgroup.com',recording:'Not available'},
+ {name:'CRM Follow-up',sub:'Sales Meeting',type:'Sales',status:'Confirmed',date:'Sep, 2, 2026',time:'1:15 PM (30 min)',host:'Sale',role:'Sales',access:'Join Meeting',group:'all',product:'Zoo CRM',client:'Atlas Works',email:'ops@atlasworks.com',recording:'Not available'}
 ];
 function meetingViewTab(g,b){
  meetingGroup2=g;
