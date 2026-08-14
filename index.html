@@ -1617,7 +1617,7 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
     </div>
   </div>
 
-  <div class="nav-item" id="navDashboard" onclick="showView('dashboard')"><svg class="ti ti-layout-grid" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></div>
+  <div class="nav-item active" id="navDashboard" onclick="showView('dashboard')"><svg class="ti ti-layout-grid" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></div>
     <div class="nav-item" id="navMarketplace" onclick="showView('marketplace')"><span class="nav-icon">⌂</span><span>Marketplace</span></div>
 <div class="nav-section-label">MANAGE</div>
 <div class="nav-item" id="navAppMgmt" onclick="showView('appmgmt')"><svg class="ti ti-apps" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>App Management</span><span class="badge">10</span></div>
@@ -1628,7 +1628,7 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
   <div class="nav-item" id="navSupport" onclick="showView('support')"><svg class="ti ti-headset" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg><span>Support</span></div>
   <div class="nav-item" id="navHelpDocs" onclick="showView('helpdocs')"><span style="width:1em;text-align:center;font-weight:700;">?</span><span>Help &amp; Docs</span></div>
   
-  <div class="nav-item active" id="navPromo" onclick="showView('promo')"><svg class="ti ti-tag" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><path d="M20.59 13.41L13 21l-9-9V3h9l9 9a2 2 0 0 1 0 2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Promo Codes</span></div>
+  <div class="nav-item" id="navPromo" onclick="showView('promo')"><svg class="ti ti-tag" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><path d="M20.59 13.41L13 21l-9-9V3h9l9 9a2 2 0 0 1 0 2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Promo Codes</span></div>
   <div class="nav-item" id="navSetup" onclick="showView('setup')"><svg class="ti ti-list-details" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>App Setup Requests</span><span class="badge">3</span></div>
 
   <div class="nav-section-label">INSIGHTS</div>
@@ -1658,8 +1658,8 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
 
   <div class="page-header-row">
     <div class="page-header-title">
-      <div class="h" id="pageTitle">Promo Codes</div>
-      <div class="s" id="pageSub">Create discount codes, manage availability, and track how often they are used.</div>
+      <div class="h" id="pageTitle">Dashboard</div>
+      <div class="s" id="pageSub">System overview and metrics for today</div>
     </div>
     <div class="custom-dropdown dd-right" id="dateDropdown" style="display:none;">
       <div class="date-pill" onclick="toggleDropdown('dateDropdown')"><svg class="ti ti-calendar" style="font-size:15px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span id="dateDropdownLabel">Today</span> <svg class="ti ti-chevron-down" style="font-size:13px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><polyline points="6 9 12 15 18 9"/></svg></div>
@@ -1680,7 +1680,7 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
     <button class="btn-primary-navy" id="newInvoiceBtn" style="display:none;" onclick="openNewInvoice()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Invoice</button>
   </div>
 
-  <div class="content" style="padding-top: 4px;display:none;" id="dashboardView">
+  <div class="content" style="padding-top: 4px;display:block;" id="dashboardView">
 
     <div class="hero-row">
       <div class="hero-card">
