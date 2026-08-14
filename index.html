@@ -1602,6 +1602,18 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
 body.clients-active #addClientHeaderBtn{display:flex!important;}
 </style>
 
+
+<style id="clean-dashboard-launch-css">
+html:not(.zo-ready) .modal-overlay,
+html:not(.zo-ready) .modal-backdrop,
+html:not(.zo-ready) .modal {
+  display:none !important;
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -1659,7 +1671,7 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
   <div class="page-header-row">
     <div class="page-header-title">
       <div class="h" id="pageTitle">Dashboard</div>
-      <div class="s" id="pageSub">System overview and metrics for today</div>
+      <div class="s" id="pageSub">Overview of revenue, platform activity, and items that need attention.</div>
     </div>
     <div class="custom-dropdown dd-right" id="dateDropdown" style="display:none;">
       <div class="date-pill" onclick="toggleDropdown('dateDropdown')"><svg class="ti ti-calendar" style="font-size:15px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span id="dateDropdownLabel">Today</span> <svg class="ti ti-chevron-down" style="font-size:13px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><polyline points="6 9 12 15 18 9"/></svg></div>
@@ -1674,7 +1686,7 @@ body.clients-active #addClientHeaderBtn{display:flex!important;}
         </div>
       </div>
     </div>
-    <button type="button" class="btn-primary-navy" id="newPromoBtn" onclick="openPromoModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Code</button>
+    <button type="button" class="btn-primary-navy" id="newPromoBtn" style="display:none;" onclick="openPromoModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Code</button>
     <button class="btn-primary-navy" id="createAppBtn" style="display:none;" onclick="openCreateAppPage()">+ Create New App</button>
     <button class="btn-primary-navy" id="addClientHeaderBtn" style="display:none;" type="button" onclick="alert('Add New Client')">+ Add New Client</button>
     <button class="btn-primary-navy" id="newInvoiceBtn" style="display:none;" onclick="openNewInvoice()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Invoice</button>
@@ -2056,13 +2068,7 @@ function createAppGoBack(){document.getElementById('createAppDetails').style.dis
 function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')showPromoToast('App registered');}
 </script>
 
-<script>
-window.addEventListener('load', function(){
-  setTimeout(function(){
-    if (typeof showView === 'function') showView('appmgmt');
-  }, 80);
-});
-</script>
+
 
 <script id="app-edit-final-routing">
 function editManagedApp(name){ openEditAppPage(name,'details'); }
@@ -2130,6 +2136,108 @@ window.addEventListener('load', function(){
   setTimeout(function(){
     if (typeof showView === 'function') showView('dashboard');
   }, 120);
+});
+</script>
+
+
+<script id="dashboard-clean-start-final">
+(function () {
+  function cleanDashboardStart() {
+    /* Close every modal/popup that may have been left open by prototype scripts. */
+    document.querySelectorAll('.modal-overlay').forEach(function (el) {
+      el.style.display = 'none';
+      el.classList.remove('show', 'open', 'active');
+    });
+    document.querySelectorAll('.modal-backdrop, .modal').forEach(function (el) {
+      el.classList.remove('show', 'open', 'active');
+    });
+
+    /* Close custom dropdowns as well. */
+    document.querySelectorAll('.custom-dropdown.open, .participant-panel.open, .invoice-client-menu.open')
+      .forEach(function (el) { el.classList.remove('open'); });
+
+    /* Route to Dashboard after other startup handlers have finished. */
+    if (typeof showView === 'function') {
+      showView('dashboard');
+    }
+
+    /* Re-close overlays in case an earlier delayed prototype handler opens one. */
+    document.querySelectorAll('.modal-overlay').forEach(function (el) {
+      el.style.display = 'none';
+      el.classList.remove('show', 'open', 'active');
+    });
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(cleanDashboardStart, 350);
+    setTimeout(cleanDashboardStart, 900);
+  });
+})();
+</script>
+
+
+<script id="clean-dashboard-launch-js">
+(function(){
+  function launchDashboard(){
+    document.querySelectorAll('.modal-overlay').forEach(function(el){
+      el.style.display='none';
+      el.classList.remove('show','open','active');
+    });
+    document.querySelectorAll('.modal-backdrop,.modal').forEach(function(el){
+      el.classList.remove('show','open','active');
+    });
+    if(typeof showView==='function') showView('dashboard');
+    document.documentElement.classList.add('zo-ready');
+  }
+  if(document.readyState==='complete'){
+    launchDashboard();
+  }else{
+    window.addEventListener('load',function(){
+      setTimeout(launchDashboard,1000);
+    });
+  }
+})();
+</script>
+
+
+<script id="dashboard-first-immediate-final">
+(function(){
+  function setDashboardFirst(){
+    var d=document.getElementById('dashboardView');
+    if(d)d.style.display='block';
+    var p=document.getElementById('promoView');
+    if(p)p.style.display='none';
+    var title=document.getElementById('pageTitle');
+    if(title)title.textContent='Dashboard';
+    var sub=document.getElementById('pageSub');
+    if(sub)sub.textContent='Overview of revenue, platform activity, and items that need attention.';
+    var promo=document.getElementById('newPromoBtn');
+    if(promo)promo.style.display='none';
+    document.querySelectorAll('.modal-overlay').forEach(function(el){el.style.display='none';});
+  }
+  setDashboardFirst();
+  document.addEventListener('DOMContentLoaded',setDashboardFirst);
+  window.addEventListener('load',function(){
+    if(typeof showView==='function')showView('dashboard');
+    setDashboardFirst();
+  });
+})();
+</script>
+
+
+<script id="dashboard-start-authoritative">
+window.addEventListener('load', function(){
+  function forceDashboard(){
+    document.querySelectorAll('.modal-overlay').forEach(function(el){
+      el.style.display='none';
+      el.classList.remove('show','open','active');
+    });
+    if(typeof showView==='function') showView('dashboard');
+  }
+  forceDashboard();
+  setTimeout(forceDashboard, 100);
+  setTimeout(forceDashboard, 500);
+  setTimeout(forceDashboard, 1200);
 });
 </script>
 
@@ -2695,7 +2803,7 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
     <div class="audit-card"><div class="audit-row audit-head"><div>Time</div><div>User</div><div>Action</div><div>Details</div><div>Date</div></div><div id="auditRows"></div><div class="audit-footer"><span id="auditFooterCount"></span><div class="audit-pagination" id="auditPagination"></div></div></div>
   </div>
 
-  <div class="content" id="promoView" style="padding-top:4px;">
+  <div class="content" id="promoView" style="padding-top:4px;display:none;">
     <div class="kpi-row">
       <div class="kpi-card">
         <div class="kpi-icon" style="background:var(--zo-accent-tint);color:var(--zo-navy);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L13 21l-9-9V3h9l9 9a2 2 0 0 1 0 2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
@@ -4220,7 +4328,7 @@ document.addEventListener('DOMContentLoaded',renderAudit);
 <script>
 window.addEventListener('load', function(){
   setTimeout(function(){
-    if (typeof showView === 'function') showView('appmgmt');
+    if (typeof showView === 'function') showView('dashboard');
     var btn=document.getElementById('createAppBtn'); if(btn) btn.style.display='flex';
     if (typeof openCreateApp === 'function') openCreateApp();
   }, 100);
