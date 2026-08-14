@@ -1614,7 +1614,525 @@ html:not(.zo-ready) .modal {
 }
 </style>
 
+
+<style id="dashboard-no-flash-css">
+html:not(.zo-initialized) .modal-overlay,
+html:not(.zo-initialized) .modal-backdrop { display:none !important; }
+</style>
+
+
+<style id="dashboard-date-filter-visible-final">
+body.dashboard-active #dateDropdown{display:block!important;}
+body:not(.dashboard-active) #dateDropdown{display:none!important;}
+</style>
+
+
+<style id="dashboard-today-filter-header-final">
+#dateDropdown{
+  display:block;
+  position:relative;
+}
+body.dashboard-active #dateDropdown{display:block!important;}
+#dateDropdown .dd-trigger{
+  height:38px;
+  min-width:110px;
+  padding:0 13px;
+  border:1px solid var(--zo-border);
+  border-radius:8px;
+  background:#fff;
+  color:var(--zo-navy);
+  font-size:13px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  box-shadow:none;
+}
+#dateDropdown .dd-trigger:hover{
+  border-color:#b9c8e5;
+  background:#f9fbff;
+}
+#dateDropdown .dd-trigger svg{
+  width:16px;
+  height:16px;
+}
+</style>
+
+
+<style id="dashboard-visible-today-filter-final">
+#dashboardTodayFilter{
+  display:none;
+  position:relative;
+  margin-left:auto;
+}
+body.dashboard-active #dashboardTodayFilter{display:block!important;}
+.dashboard-today-trigger{
+  height:38px;
+  padding:0 13px;
+  border:1px solid #d8e0ee;
+  border-radius:8px;
+  background:#fff;
+  color:#173b8f;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+.dashboard-today-trigger:hover{background:#f8faff;border-color:#b9c8e5;}
+.dashboard-today-trigger svg{width:16px;height:16px;flex:0 0 auto;}
+.dashboard-today-trigger .chevron{width:14px;height:14px;}
+.dashboard-today-menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:46px;
+  width:150px;
+  padding:6px;
+  background:#fff;
+  border:1px solid #d8e0ee;
+  border-radius:9px;
+  box-shadow:0 10px 30px rgba(16,24,40,.12);
+  z-index:500;
+}
+.dashboard-today-menu.open{display:block;}
+.dashboard-today-menu button{
+  width:100%;
+  border:0;
+  background:transparent;
+  text-align:left;
+  padding:8px 10px;
+  border-radius:6px;
+  font-size:12px;
+  cursor:pointer;
+}
+.dashboard-today-menu button:hover{background:#f2f6ff;color:#173b8f;}
+</style>
+
+
+<style id="dashboard-header-reference-match">
+/* Dashboard header reference: title/subtitle left, Today control right */
+body.dashboard-active .topbar{
+  min-height:96px;
+  padding:18px 24px 16px 24px;
+  align-items:flex-start;
+  background:#f7f8fb;
+}
+body.dashboard-active .topbar .title{
+  padding-top:0;
+}
+body.dashboard-active #pageTitle{
+  font-size:24px;
+  line-height:30px;
+  font-weight:800;
+  color:#0b1736;
+  margin:0;
+}
+body.dashboard-active #pageSub{
+  margin-top:2px;
+  font-size:13px;
+  line-height:18px;
+  color:#62708d;
+}
+body.dashboard-active .topbar-actions{
+  align-self:flex-start;
+  padding-top:13px;
+  margin-left:auto;
+}
+body.dashboard-active #dashboardTodayFilter{
+  display:block!important;
+  margin-left:auto;
+}
+body.dashboard-active .dashboard-today-trigger{
+  height:34px;
+  min-width:109px;
+  padding:0 12px;
+  border:1px solid #d9e0ec;
+  border-radius:8px;
+  background:#fff;
+  color:#173b8f;
+  font-size:13px;
+  font-weight:700;
+  gap:8px;
+  box-shadow:none;
+}
+body.dashboard-active .dashboard-today-trigger svg{
+  width:15px;
+  height:15px;
+}
+body.dashboard-active .dashboard-today-trigger .chevron{
+  width:13px;
+  height:13px;
+}
+</style>
+
+
+<style id="dashboard-date-filter-hard-fix">
+#dashboardTodayFilter{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  margin-left:auto !important;
+  flex:0 0 auto !important;
+}
+#dashboardTodayFilter .dashboard-today-trigger{
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+#dashboardView[style*="display: none"] ~ * #dashboardTodayFilter{
+  display:none;
+}
+</style>
+
+
+<style id="dashboard-date-filter-single-source-final">
+/* Use the original dashboard dateDropdown only */
+#dashboardTodayFilter{display:none!important;}
+#dateDropdown{display:none!important;position:relative!important;}
+body.dashboard-active #dateDropdown{
+  display:inline-block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+#dateDropdown .date-pill{
+  height:34px!important;
+  min-width:109px!important;
+  padding:0 12px!important;
+  border:1px solid #D9E0EC!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  color:#173B8F!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  cursor:pointer!important;
+}
+#dateDropdown .custom-dropdown-panel{
+  right:0!important;
+  left:auto!important;
+  top:calc(100% + 8px)!important;
+  min-width:210px!important;
+  z-index:1000!important;
+}
+#dateDropdown.open .custom-dropdown-panel{display:block!important;}
+</style>
+
+
+<style id="dashboard-date-filter-reference-final">
+/* Dashboard date filter — match supplied reference */
+body.dashboard-active .page-header-row{
+  align-items:flex-start!important;
+}
+body.dashboard-active #dateDropdown{
+  display:inline-block!important;
+  position:relative!important;
+  margin-left:auto!important;
+}
+#dateDropdown .date-pill{
+  height:34px!important;
+  min-width:109px!important;
+  padding:0 12px!important;
+  border:1px solid #D9E0EC!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  color:#173B8F!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  box-shadow:0 1px 2px rgba(16,24,40,.03)!important;
+}
+#dateDropdown .custom-dropdown-panel{
+  width:210px!important;
+  min-width:210px!important;
+  right:0!important;
+  left:auto!important;
+  top:calc(100% + 8px)!important;
+  padding:8px!important;
+  background:#fff!important;
+  border:1px solid #E1E5EC!important;
+  border-radius:11px!important;
+  box-shadow:0 10px 28px rgba(16,24,40,.14)!important;
+  z-index:1200!important;
+}
+#dateDropdown.open .custom-dropdown-panel{display:block!important;}
+#dateDropdown .dropdown-option{
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 13px!important;
+  border-radius:7px!important;
+  background:#fff!important;
+  color:#101828!important;
+  font-size:13px!important;
+  font-weight:600!important;
+}
+#dateDropdown .dropdown-option:hover{background:#F5F7FB!important;}
+#dateDropdown .dropdown-option.selected{
+  background:#EEF2FF!important;
+  color:#173B8F!important;
+  font-weight:700!important;
+}
+#dateDropdown .dropdown-custom-range{
+  padding:9px 4px 3px!important;
+}
+</style>
+
+
+<style id="dashboard-header-date-filter-guaranteed">
+#dashboardHeaderDateFilter{display:none;position:relative;margin-left:auto;z-index:2000}
+body.dashboard-active #dashboardHeaderDateFilter{display:block!important}
+.dhdf-trigger{
+ height:34px;min-width:109px;padding:0 12px;border:1px solid #d9e0ec;border-radius:8px;
+ background:#fff;color:#173b8f;display:flex;align-items:center;justify-content:center;gap:8px;
+ font-size:13px;font-weight:700;cursor:pointer
+}
+.dhdf-trigger svg{width:15px;height:15px}.dhdf-trigger .chev{width:13px;height:13px}
+.dhdf-menu{
+ display:none;position:absolute;right:0;top:42px;width:210px;padding:8px;background:#fff;
+ border:1px solid #e1e5ec;border-radius:11px;box-shadow:0 10px 28px rgba(16,24,40,.14);z-index:3000
+}
+.dhdf-menu.open{display:block}
+.dhdf-menu button{
+ width:100%;height:38px;border:0;border-radius:7px;background:#fff;color:#101828;
+ padding:0 13px;text-align:left;font-size:13px;font-weight:600;cursor:pointer
+}
+.dhdf-menu button:hover{background:#f5f7fb}.dhdf-menu button.active{background:#eef2ff;color:#173b8f;font-weight:700}
+</style>
+
+
+<style id="dashboard-date-filter-final-update">
+#dashboardHeaderDateFilter{display:none!important;position:relative;margin-left:auto;z-index:2500}
+body.dashboard-active #dashboardHeaderDateFilter{display:block!important}
+body.dashboard-active .topbar-actions{display:flex!important;align-items:center!important;margin-left:auto!important}
+#dashboardHeaderDateMenu.open{display:block!important}
+</style>
+
+<style id="dashboard-date-filter-real-fix">
+#dashboardHeaderDateFilter{display:none!important;}
+body.dashboard-active #dateDropdown{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  margin-left:auto!important;
+}
+body:not(.dashboard-active) #dateDropdown{display:none!important;}
+body.dashboard-active .page-header-row{
+  display:flex!important;
+  align-items:flex-start!important;
+}
+#dateDropdown .date-pill{
+  height:34px!important;
+  min-width:109px!important;
+  padding:0 12px!important;
+  border:1px solid #d9e0ec!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  color:#173b8f!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  cursor:pointer!important;
+}
+#dateDropdown .custom-dropdown-panel{
+  display:none;
+  width:210px!important;
+  min-width:210px!important;
+  top:42px!important;
+  right:0!important;
+  left:auto!important;
+  padding:8px!important;
+  border:1px solid #e1e5ec!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  box-shadow:0 10px 28px rgba(16,24,40,.14)!important;
+  z-index:3000!important;
+}
+#dateDropdown.open .custom-dropdown-panel{display:block!important;}
+#dateDropdown .dropdown-option{
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 13px!important;
+  border-radius:7px!important;
+  color:#101828!important;
+  font-size:13px!important;
+  font-weight:600!important;
+  cursor:pointer!important;
+}
+#dateDropdown .dropdown-option.selected{
+  background:#eef2ff!important;
+  color:#173b8f!important;
+  font-weight:700!important;
+}
+</style>
+
+
+<style id="dashboard-top-nav-consistency-fix">
+/* Keep Dashboard top navigation identical to every other page */
+body.dashboard-active .topbar{
+  min-height:unset!important;
+  padding:14px 18px!important;
+  align-items:center!important;
+  background:#fff!important;
+}
+body.dashboard-active .topbar .title{
+  padding-top:0!important;
+}
+body.dashboard-active #pageTitle{
+  font-size:20px!important;
+  line-height:24px!important;
+  font-weight:800!important;
+  color:var(--zo-text)!important;
+  margin:0!important;
+}
+body.dashboard-active #pageSub{
+  margin-top:2px!important;
+  font-size:12px!important;
+  line-height:16px!important;
+  color:var(--zo-muted)!important;
+}
+body.dashboard-active .topbar-actions{
+  align-self:center!important;
+  padding-top:0!important;
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+}
+body.dashboard-active #dateDropdown{
+  margin-left:0!important;
+}
+</style>
+
+
+<style id="custom-date-range-reference-layout">
+/* Expand only when Custom Date Range is selected/open */
+#dateDropdown.custom-range-open .custom-dropdown-panel{
+  width:590px!important;
+  min-width:590px!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+#dateDropdown.custom-range-open .date-dropdown-layout{
+  display:grid!important;
+  grid-template-columns:235px 1fr!important;
+  min-height:280px!important;
+}
+#dateDropdown.custom-range-open .date-presets{
+  padding:10px 0!important;
+  border-right:1px solid #dfe5ef!important;
+}
+#dateDropdown.custom-range-open .dropdown-option{
+  margin:0 8px!important;
+  width:calc(100% - 16px)!important;
+  height:42px!important;
+  padding:0 12px!important;
+}
+#dateDropdown.custom-range-open .date-custom-panel{
+  display:block!important;
+  padding:28px 24px 24px!important;
+}
+.date-custom-panel{display:none;}
+.date-custom-panel h3{
+  margin:0 0 18px!important;
+  font-size:16px!important;
+  line-height:20px!important;
+  font-weight:800!important;
+  color:#101828!important;
+}
+.date-range-field{margin-bottom:14px!important;}
+.date-range-field label{
+  display:block!important;
+  margin-bottom:6px!important;
+  color:#667085!important;
+  font-size:12px!important;
+  font-weight:500!important;
+}
+.date-range-input{
+  height:40px!important;
+  width:100%!important;
+  border:1px solid #cfd7e6!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  padding:0 12px!important;
+  color:#344054!important;
+  font-size:13px!important;
+  box-sizing:border-box!important;
+}
+.date-range-actions{
+  display:flex!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  margin-top:16px!important;
+}
+.date-range-actions button{
+  height:36px!important;
+  padding:0 16px!important;
+  border-radius:8px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  cursor:pointer!important;
+}
+.date-range-cancel{
+  border:1px solid #cfd7e6!important;
+  background:#fff!important;
+  color:#344054!important;
+}
+.date-range-apply{
+  border:1px solid #173b8f!important;
+  background:#173b8f!important;
+  color:#fff!important;
+}
+</style>
+
+
+<style id="custom-date-range-implemented-final">
+#dateDropdown .dashboard-date-panel{width:210px!important;padding:8px!important;overflow:visible!important}
+#dateDropdown .date-dropdown-layout{display:block}
+#dateDropdown .date-presets{padding:0}
+#dateDropdown .date-custom-panel{display:none}
+#dateDropdown.custom-range-open .dashboard-date-panel{
+  width:590px!important;min-width:590px!important;padding:0!important;border-radius:11px!important;overflow:hidden!important
+}
+#dateDropdown.custom-range-open .date-dropdown-layout{
+  display:grid!important;grid-template-columns:235px 1fr!important;min-height:280px!important
+}
+#dateDropdown.custom-range-open .date-presets{
+  padding:10px 0!important;border-right:1px solid #dfe5ef!important
+}
+#dateDropdown.custom-range-open .date-presets .dropdown-option{
+  width:calc(100% - 16px)!important;height:42px!important;margin:0 8px!important;padding:0 12px!important;
+  display:flex!important;align-items:center!important;border-radius:7px!important
+}
+#dateDropdown.custom-range-open .date-custom-panel{display:block!important;padding:28px 24px 24px!important}
+#dateDropdown .date-custom-panel h3{margin:0 0 18px;font-size:16px;font-weight:800;color:#101828}
+#dateDropdown .date-range-field{margin-bottom:14px}
+#dateDropdown .date-range-field label{display:block;margin-bottom:6px;font-size:12px;color:#667085}
+#dateDropdown .date-range-input{
+  width:100%;height:40px;box-sizing:border-box;border:1px solid #cfd7e6;border-radius:9px;background:#fff;
+  padding:0 12px;font-size:13px;color:#344054
+}
+#dateDropdown .date-range-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+#dateDropdown .date-range-actions button{height:36px;padding:0 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+#dateDropdown .date-range-cancel{border:1px solid #cfd7e6;background:#fff;color:#344054}
+#dateDropdown .date-range-apply{border:1px solid #173b8f;background:#173b8f;color:#fff}
+</style>
+
 </head>
+
 <body>
 
 <div class="sidebar" id="sidebar">
@@ -1654,6 +2172,11 @@ html:not(.zo-ready) .modal {
   <div class="nav-item" id="navAudit" onclick="showView('audit')"><svg class="ti ti-history" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Audit Trail</span></div>
 </div>
 
+
+<script id="dashboard-active-initial-state">
+document.body.classList.add('dashboard-active');
+</script>
+
 <div class="main">
   <div class="topbar">
     <div class="search-box"><svg class="ti ti-search" style="font-size:15px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search dashboard... (Ctrl+K)</div>
@@ -1671,22 +2194,47 @@ html:not(.zo-ready) .modal {
   <div class="page-header-row">
     <div class="page-header-title">
       <div class="h" id="pageTitle">Dashboard</div>
-      <div class="s" id="pageSub">Overview of revenue, platform activity, and items that need attention.</div>
+      <div class="s" id="pageSub">System overview and metrics for today</div>
     </div>
-    <div class="custom-dropdown dd-right" id="dateDropdown" style="display:none;">
-      <div class="date-pill" onclick="toggleDropdown('dateDropdown')"><svg class="ti ti-calendar" style="font-size:15px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span id="dateDropdownLabel">Today</span> <svg class="ti ti-chevron-down" style="font-size:13px;" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;"><polyline points="6 9 12 15 18 9"/></svg></div>
-      <div class="custom-dropdown-panel">
-        <div class="dropdown-option selected" onclick="selectDateOption(this, 'Today')">Today</div>
-        <div class="dropdown-option" onclick="selectDateOption(this, 'Last 7 Days')">Last 7 Days</div>
-        <div class="dropdown-option" onclick="selectDateOption(this, 'Last 30 Days')">Last 30 Days</div>
-        <div class="dropdown-option" onclick="selectDateOption(this, 'Custom Date Range')">Custom Date Range</div>
-        <div class="dropdown-custom-range" id="dashboardCustomRange">
-          <input type="date" id="dashboardRangeFrom">
-          <input type="date" id="dashboardRangeTo">
+    <div class="custom-dropdown dd-right" id="dateDropdown" style="display:block;">
+      <div class="date-pill" onclick="toggleDropdown('dateDropdown')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span id="dateDropdownLabel">Today</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="custom-dropdown-panel dashboard-date-panel">
+        <div class="date-dropdown-layout">
+          <div class="date-presets">
+            <div class="dropdown-option selected" onclick="selectDateOption(this,'Today')">Today</div>
+            <div class="dropdown-option" onclick="selectDateOption(this,'Last 7 Days')">Last 7 Days</div>
+            <div class="dropdown-option" onclick="selectDateOption(this,'Last 30 Days')">Last 30 Days</div>
+            <div class="dropdown-option" onclick="selectDateOption(this,'Custom Date Range')">Custom Date Range</div>
+          </div>
+          <div class="date-custom-panel" id="dashboardCustomDatePanel">
+            <h3>Custom Date Range</h3>
+            <div class="date-range-field">
+              <label for="dashboardStartDate">Start Date</label>
+              <input class="date-range-input" id="dashboardStartDate" type="date">
+            </div>
+            <div class="date-range-field">
+              <label for="dashboardEndDate">End Date</label>
+              <input class="date-range-input" id="dashboardEndDate" type="date">
+            </div>
+            <div class="date-range-actions">
+              <button type="button" class="date-range-cancel" onclick="cancelDashboardCustomDate(event)">Cancel</button>
+              <button type="button" class="date-range-apply" onclick="applyDashboardCustomDate(event)">Apply</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <button type="button" class="btn-primary-navy" id="newPromoBtn" style="display:none;" onclick="openPromoModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Code</button>
+    
+
+
+    
+
+
     <button class="btn-primary-navy" id="createAppBtn" style="display:none;" onclick="openCreateAppPage()">+ Create New App</button>
     <button class="btn-primary-navy" id="addClientHeaderBtn" style="display:none;" type="button" onclick="alert('Add New Client')">+ Add New Client</button>
     <button class="btn-primary-navy" id="newInvoiceBtn" style="display:none;" onclick="openNewInvoice()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Invoice</button>
@@ -2096,152 +2644,217 @@ function selectPricingMode(mode,el){document.querySelectorAll('.pricing-mode-btn
 function toggleFixedPrice(){if(document.getElementById('hasFixedPrice').checked){var b=document.querySelector('.pricing-mode-btn[data-mode="fixed"]');selectPricingMode('fixed',b)}}
 var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEditAppPage(name,tab);var d=appDrafts[name]||{};if(!d.code)d.code=makeAppCode(name);document.getElementById('editAppCode').value=d.code;document.querySelectorAll('.edit-deploy-card').forEach(x=>x.classList.toggle('selected',x.dataset.deploy===(d.deployment||'Shared')));var pricing=d.price||((d.plans&&d.plans.length)?'paid':'free');var pb=document.querySelector('.pricing-choice-btn[data-pricing="'+pricing+'"]');if(pb)selectEditPricing(pricing,pb);setTimeout(function(){var c=document.getElementById('editPlanCount'),badge=document.getElementById('pricingPlanBadge');if(c&&badge){var m=c.textContent.match(/\d+/);badge.textContent=m?m[0]:'0'}},0)};
 </script>
-<script id="clients-header-button-routing">
-(function(){
-  var originalShowView = window.showView;
-  if(typeof originalShowView !== 'function') return;
-  window.showView = function(view){
-    originalShowView.apply(this, arguments);
-    var btn = document.getElementById('addClientHeaderBtn');
-    if(btn) btn.style.display = view === 'clients' ? 'flex' : 'none';
-  };
-})();
-</script>
 
 
-<script id="clients-header-button-visible-routing-fix">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="single-dashboard-initializer">
 (function(){
-  function syncClientHeaderButton(){
-    var view=document.getElementById('clientsView');
-    var btn=document.getElementById('addClientHeaderBtn');
-    if(!view||!btn) return;
-    var visible=getComputedStyle(view).display!=='none';
-    document.body.classList.toggle('clients-active',visible);
-    btn.style.display=visible?'flex':'none';
+  function init(){
+    document.querySelectorAll('.modal-overlay').forEach(function(el){
+      el.style.display='none';
+      el.classList.remove('show','open','active');
+    });
+    document.querySelectorAll('.modal-backdrop').forEach(function(el){
+      el.classList.remove('show','open','active');
+    });
+    if(typeof showView==='function') showView('dashboard');
+    document.body.classList.add('dashboard-active');
+    var dateFilter=document.getElementById('dateDropdown');
+    if(dateFilter) dateFilter.style.display='block';
+    document.documentElement.classList.add('zo-initialized');
   }
-  window.addEventListener('load',function(){
-    var view=document.getElementById('clientsView');
-    if(view){
-      new MutationObserver(syncClientHeaderButton).observe(view,{attributes:true,attributeFilter:['style','class']});
-    }
-    document.addEventListener('click',function(){setTimeout(syncClientHeaderButton,0);});
-    syncClientHeaderButton();
-  });
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', init, {once:true});
+  } else {
+    init();
+  }
 })();
 </script>
 
 
-<script id="dashboard-default-start-final">
-window.addEventListener('load', function(){
+<script id="dashboard-date-filter-routing">
+document.addEventListener('click', function(){
   setTimeout(function(){
-    if (typeof showView === 'function') showView('dashboard');
-  }, 120);
+    var dashboard=document.getElementById('dashboardView');
+    if(!dashboard)return;
+    var active=getComputedStyle(dashboard).display!=='none';
+    document.body.classList.toggle('dashboard-active',active);
+    var dateFilter=document.getElementById('dateDropdown');
+    if(dateFilter)dateFilter.style.display=active?'block':'none';
+  },0);
 });
 </script>
 
 
-<script id="dashboard-clean-start-final">
-(function () {
-  function cleanDashboardStart() {
-    /* Close every modal/popup that may have been left open by prototype scripts. */
-    document.querySelectorAll('.modal-overlay').forEach(function (el) {
-      el.style.display = 'none';
-      el.classList.remove('show', 'open', 'active');
-    });
-    document.querySelectorAll('.modal-backdrop, .modal').forEach(function (el) {
-      el.classList.remove('show', 'open', 'active');
-    });
+<script id="dashboard-visible-today-filter-js">
+function toggleDashboardTodayMenu(e){
+  if(e)e.stopPropagation();
+  var menu=document.getElementById('dashboardTodayMenu');
+  if(menu)menu.classList.toggle('open');
+}
+function selectDashboardDate(label){
+  var el=document.getElementById('dashboardTodayLabel');
+  if(el)el.textContent=label;
+  var menu=document.getElementById('dashboardTodayMenu');
+  if(menu)menu.classList.remove('open');
+}
+document.addEventListener('click',function(){
+  var menu=document.getElementById('dashboardTodayMenu');
+  if(menu)menu.classList.remove('open');
+});
+(function(){
+  function sync(){
+    var dashboard=document.getElementById('dashboardView');
+    var active=dashboard && getComputedStyle(dashboard).display!=='none';
+    document.body.classList.toggle('dashboard-active',!!active);
+    var filter=document.getElementById('dashboardTodayFilter');
+    if(filter)filter.style.display=active?'block':'none';
+  }
+  document.addEventListener('DOMContentLoaded',sync);
+  window.addEventListener('load',sync);
+  document.addEventListener('click',function(){setTimeout(sync,0);});
+})();
+</script>
 
-    /* Close custom dropdowns as well. */
-    document.querySelectorAll('.custom-dropdown.open, .participant-panel.open, .invoice-client-menu.open')
-      .forEach(function (el) { el.classList.remove('open'); });
 
-    /* Route to Dashboard after other startup handlers have finished. */
-    if (typeof showView === 'function') {
-      showView('dashboard');
+<script id="dashboard-date-filter-hard-routing">
+(function(){
+  function syncDashboardHeader(){
+    var dash=document.getElementById('dashboardView');
+    var filter=document.getElementById('dashboardTodayFilter');
+    if(!dash||!filter)return;
+    var onDashboard=getComputedStyle(dash).display!=='none';
+    filter.style.setProperty('display', onDashboard ? 'block' : 'none', 'important');
+    filter.style.setProperty('visibility', onDashboard ? 'visible' : 'hidden', 'important');
+    filter.style.setProperty('opacity', onDashboard ? '1' : '0', 'important');
+  }
+  document.addEventListener('DOMContentLoaded',syncDashboardHeader);
+  window.addEventListener('load',syncDashboardHeader);
+  document.addEventListener('click',function(){setTimeout(syncDashboardHeader,0);});
+  setTimeout(syncDashboardHeader,0);
+})();
+</script>
+
+
+<script id="dashboard-date-filter-single-source-routing">
+(function(){
+  function sync(){
+    var dash=document.getElementById('dashboardView');
+    var filter=document.getElementById('dateDropdown');
+    if(!dash||!filter)return;
+    var active=getComputedStyle(dash).display!=='none';
+    document.body.classList.toggle('dashboard-active',active);
+    filter.style.setProperty('display',active?'inline-block':'none','important');
+    filter.style.setProperty('visibility',active?'visible':'hidden','important');
+    filter.style.setProperty('opacity',active?'1':'0','important');
+    if(!active) filter.classList.remove('open');
+  }
+  document.addEventListener('DOMContentLoaded',sync);
+  window.addEventListener('load',sync);
+  document.addEventListener('click',function(){setTimeout(sync,0);});
+})();
+</script>
+
+
+<script id="dashboard-header-date-filter-guaranteed-js">
+function setDashboardHeaderDate(label,btn){
+ var labelEl=document.getElementById('dashboardHeaderDateLabel');
+ if(labelEl) labelEl.textContent=label;
+ document.querySelectorAll('#dashboardHeaderDateMenu button').forEach(function(b){b.classList.remove('active')});
+ if(btn)btn.classList.add('active');
+ var menu=document.getElementById('dashboardHeaderDateMenu'); if(menu)menu.classList.remove('open');
+}
+document.addEventListener('click',function(){
+ var menu=document.getElementById('dashboardHeaderDateMenu'); if(menu)menu.classList.remove('open');
+});
+(function(){
+ function sync(){
+  var dash=document.getElementById('dashboardView');
+  var f=document.getElementById('dashboardHeaderDateFilter');
+  if(!dash||!f)return;
+  var visible=getComputedStyle(dash).display!=='none';
+  document.body.classList.toggle('dashboard-active',visible);
+  f.style.setProperty('display',visible?'block':'none','important');
+ }
+ document.addEventListener('DOMContentLoaded',sync);
+ window.addEventListener('load',sync);
+ document.addEventListener('click',function(){setTimeout(sync,0)});
+})();
+</script>
+
+
+<script id="dashboard-date-filter-final-update-js">
+(function(){
+  function updateDashboardHeader(){
+    var dash=document.getElementById('dashboardView');
+    var filter=document.getElementById('dashboardHeaderDateFilter');
+    if(!dash||!filter)return;
+    var active=getComputedStyle(dash).display!=='none';
+    document.body.classList.toggle('dashboard-active',active);
+    filter.style.setProperty('display',active?'block':'none','important');
+    if(!active){
+      var menu=document.getElementById('dashboardHeaderDateMenu');
+      if(menu)menu.classList.remove('open');
     }
-
-    /* Re-close overlays in case an earlier delayed prototype handler opens one. */
-    document.querySelectorAll('.modal-overlay').forEach(function (el) {
-      el.style.display = 'none';
-      el.classList.remove('show', 'open', 'active');
-    });
   }
+  document.addEventListener('DOMContentLoaded',updateDashboardHeader);
+  window.addEventListener('load',updateDashboardHeader);
+  document.addEventListener('click',function(){setTimeout(updateDashboardHeader,0);});
+})();
+</script>
 
-  window.addEventListener('load', function () {
-    setTimeout(cleanDashboardStart, 350);
-    setTimeout(cleanDashboardStart, 900);
+<script id="custom-date-range-reference-js">
+(function(){
+  var dd=document.getElementById('dateDropdown');
+  if(!dd)return;
+  var options=dd.querySelectorAll('.dropdown-option');
+  options.forEach(function(opt){
+    if(opt.textContent.trim()==='Custom Date Range'){
+      opt.addEventListener('click',function(e){
+        e.stopPropagation();
+        dd.classList.add('open','custom-range-open');
+        options.forEach(function(x){x.classList.remove('selected');});
+        opt.classList.add('selected');
+      });
+    }
   });
 })();
+function cancelDashboardCustomDate(e){
+  if(e)e.stopPropagation();
+  var dd=document.getElementById('dateDropdown');
+  if(dd){dd.classList.remove('custom-range-open');dd.classList.remove('open');}
+}
+function applyDashboardCustomDate(e){
+  if(e)e.stopPropagation();
+  var s=document.getElementById('dashboardStartDate');
+  var en=document.getElementById('dashboardEndDate');
+  var label=document.getElementById('dateLabel');
+  if(label && s && en && s.value && en.value) label.textContent=s.value+' – '+en.value;
+  var dd=document.getElementById('dateDropdown');
+  if(dd){dd.classList.remove('custom-range-open');dd.classList.remove('open');}
+}
 </script>
 
-
-<script id="clean-dashboard-launch-js">
-(function(){
-  function launchDashboard(){
-    document.querySelectorAll('.modal-overlay').forEach(function(el){
-      el.style.display='none';
-      el.classList.remove('show','open','active');
-    });
-    document.querySelectorAll('.modal-backdrop,.modal').forEach(function(el){
-      el.classList.remove('show','open','active');
-    });
-    if(typeof showView==='function') showView('dashboard');
-    document.documentElement.classList.add('zo-ready');
-  }
-  if(document.readyState==='complete'){
-    launchDashboard();
-  }else{
-    window.addEventListener('load',function(){
-      setTimeout(launchDashboard,1000);
-    });
-  }
-})();
-</script>
-
-
-<script id="dashboard-first-immediate-final">
-(function(){
-  function setDashboardFirst(){
-    var d=document.getElementById('dashboardView');
-    if(d)d.style.display='block';
-    var p=document.getElementById('promoView');
-    if(p)p.style.display='none';
-    var title=document.getElementById('pageTitle');
-    if(title)title.textContent='Dashboard';
-    var sub=document.getElementById('pageSub');
-    if(sub)sub.textContent='Overview of revenue, platform activity, and items that need attention.';
-    var promo=document.getElementById('newPromoBtn');
-    if(promo)promo.style.display='none';
-    document.querySelectorAll('.modal-overlay').forEach(function(el){el.style.display='none';});
-  }
-  setDashboardFirst();
-  document.addEventListener('DOMContentLoaded',setDashboardFirst);
-  window.addEventListener('load',function(){
-    if(typeof showView==='function')showView('dashboard');
-    setDashboardFirst();
-  });
-})();
-</script>
-
-
-<script id="dashboard-start-authoritative">
-window.addEventListener('load', function(){
-  function forceDashboard(){
-    document.querySelectorAll('.modal-overlay').forEach(function(el){
-      el.style.display='none';
-      el.classList.remove('show','open','active');
-    });
-    if(typeof showView==='function') showView('dashboard');
-  }
-  forceDashboard();
-  setTimeout(forceDashboard, 100);
-  setTimeout(forceDashboard, 500);
-  setTimeout(forceDashboard, 1200);
-});
-</script>
-
-</body></html>"></iframe></div>
+</body>
+</html>"></iframe></div>
 <div class="content" id="supportView" style="display:none;padding:0;height:calc(100vh - 132px);"><iframe id="supportFrame" style="width:100%;height:100%;border:0;background:#F6F7FB;" srcdoc="<!DOCTYPE html>
 <html lang=&quot;en&quot;><head><link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Public+Sans:wght@100..900&quot;><meta charset=&quot;utf-8&quot;><meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;><title>Support</title>
 <style>
@@ -3202,16 +3815,17 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
   });
 
   function selectDateOption(el, label){
+    var dd = document.getElementById('dateDropdown');
     var panel = el.closest('.custom-dropdown-panel');
     panel.querySelectorAll('.dropdown-option').forEach(function(o){ o.classList.remove('selected'); });
     el.classList.add('selected');
     document.getElementById('dateDropdownLabel').textContent = label;
-    var rangeEl = document.getElementById('dashboardCustomRange');
     if (label === 'Custom Date Range') {
-      rangeEl.classList.add('show');
+      dd.classList.add('custom-range-open');
+      dd.classList.add('open');
     } else {
-      rangeEl.classList.remove('show');
-      document.getElementById('dateDropdown').classList.remove('open');
+      dd.classList.remove('custom-range-open');
+      dd.classList.remove('open');
     }
   }
 
@@ -3398,6 +4012,7 @@ function deployNewApp(){closeCreateApp();if(typeof showPromoToast==='function')s
   }
 
   function showView(view){
+    document.body.classList.toggle('dashboard-active', view === 'dashboard');
     var views = { dashboard:'dashboardView', setup:'setupView', invoices:'invoicesView', promo:'promoView', audit:'auditView', newinvoice:'newInvoiceView', marketplace:'marketplaceView', meetings:'meetingsView', appmgmt:'appMgmtView', createapp:'createAppView', editapp:'editAppView', clients:'clientsView', salesops:'salesOpsView', analytics:'analyticsView', marketing:'marketingView', integrations:'integrationsView', roles:'rolesView', settings:'settingsView', support:'supportView', helpdocs:'helpdocsView' };
     var titles = {
       dashboard: ['Dashboard', 'System overview and metrics for today'],
