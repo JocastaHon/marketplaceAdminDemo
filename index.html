@@ -2485,6 +2485,86 @@ button[disabled]:hover {
 }
 </style>
 
+
+<style id="client-status-css-only-final">
+.client-css-switch{
+  position:relative!important;
+  display:inline-block!important;
+  width:40px!important;
+  height:22px!important;
+  flex:0 0 40px!important;
+  cursor:pointer!important;
+}
+.client-css-switch input{
+  position:absolute!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.client-css-switch span{
+  position:absolute!important;
+  inset:0!important;
+  border-radius:999px!important;
+  background:#D0D5DD!important;
+  transition:.15s ease!important;
+}
+.client-css-switch span::after{
+  content:""!important;
+  position:absolute!important;
+  top:2px!important;
+  left:2px!important;
+  width:18px!important;
+  height:18px!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  box-shadow:0 1px 2px rgba(16,24,40,.2)!important;
+  transition:.15s ease!important;
+}
+.client-css-switch input:checked + span{
+  background:#173B8F!important;
+}
+.client-css-switch input:checked + span::after{
+  left:20px!important;
+}
+
+/* Status is controlled entirely by checkbox state. */
+.add-client-option:has(#newClientActive:checked) .client-status-active,
+.add-client-option:has(#newClientActive:checked) .client-desc-active{
+  display:block!important;
+}
+.add-client-option:has(#newClientActive:checked) .client-status-inactive,
+.add-client-option:has(#newClientActive:checked) .client-desc-inactive{
+  display:none!important;
+}
+.add-client-option:has(#newClientActive:not(:checked)) .client-status-active,
+.add-client-option:has(#newClientActive:not(:checked)) .client-desc-active{
+  display:none!important;
+}
+.add-client-option:has(#newClientActive:not(:checked)) .client-status-inactive,
+.add-client-option:has(#newClientActive:not(:checked)) .client-desc-inactive{
+  display:block!important;
+}
+.client-status-active,.client-status-inactive{
+  font-size:12px!important;
+  font-weight:700!important;
+  color:#101828!important;
+}
+.client-desc-active,.client-desc-inactive{
+  color:#667085!important;
+  font-size:10px!important;
+  margin-top:3px!important;
+}
+</style>
+
+
+<style id="add-client-x-rebuilt-final">
+#addClientModalOverlay .add-client-close{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:10!important;
+}
+</style>
+
 </head>
 
 <body>
@@ -5866,7 +5946,7 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
 
 <div id="addClientModalOverlay" onclick="if(event.target===this)closeAddClientModal()">
  <div class="add-client-modal">
-  <div class="add-client-modal-head"><div><h2>Add New Client</h2><p>Create a new client account and set their access.</p></div><button class="add-client-close" onclick="closeAddClientModal()">×</button></div>
+  <div class="add-client-modal-head"><div><h2>Add New Client</h2><p>Create a new client account and set their access.</p></div><button class="add-client-close" id="addClientCloseX" type="button" aria-label="Close">×</button></div>
   <div class="add-client-body">
    <div class="add-client-section">
     <div class="add-client-section-title">PROFILE</div>
@@ -5889,7 +5969,18 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
     <div class="add-client-section-title">SECURITY</div>
     <div class="add-client-field add-client-password"><div class="add-client-password-label"><label>Password (optional)</label><button class="add-client-generate" type="button" onclick="generateClientPassword()">↻ Generate</button></div><input id="newClientPassword" type="password" placeholder="••••••••"><button class="add-client-eye" type="button" onclick="toggleClientPassword()">◉</button></div>
     <div class="add-client-warning">ⓘ No password set — user must use SSO or request a password reset before they can log in.</div>
-    <div class="add-client-option"><div class="add-client-option-copy"><strong>Active</strong><small>User can log in immediately after creation</small></div><label class="client-native-switch"><input type="checkbox" id="newClientActive" checked onchange="syncClientActiveNative(this)"><span class="client-native-slider"></span></label></div>
+    <div class="add-client-option">
+  <div class="add-client-option-copy">
+    <strong class="client-status-active">Active</strong>
+    <strong class="client-status-inactive">Inactive</strong>
+    <small class="client-desc-active">User can log in immediately after creation</small>
+    <small class="client-desc-inactive">User cannot log in until the account is activated</small>
+  </div>
+  <label class="client-css-switch">
+    <input type="checkbox" id="newClientActive" checked>
+    <span></span>
+  </label>
+</div>
     <label class="add-client-check-row"><input type="checkbox" id="newClientWelcome" checked><span><strong>✉ &nbsp;Send welcome email</strong><small>Email the user their login details after account creation</small></span></label>
    </div>
   </div>
@@ -6353,6 +6444,231 @@ document.addEventListener('DOMContentLoaded',function(){
   var input=document.getElementById('newClientActive');
   if(input)syncClientActiveNative(input);
 });
+</script>
+
+
+<style id="client-status-visible-final">
+#clientActiveStatusText{
+  display:block!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  color:#101828!important;
+}
+</style>
+<script id="client-status-visible-final-js">
+(function(){
+  function getParts(input){
+    var option=input.closest('.add-client-option');
+    if(!option)return {};
+    var copy=option.querySelector('.add-client-option-copy');
+    if(!copy)return {};
+
+    var title=copy.querySelector('strong');
+    if(title){
+      title.id='clientActiveStatusText';
+    }
+    return {
+      title:title,
+      desc:copy.querySelector('small')
+    };
+  }
+
+  function sync(input){
+    if(!input)return;
+    var p=getParts(input);
+    var active=!!input.checked;
+
+    if(p.title){
+      p.title.textContent=active?'Active':'Inactive';
+    }
+    if(p.desc){
+      p.desc.textContent=active
+        ? 'User can log in immediately after creation'
+        : 'User cannot log in until the account is activated';
+    }
+  }
+
+  /* Capture native checkbox state after every user change. */
+  document.addEventListener('change',function(e){
+    if(e.target && e.target.id==='newClientActive'){
+      sync(e.target);
+    }
+  },true);
+
+  document.addEventListener('input',function(e){
+    if(e.target && e.target.id==='newClientActive'){
+      sync(e.target);
+    }
+  },true);
+
+  /* Also update after clicking anywhere on the switch label. */
+  document.addEventListener('click',function(e){
+    var label=e.target.closest&&e.target.closest('.client-native-switch');
+    if(label){
+      setTimeout(function(){
+        sync(document.getElementById('newClientActive'));
+      },0);
+    }
+  });
+
+  function init(){
+    sync(document.getElementById('newClientActive'));
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init,{once:true});
+  }else{
+    init();
+  }
+})();
+</script>
+
+
+<style id="client-status-text-change-visible-final">
+/* Use one dedicated visible status label next to the client toggle. */
+.client-status-live{
+  display:block!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  color:#101828!important;
+  margin-bottom:3px!important;
+}
+</style>
+<script id="client-status-text-change-visible-final-js">
+(function(){
+  function install(){
+    var input=document.getElementById('newClientActive');
+    if(!input)return;
+
+    var option=input.closest('.add-client-option');
+    if(!option)return;
+
+    var copy=option.querySelector('.add-client-option-copy');
+    if(!copy)return;
+
+    /* Remove the older duplicate Active/Inactive labels. */
+    copy.querySelectorAll('.client-status-active,.client-status-inactive,.client-desc-active,.client-desc-inactive').forEach(function(el){
+      el.remove();
+    });
+
+    var status=document.createElement('strong');
+    status.className='client-status-live';
+    status.id='clientStatusLiveText';
+
+    var desc=document.createElement('small');
+    desc.id='clientStatusLiveDescription';
+
+    copy.innerHTML='';
+    copy.appendChild(status);
+    copy.appendChild(desc);
+
+    function update(){
+      status.textContent=input.checked ? 'Active' : 'Inactive';
+      desc.textContent=input.checked
+        ? 'User can log in immediately after creation'
+        : 'User cannot log in until the account is activated';
+    }
+
+    input.addEventListener('change',update);
+    input.addEventListener('input',update);
+
+    /* Label click changes checkbox natively; update after that state change. */
+    var label=input.closest('.client-css-switch');
+    if(label){
+      label.addEventListener('click',function(){
+        setTimeout(update,0);
+      });
+    }
+
+    update();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',install,{once:true});
+  }else{
+    install();
+  }
+})();
+</script>
+
+
+<script id="add-client-x-close-final">
+(function(){
+  /* Capture the X click before any older popup handlers can interfere. */
+  document.addEventListener('click', function(e){
+    var close = e.target.closest && e.target.closest('#addClientModalOverlay .add-client-close');
+    if(!close) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    var overlay = document.getElementById('addClientModalOverlay');
+    if(!overlay) return;
+
+    overlay.classList.remove('open','client-popup-visible');
+    overlay.style.setProperty('display','none','important');
+  }, true);
+})();
+</script>
+
+
+<style id="add-client-x-final-working-css">
+#addClientModalOverlay.force-client-closed{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+#addClientCloseX{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  z-index:2147483647!important;
+}
+</style>
+<script id="add-client-x-final-working-js">
+(function(){
+  function closeClientPopup(){
+    var o=document.getElementById('addClientModalOverlay');
+    if(!o)return;
+    o.classList.remove('open','client-popup-visible');
+    o.classList.add('force-client-closed');
+    o.style.setProperty('display','none','important');
+    o.style.setProperty('visibility','hidden','important');
+    o.style.setProperty('opacity','0','important');
+    o.style.setProperty('pointer-events','none','important');
+  }
+
+  function reopenReset(){
+    var o=document.getElementById('addClientModalOverlay');
+    if(!o)return;
+    o.classList.remove('force-client-closed');
+    o.style.removeProperty('visibility');
+    o.style.removeProperty('opacity');
+    o.style.removeProperty('pointer-events');
+  }
+
+  /* Window capture runs before the document-level legacy handlers. */
+  window.addEventListener('click',function(e){
+    var x=e.target.closest&&e.target.closest('#addClientCloseX');
+    if(!x)return;
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    closeClientPopup();
+  },true);
+
+  /* Ensure opening Add/Edit removes the hard-closed state. */
+  window.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('button,a');
+    if(!b)return;
+    var text=(b.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+    if(text==='add client'||text==='add new client'||text==='edit'){
+      reopenReset();
+    }
+  },true);
+
+  window.closeAddClientModal=closeClientPopup;
+})();
 </script>
 
 </body>
