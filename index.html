@@ -4520,21 +4520,28 @@ var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEdi
         <div class="promo-field"><label>Valid From</label><input id="promoValidFromInput" type="date"></div>
         <div class="promo-field"><label>Expires At</label><input id="promoExpiresInput" type="date"></div>
         
+
 <div class="promo-field full" id="promoClientDropdownField">
-  <label>Client <span>(optional)</span></label>
-  <select id="promoClientInput">
-    <option value="all">All clients</option>
-    <option value="client@zenatech.com">Client — client@zenatech.com</option>
-    <option value="deepazenatech@gmail.com">Deepa — deepazenatech@gmail.com</option>
-    <option value="deepa@gmail.com">Deepa Zenatech — deepa@gmail.com</option>
-    <option value="deepa@zenatech.com">Deepa Zenatech — deepa@zenatech.com</option>
-    <option value="gerardo.ortiz@zenatech.com">Gerardo Rodriguez — gerardo.ortiz@zenatech.com</option>
-    <option value="umair.khan@epazz.com">Jame — umair.khan@epazz.com</option>
-    <option value="jocasta@zenatech.com">Jocasta Hon — jocasta@zenatech.com</option>
-    <option value="riya2345@gmail.com">Riya — riya2345@gmail.com</option>
-    <option value="sajjad@zenatech.com">Sajjad — sajjad@zenatech.com</option>
-  </select>
-  <div class="config-hint">Choose a specific client for this promo code, or leave it available to all clients.</div>
+  <label>Clients <span>(optional)</span></label>
+  <div class="compact-client-select" id="compactClientSelect">
+    <button type="button" class="compact-client-trigger" onclick="toggleCompactClientMenu(event)">
+      <span id="compactClientLabel">All clients</span>
+      <span class="compact-client-chevron">⌄</span>
+    </button>
+    <div class="compact-client-menu" id="compactClientMenu">
+      <label class="compact-client-option all-option">
+        <input type="checkbox" id="compactClientAll" checked onchange="selectAllPromoClients(this)">
+        <span>All clients</span>
+      </label>
+      <div class="compact-client-divider"></div>
+      <label class="compact-client-option"><input type="checkbox" class="specific-client" value="Client" onchange="updateCompactClients()"><span><strong>Client</strong><small>client@zenatech.com</small></span></label>
+      <label class="compact-client-option"><input type="checkbox" class="specific-client" value="Deepa" onchange="updateCompactClients()"><span><strong>Deepa</strong><small>deepazenatech@gmail.com</small></span></label>
+      <label class="compact-client-option"><input type="checkbox" class="specific-client" value="Gerardo Rodriguez" onchange="updateCompactClients()"><span><strong>Gerardo Rodriguez</strong><small>gerardo.ortiz@zenatech.com</small></span></label>
+      <label class="compact-client-option"><input type="checkbox" class="specific-client" value="Jocasta Hon" onchange="updateCompactClients()"><span><strong>Jocasta Hon</strong><small>jocasta@zenatech.com</small></span></label>
+      <label class="compact-client-option"><input type="checkbox" class="specific-client" value="Sajjad" onchange="updateCompactClients()"><span><strong>Sajjad</strong><small>sajjad@zenatech.com</small></span></label>
+    </div>
+  </div>
+  <div class="compact-client-hint">Select one or multiple specific clients, or leave All clients selected.</div>
 </div>
 
 <div class="promo-field full"><label>Products *</label><div class="promo-product-picker"><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="all" checked onchange="togglePromoProductSelection()"> <span><strong>All products</strong><small>Code can be used with any product</small></span></label><label class="promo-product-choice"><input type="radio" name="promoProductScope" value="specific" onchange="togglePromoProductSelection()"> <span><strong>Specific products</strong><small>Choose which products accept this code</small></span></label><div id="promoProductOptions" class="promo-product-options" style="display:none;"><label><input type="checkbox" value="K9SKY"> K9SKY</label><label><input type="checkbox" value="Othership"> Othership</label><label><input type="checkbox" value="Pace+"> Pace+</label><label><input type="checkbox" value="Provitrac"> Provitrac</label><label><input type="checkbox" value="PsPortals"> PsPortals</label><label><input type="checkbox" value="TSentra"> TSentra</label><label><input type="checkbox" value="WorkAware"> WorkAware</label><label><input type="checkbox" value="Zinergy"> Zinergy</label></div></div></div>
@@ -6790,6 +6797,103 @@ body:not(.zo-page-ready) #configModalOverlay{
     userRequestedCreateApp=false;
   };
 })();
+</script>
+
+
+<style id="promo-client-multiselect-final">
+.promo-client-scope{border:1px solid #D0D5DD;border-radius:10px;overflow:hidden;background:#fff}
+.promo-client-scope-option{display:flex!important;align-items:flex-start;gap:9px;padding:10px 12px!important;margin:0!important;cursor:pointer}
+.promo-client-scope-option+.promo-client-scope-option{border-top:1px solid #EAECF0}
+.promo-client-scope-option input{width:auto!important;margin-top:2px}
+.promo-client-scope-option strong{display:block;font-size:12px;color:#101828}
+.promo-client-scope-option small{display:block;font-size:10px;color:#667085;margin-top:2px;font-weight:400}
+.promo-client-multi-wrap{margin-top:8px;border:1px solid #D0D5DD;border-radius:10px;padding:8px;background:#fff}
+.promo-client-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.promo-client-chip{display:inline-flex;align-items:center;gap:6px;background:#EEF2FF;color:#24499A;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700}
+.promo-client-chip button{border:0;background:transparent;color:#24499A;padding:0;cursor:pointer;font-size:13px}
+#promoModalOverlay .promo-client-search{border:0!important;border-bottom:1px solid #EAECF0!important;border-radius:0!important;padding:7px 4px!important;outline:0!important}
+.promo-client-results{max-height:150px;overflow:auto;padding-top:5px}
+.promo-client-results label{display:flex!important;align-items:center;gap:9px;padding:7px 5px!important;margin:0!important;border-radius:7px;cursor:pointer}
+.promo-client-results label:hover{background:#F9FAFB}
+.promo-client-results input{width:auto!important}
+.promo-client-results span{font-size:11px;font-weight:600;color:#101828}
+.promo-client-results small{display:block;font-size:9.5px;color:#667085;font-weight:400;margin-top:1px}
+</style>
+<script id="promo-client-multiselect-final-js">
+function togglePromoClientMulti(){
+  var mode=document.querySelector('input[name="promoClientMode"]:checked');
+  var wrap=document.getElementById('promoClientMultiWrap');
+  if(wrap)wrap.style.display=mode&&mode.value==='specific'?'block':'none';
+}
+function renderPromoClientChips(){
+  var box=document.getElementById('promoClientChips');
+  if(!box)return;
+  var checked=[].slice.call(document.querySelectorAll('#promoClientResults input:checked'));
+  box.innerHTML=checked.map(function(c){
+    var label=c.getAttribute('data-label')||c.value;
+    return '<span class="promo-client-chip">'+label+' <button type="button" data-client="'+c.value+'">×</button></span>';
+  }).join('');
+}
+document.addEventListener('change',function(e){
+  if(e.target.matches&&e.target.matches('#promoClientResults input[type="checkbox"]'))renderPromoClientChips();
+});
+document.addEventListener('click',function(e){
+  var x=e.target.closest&&e.target.closest('.promo-client-chip button');
+  if(!x)return;
+  var c=document.querySelector('#promoClientResults input[value="'+CSS.escape(x.dataset.client)+'"]');
+  if(c)c.checked=false;
+  renderPromoClientChips();
+});
+document.addEventListener('input',function(e){
+  if(e.target.id!=='promoClientSearch')return;
+  var q=e.target.value.toLowerCase();
+  document.querySelectorAll('#promoClientResults label').forEach(function(row){
+    row.style.display=row.textContent.toLowerCase().includes(q)?'flex':'none';
+  });
+});
+</script>
+
+
+<style id="compact-specific-clients-example">
+.compact-client-select{position:relative}
+.compact-client-trigger{width:100%;height:38px;border:1px solid #D0D5DD;border-radius:9px;background:#fff;padding:0 11px;display:flex;align-items:center;justify-content:space-between;color:#344054;font:12px var(--zo-font);cursor:pointer}
+.compact-client-menu{display:none;position:absolute;left:0;right:0;top:43px;background:#fff;border:1px solid #D0D5DD;border-radius:10px;box-shadow:0 8px 24px rgba(16,24,40,.14);padding:5px;z-index:100}
+.compact-client-menu.open{display:block}
+.compact-client-option{display:flex!important;align-items:center;gap:9px;padding:7px 8px!important;margin:0!important;border-radius:7px;cursor:pointer}
+.compact-client-option:hover{background:#F9FAFB}
+.compact-client-option input{width:auto!important}
+.compact-client-option strong{display:block;font-size:11px}.compact-client-option small{display:block;color:#667085;font-size:9.5px;margin-top:1px;font-weight:400}
+.compact-client-divider{height:1px;background:#EAECF0;margin:4px}
+.compact-client-hint{font-size:10px;color:#667085;margin-top:5px}
+</style>
+<script id="compact-specific-clients-example-js">
+function toggleCompactClientMenu(e){
+  if(e)e.stopPropagation();
+  document.getElementById('compactClientMenu').classList.toggle('open');
+}
+function selectAllPromoClients(all){
+  if(all.checked){
+    document.querySelectorAll('#compactClientMenu .specific-client').forEach(function(c){c.checked=false});
+  }
+  updateCompactClients();
+}
+function updateCompactClients(){
+  var all=document.getElementById('compactClientAll');
+  var selected=[].slice.call(document.querySelectorAll('#compactClientMenu .specific-client:checked'));
+  if(selected.length){
+    all.checked=false;
+    document.getElementById('compactClientLabel').textContent=
+      selected.length===1 ? selected[0].value : selected.length+' clients selected';
+  }else{
+    all.checked=true;
+    document.getElementById('compactClientLabel').textContent='All clients';
+  }
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#compactClientSelect')){
+    var m=document.getElementById('compactClientMenu');if(m)m.classList.remove('open');
+  }
+});
 </script>
 
 </body>
