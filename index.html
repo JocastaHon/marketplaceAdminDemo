@@ -7739,6 +7739,93 @@ function filterRolesTable(){
 }
 </script>
 
+
+<style id="roles-header-filter-container-final">
+/* Roles & Permissions: header action aligned with the global page header */
+#rolesHeaderNewBtn{
+  display:none;
+}
+body.roles-active #rolesHeaderNewBtn{
+  display:flex!important;
+}
+
+/* Search + filters in one App Management-style container */
+#rolesView .roles-toolbar{
+  display:grid!important;
+  grid-template-columns:minmax(320px,1fr) 190px!important;
+  align-items:center!important;
+  gap:10px!important;
+  background:#fff!important;
+  border:1px solid var(--zo-line)!important;
+  border-radius:12px!important;
+  padding:14px!important;
+  margin:0 0 16px!important;
+  box-shadow:none!important;
+}
+#rolesView .roles-search{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:40px!important;
+}
+#rolesView .roles-filter-wrap{
+  width:100%!important;
+}
+#rolesView .roles-filter{
+  width:100%!important;
+  height:40px!important;
+}
+/* Remove the old New Role button from inside the filter row */
+#rolesView .roles-toolbar .roles-new{
+  display:none!important;
+}
+@media(max-width:800px){
+  #rolesView .roles-toolbar{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
+<script id="roles-header-filter-container-final-js">
+(function(){
+  function installRolesHeaderButton(){
+    var header=document.querySelector('.page-header-row');
+    if(!header || document.getElementById('rolesHeaderNewBtn')) return;
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.id='rolesHeaderNewBtn';
+    btn.className='btn-primary-navy';
+    btn.textContent='+ New Role';
+    btn.onclick=function(){ alert('Create new role'); };
+    header.appendChild(btn);
+  }
+
+  var originalShowView=window.showView;
+  if(typeof originalShowView==='function'){
+    window.showView=function(view){
+      var result=originalShowView.apply(this,arguments);
+      document.body.classList.toggle('roles-active',view==='roles');
+      return result;
+    };
+  }
+
+  function syncInitial(){
+    installRolesHeaderButton();
+    var roles=document.getElementById('rolesView');
+    document.body.classList.toggle(
+      'roles-active',
+      !!roles && getComputedStyle(roles).display!=='none'
+    );
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',syncInitial,{once:true});
+  }else{
+    syncInitial();
+  }
+})();
+</script>
+
 </body>
 </html>
 <style>
