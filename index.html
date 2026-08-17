@@ -3081,15 +3081,12 @@ button[disabled]:hover {
   <div class="content" style="padding-top: 4px;display:block;" id="dashboardView">
 
     <div class="hero-row">
-      <div class="hero-card">
+      <div class="hero-card revenue-combined">
         <div class="hero-top">
           <div class="hero-icon" style="background:var(--zo-success-bg); color:var(--zo-success);"><svg class="ti ti-currency-dollar" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><line x1="12" y1="1" x2="12" y2="23"/></svg></div>
           <div class="hero-pill">Today</div>
         </div>
-        <div class="hero-label">Total Revenue</div>
-        <div class="hero-sub">Today's earnings</div>
-        <div class="hero-value">$0.00</div>
-        <div class="hero-foot">No invoices settled yet today · $128,400 month to date</div>
+        <div class="revenue-kpi-copy"><div class="hero-label">Total Revenue</div><div class="hero-sub">Today's earnings</div><div class="hero-value">$0.00</div><div class="hero-foot">No invoices settled yet today · $128,400 month to date</div></div>
         <div class="hero-spark">
           <svg class="chart-svg" viewBox="0 0 300 60" preserveAspectRatio="none" style="width:100%; height:60px; display:block;">
             <polyline points="0,55 60,52 120,46 180,34 240,20 300,6" fill="none" stroke="var(--zo-success)" stroke-width="2.5"/>
@@ -3117,8 +3114,143 @@ button[disabled]:hover {
       </div>
     </div>
 
-    <div class="section-label">Platform</div>
-    <div class="tile-grid">
+    <style id="dashboard-clarity-redesign">
+      .dashboard-command-center{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:16px;margin:0 0 22px}
+      .dashboard-compact-panel{background:#fff;border:1px solid var(--zo-line);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+      .dashboard-compact-head{display:flex;align-items:center;justify-content:space-between;padding:17px 18px 14px;border-bottom:1px solid var(--zo-line)}
+      .dashboard-compact-title{font-size:14px;font-weight:800;color:var(--zo-title)}
+      .dashboard-compact-sub{font-size:11.5px;color:var(--zo-muted);margin-top:3px}
+      .dashboard-link-btn{border:0;background:transparent;color:var(--zo-navy);font-size:12px;font-weight:800;cursor:pointer;padding:6px 0}
+      .platform-summary{display:grid;grid-template-columns:repeat(4,1fr);padding:18px 10px}
+      .platform-summary-item{padding:4px 14px;border-right:1px solid var(--zo-line);cursor:pointer}
+      .platform-summary-item:last-child{border-right:0}
+      .platform-summary-value{font-size:23px;line-height:1;font-weight:800;color:var(--zo-heading)}
+      .platform-summary-label{font-size:11.5px;color:var(--zo-muted);margin-top:7px;line-height:1.35}
+      .platform-summary-meta{display:inline-flex;align-items:center;gap:5px;margin-top:9px;color:var(--zo-success);font-size:10.5px;font-weight:700}
+      .platform-summary-meta.neutral{color:var(--zo-navy)}
+      .platform-card .dashboard-compact-head{padding:15px 17px 8px;border-bottom:0}.platform-card .dashboard-compact-sub,.platform-card .dashboard-link-btn{display:none}.platform-card .dashboard-compact-title{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--zo-muted)}
+      .platform-card .platform-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:8px 16px 16px}
+      .platform-card .platform-summary-item{min-height:64px;padding:11px 12px;border:0;border-radius:9px;background:var(--zo-soft);display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:10px}
+      .platform-card .platform-summary-item:hover{background:var(--zo-accent-tint)}.platform-mini-icon{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;background:#F1EBFF;color:#6941C6;font-size:13px;font-weight:800}.platform-summary-item:nth-child(2) .platform-mini-icon{background:#EAF4FF;color:#2E6FC5}.platform-summary-item:nth-child(3) .platform-mini-icon{background:#FFF7D6;color:#D49B00}.platform-summary-item:nth-child(4) .platform-mini-icon{background:#FFECEF;color:#C93552}
+      .platform-mini-copy{min-width:0}.platform-card .platform-summary-value{font-size:17px;line-height:1}.platform-card .platform-summary-label{font-size:10px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.platform-card .platform-summary-meta{display:none}
+      .priority-list{padding:4px 0}
+      .priority-item{display:grid;grid-template-columns:9px minmax(0,1fr) auto;gap:11px;align-items:center;padding:12px 17px;border-bottom:1px solid var(--zo-line);cursor:pointer}
+      .priority-item:last-child{border-bottom:0}
+      .priority-item:hover{background:var(--zo-row-hover)}
+      .priority-dot{width:8px;height:8px;border-radius:50%;background:var(--zo-warning)}
+      .priority-dot.danger{background:var(--zo-danger)}
+      .priority-dot.info{background:var(--zo-info)}
+      .priority-copy strong{display:block;font-size:12.5px;color:var(--zo-heading)}
+      .priority-copy span{display:block;font-size:11px;color:var(--zo-muted);margin-top:2px}
+      .priority-count{min-width:26px;height:26px;padding:0 8px;border-radius:999px;background:var(--zo-warning-bg);color:var(--zo-warning);display:grid;place-items:center;font-size:11px;font-weight:800}
+      .priority-count.danger{background:var(--zo-danger-bg);color:var(--zo-danger)}
+      .priority-count.info{background:var(--zo-info-bg);color:var(--zo-info)}
+      .revenue-combined{padding:18px 20px;display:flex}
+      .revenue-combined .hero-top{width:100%}.revenue-combined .revenue-kpi-copy{align-self:auto}.revenue-combined .hero-spark{margin-top:auto;padding-top:14px}.revenue-combined .hero-spark:before{display:none}.revenue-combined .hero-value{font-size:30px}.revenue-combined .hero-sub{color:var(--zo-success)}.revenue-growth{color:var(--zo-success);font-weight:800}
+      .dashboard-insight-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(340px,.75fr);gap:16px;margin-bottom:22px;align-items:stretch}
+      .dashboard-insight-layout>.dashboard-command-center{display:grid;grid-template-columns:1fr;gap:16px;margin:0}
+      .dashboard-trend-panel{min-height:368px;display:flex;flex-direction:column}.dashboard-trend-chart{height:auto;min-height:0;flex:1;padding:18px 22px 6px}.dashboard-trend-chart svg{width:100%;height:100%;min-height:285px;display:block}.dashboard-trend-labels{display:flex;justify-content:space-between;padding:0 23px 18px;color:var(--zo-muted);font-size:10px}.trend-badges{display:flex;gap:8px}.trend-badge{padding:4px 9px;border-radius:999px;background:var(--zo-accent-tint);color:var(--zo-navy);font-size:10px;font-weight:800}.trend-badge.growth{background:var(--zo-success-bg);color:var(--zo-success)}
+      .dashboard-operations{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:16px;margin-bottom:22px;align-items:stretch}
+      .dashboard-recent-activity{order:1}.upcoming-meetings{order:2}.recent-invoices{order:3;grid-column:1/-1;margin-bottom:0}
+      .recent-invoice-row{display:grid;grid-template-columns:1fr 2.1fr .75fr .7fr 24px;gap:16px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--zo-line);font-size:12.5px}
+      .recent-invoice-row:last-child{border-bottom:0}
+      .recent-invoice-head{background:var(--zo-soft);padding-top:10px;padding-bottom:10px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--zo-muted)}
+      .recent-invoice-id{font-weight:800;color:var(--zo-accent);cursor:pointer}
+      .recent-invoice-amount{font-weight:800;color:var(--zo-heading)}
+      .recent-invoice-chevron{color:var(--zo-muted);font-size:16px}
+      .invoice-paid{display:inline-flex;width:max-content;padding:4px 9px;border-radius:7px;background:var(--zo-success-bg);color:var(--zo-success);font-size:11px;font-weight:800}
+      .upcoming-meetings .meeting-list{padding:4px 0;border:0;border-radius:0;background:transparent;overflow:visible}.upcoming-meetings .meeting-item{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;padding:13px 17px;border:0;border-bottom:1px solid var(--zo-line);border-radius:0;background:transparent;box-shadow:none;cursor:pointer}.upcoming-meetings .meeting-item:last-child{border-bottom:0}.upcoming-meetings .meeting-item:hover{background:var(--zo-row-hover)}.meeting-time{width:46px;height:44px;border-radius:9px;background:var(--zo-accent-tint);color:var(--zo-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:800;line-height:1.15}.meeting-time strong{font-size:12px}.meeting-copy strong{display:block;font-size:12.5px;color:var(--zo-heading);margin-top:1px}.meeting-copy span{display:block;font-size:11px;color:var(--zo-muted);margin-top:3px}.meeting-status{display:inline-flex!important;width:max-content;color:var(--zo-success)!important;font-weight:700;margin-top:5px!important}
+      .dashboard-activity-list{padding:4px 18px}.dashboard-activity-item{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px 0;border-bottom:1px solid var(--zo-line)}.dashboard-activity-item:last-child{border-bottom:0}.dashboard-activity-icon{width:32px;height:32px;border-radius:9px;background:var(--zo-accent-tint);color:var(--zo-navy);display:grid;place-items:center;font-size:13px;font-weight:800}.dashboard-activity-copy strong{display:block;font-size:12.5px;color:var(--zo-heading)}.dashboard-activity-copy span{display:block;font-size:11px;color:var(--zo-muted);margin-top:3px}.dashboard-activity-time{font-size:10.5px;color:var(--zo-muted);white-space:nowrap}
+      #dashboardLowerInsights{display:none!important}
+      @media(max-width:1100px){.dashboard-insight-layout,.dashboard-operations{grid-template-columns:1fr}.dashboard-command-center{grid-template-columns:1fr}.platform-summary{grid-template-columns:repeat(2,1fr);row-gap:18px}.platform-summary-item:nth-child(2){border-right:0}}
+      @media(max-width:900px){.hero-row{grid-template-columns:1fr 1fr}.revenue-combined{grid-column:1/-1}}
+      @media(max-width:760px){.platform-summary{grid-template-columns:1fr 1fr}.recent-invoice-row{grid-template-columns:1fr auto}.recent-invoice-head{display:none}.recent-invoice-row>:nth-child(2){grid-column:1/-1}.recent-invoice-row>:nth-child(3){grid-column:1}.recent-invoice-row>:nth-child(4){grid-column:2;grid-row:1}.recent-invoice-row>:nth-child(5){display:none}}
+      @media(max-width:620px){.revenue-combined{grid-template-columns:1fr}.revenue-combined .hero-top{grid-column:1}.revenue-combined .hero-spark{margin-top:16px}.hero-row{grid-template-columns:1fr}}
+    </style>
+
+    <div class="dashboard-insight-layout">
+      <section class="dashboard-compact-panel dashboard-trend-panel">
+        <div class="dashboard-compact-head">
+          <div><div class="dashboard-compact-title">Revenue Trend</div><div class="dashboard-compact-sub">Last 30 days</div></div>
+          <div class="trend-badges"><span class="trend-badge">0 invoices today</span><span class="trend-badge growth">+18.4%</span></div>
+        </div>
+        <div class="dashboard-trend-chart">
+          <svg viewBox="0 0 720 250" preserveAspectRatio="none" aria-label="Revenue trend chart">
+            <defs><linearGradient id="dashboardTrendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#315DF4" stop-opacity=".18"/><stop offset="1" stop-color="#315DF4" stop-opacity="0"/></linearGradient></defs>
+            <g stroke="#E4E7EC" stroke-width="1"><line x1="45" y1="20" x2="700" y2="20"/><line x1="45" y1="78" x2="700" y2="78"/><line x1="45" y1="136" x2="700" y2="136"/><line x1="45" y1="194" x2="700" y2="194"/></g>
+            <g fill="#98A2B3" font-size="11"><text x="3" y="24">$20k</text><text x="3" y="82">$15k</text><text x="3" y="140">$10k</text><text x="9" y="198">$5k</text></g>
+            <path d="M45 190 C120 178 165 181 205 166 S310 154 365 138 S470 126 525 105 S630 91 700 61 L700 220 L45 220 Z" fill="url(#dashboardTrendFill)"/>
+            <path d="M45 190 C120 178 165 181 205 166 S310 154 365 138 S470 126 525 105 S630 91 700 61" fill="none" stroke="#315DF4" stroke-width="3" stroke-linecap="round"/>
+            <g fill="#315DF4"><circle cx="45" cy="190" r="4"/><circle cx="205" cy="166" r="4"/><circle cx="365" cy="138" r="4"/><circle cx="525" cy="105" r="4"/><circle cx="700" cy="61" r="4"/></g>
+          </svg>
+        </div>
+        <div class="dashboard-trend-labels"><span>Jul 12</span><span>Jul 19</span><span>Jul 26</span><span>Aug 2</span><span>Aug 9</span></div>
+      </section>
+      <div class="dashboard-command-center">
+      <section class="dashboard-compact-panel platform-card">
+        <div class="dashboard-compact-head">
+          <div><div class="dashboard-compact-title">Platform</div><div class="dashboard-compact-sub">Core marketplace health at a glance</div></div>
+          <button class="dashboard-link-btn" onclick="showView('marketplace')">View marketplace →</button>
+        </div>
+        <div class="platform-summary">
+          <div class="platform-summary-item" onclick="showView('setup')"><span class="platform-mini-icon">♟</span><div class="platform-mini-copy"><div class="platform-summary-value">14</div><div class="platform-summary-label">Active Users</div></div></div>
+          <div class="platform-summary-item" onclick="showView('marketplace')"><span class="platform-mini-icon">▣</span><div class="platform-mini-copy"><div class="platform-summary-value">23</div><div class="platform-summary-label">Installations</div></div></div>
+          <div class="platform-summary-item" onclick="showView('marketplace')"><span class="platform-mini-icon">⌕</span><div class="platform-mini-copy"><div class="platform-summary-value">18</div><div class="platform-summary-label">Subscriptions</div></div></div>
+          <div class="platform-summary-item" onclick="showView('marketplace')"><span class="platform-mini-icon">▦</span><div class="platform-mini-copy"><div class="platform-summary-value">10</div><div class="platform-summary-label">Marketplace Apps</div></div></div>
+        </div>
+      </section>
+
+      <section class="dashboard-compact-panel">
+        <div class="dashboard-compact-head">
+          <div><div class="dashboard-compact-title">Needs Action</div><div class="dashboard-compact-sub">Items that need your attention</div></div>
+          <span style="font-size:11px;font-weight:800;color:var(--zo-danger);">12 open</span>
+        </div>
+        <div class="priority-list">
+          <div class="priority-item" onclick="showView('meetings')"><span class="priority-dot danger"></span><div class="priority-copy"><strong>Meeting responses</strong><span>Oldest waiting 2 days</span></div><span class="priority-count danger">3</span></div>
+          <div class="priority-item" onclick="showView('support')"><span class="priority-dot"></span><div class="priority-copy"><strong>Support tickets</strong><span>2 marked high priority</span></div><span class="priority-count">6</span></div>
+          <div class="priority-item" onclick="showView('setup')"><span class="priority-dot info"></span><div class="priority-copy"><strong>App setup requests</strong><span>Ready for review</span></div><span class="priority-count info">3</span></div>
+        </div>
+      </section>
+      </div>
+    </div>
+
+    <div class="dashboard-operations">
+    <section class="dashboard-compact-panel dashboard-recent-activity">
+      <div class="dashboard-compact-head">
+        <div><div class="dashboard-compact-title">Recent activity</div><div class="dashboard-compact-sub">Latest changes across Zoo Office Marketplace</div></div>
+        <button class="dashboard-link-btn" onclick="showView('audit')">View all →</button>
+      </div>
+      <div class="dashboard-activity-list">
+        <div class="dashboard-activity-item"><div class="dashboard-activity-icon">▤</div><div class="dashboard-activity-copy"><strong>Invoice INV-2492 sent to Northwind Retail</strong><span>Billing · sent by Admin</span></div><div class="dashboard-activity-time">12 min ago</div></div>
+        <div class="dashboard-activity-item"><div class="dashboard-activity-icon" style="background:var(--zo-success-bg);color:var(--zo-success)">✓</div><div class="dashboard-activity-copy"><strong>Inventory Sync 4.2.1 installed for Bright Cargo</strong><span>Marketplace installation completed</span></div><div class="dashboard-activity-time">48 min ago</div></div>
+        <div class="dashboard-activity-item"><div class="dashboard-activity-icon">＋</div><div class="dashboard-activity-copy"><strong>New client PSPortals registered</strong><span>Client account created</span></div><div class="dashboard-activity-time">1 hr ago</div></div>
+      </div>
+    </section>
+    <section class="dashboard-compact-panel recent-invoices">
+      <div class="dashboard-compact-head">
+        <div><div class="dashboard-compact-title">Recent invoices</div><div class="dashboard-compact-sub">Latest billing activity across your clients</div></div>
+        <button class="btn-primary-navy" style="height:36px;padding:0 14px" onclick="showView('invoices')">View all</button>
+      </div>
+      <div class="recent-invoice-row recent-invoice-head"><div>Invoice</div><div>Description</div><div>Status</div><div>Amount</div><div></div></div>
+      <div class="recent-invoice-row" onclick="showView('invoices')"><div class="recent-invoice-id">INV-2026-0148</div><div>App Purchase: Jadian Local</div><div><span class="invoice-paid">Paid</span></div><div class="recent-invoice-amount">$0.00</div><div class="recent-invoice-chevron">›</div></div>
+      <div class="recent-invoice-row" onclick="showView('invoices')"><div class="recent-invoice-id">INV-2026-0147</div><div>Plan Upgrade: ProvitRac → Enterprise</div><div><span class="invoice-paid">Paid</span></div><div class="recent-invoice-amount">$0.00</div><div class="recent-invoice-chevron">›</div></div>
+      <div class="recent-invoice-row" onclick="showView('invoices')"><div class="recent-invoice-id">INV-2026-0146</div><div>Plan Upgrade: ProvitRac → Professional</div><div><span class="invoice-paid">Paid</span></div><div class="recent-invoice-amount">$0.00</div><div class="recent-invoice-chevron">›</div></div>
+      <div class="recent-invoice-row" onclick="showView('invoices')"><div class="recent-invoice-id">INV-2026-0143</div><div>Plan Upgrade: PSPortals → Professional</div><div><span class="invoice-paid">Paid</span></div><div class="recent-invoice-amount">$0.00</div><div class="recent-invoice-chevron">›</div></div>
+    </section>
+    <section class="dashboard-compact-panel upcoming-meetings">
+      <div class="dashboard-compact-head">
+        <div><div class="dashboard-compact-title">Upcoming meetings</div><div class="dashboard-compact-sub">Your next scheduled conversations</div></div>
+        <button class="dashboard-link-btn" onclick="showView('meetings')">View all →</button>
+      </div>
+      <div class="meeting-list">
+        <div class="meeting-item" onclick="showView('meetings')"><div class="meeting-time"><strong>12</strong>AUG</div><div class="meeting-copy"><strong>Product Demo</strong><span>2:00 PM · 30 min</span><span class="meeting-status">● Awaiting response</span></div></div>
+        <div class="meeting-item" onclick="showView('meetings')"><div class="meeting-time"><strong>14</strong>AUG</div><div class="meeting-copy"><strong>Quarterly Review</strong><span>2:00 PM · 30 min</span><span class="meeting-status">● Awaiting response</span></div></div>
+        <div class="meeting-item" onclick="showView('meetings')"><div class="meeting-time"><strong>18</strong>AUG</div><div class="meeting-copy"><strong>Product Check-in</strong><span>10:00 AM · 45 min</span><span class="meeting-status">● Confirmed</span></div></div>
+      </div>
+    </section>
+    </div>
+
+    <div class="tile-grid" style="display:none">
       <div class="tile-card" onclick="showView('setup')">
         <div class="tile-top">
           <div class="tile-icon" style="background:var(--zo-neutral-bg); color:var(--zo-neutral);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -3156,8 +3288,8 @@ button[disabled]:hover {
       </div>
     </div>
 
-    <div class="section-label">Needs Action</div>
-    <div class="action-grid">
+    <div class="section-label" style="display:none">Needs Action</div>
+    <div class="action-grid" style="display:none">
       <div class="action-card" onclick="showView('meetings')" style="cursor:pointer;">
         <div class="action-icon" style="background:var(--zo-warning-bg); color:var(--zo-warning);"><svg class="ti ti-hourglass-low" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a1 1 0 0 1 .8 1.6L13 12l4.8 7.4A1 1 0 0 1 17 21H7a1 1 0 0 1-.8-1.6L11 12 6.2 4.6A1 1 0 0 1 7 3z"/><line x1="6" y1="2" x2="18" y2="2"/><line x1="6" y1="22" x2="18" y2="22"/></svg></div>
         <div><div class="action-value">3</div><div class="action-label">Pending Meeting Responses</div></div>
@@ -3179,7 +3311,7 @@ button[disabled]:hover {
       </div>
     </div>
 
-    <div class="row-2" style="grid-template-columns: 1.6fr 1fr;">
+    <div class="row-2" id="dashboardLowerInsights" style="grid-template-columns: 1.6fr 1fr;">
       <div class="panel">
         <div class="panel-header">
           <div class="panel-title-group">
