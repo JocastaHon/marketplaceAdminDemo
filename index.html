@@ -6671,6 +6671,127 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 
+
+<style id="no-popup-on-landing-final">
+/* Never show modal overlays during initial page load. */
+body:not(.zo-page-ready) .modal-overlay,
+body:not(.zo-page-ready) #addClientModalOverlay,
+body:not(.zo-page-ready) #promoModalOverlay,
+body:not(.zo-page-ready) #configModalOverlay{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+</style>
+<script id="no-popup-on-landing-final-js">
+(function(){
+  function closeLandingPopups(){
+    document.querySelectorAll(
+      '.modal-overlay,#addClientModalOverlay,#promoModalOverlay,#configModalOverlay'
+    ).forEach(function(o){
+      o.classList.remove(
+        'open',
+        'show',
+        'client-popup-visible',
+        'promo-popup-open',
+        'app-config-open'
+      );
+      o.style.setProperty('display','none','important');
+      o.style.removeProperty('visibility');
+      o.style.removeProperty('opacity');
+      o.style.removeProperty('pointer-events');
+    });
+
+    /* Landing page should be Dashboard, not a modal state. */
+    try{
+      if(typeof showView==='function') showView('dashboard');
+    }catch(e){}
+
+    document.body.classList.add('zo-page-ready');
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',closeLandingPopups,{once:true});
+  }else{
+    closeLandingPopups();
+  }
+})();
+</script>
+
+
+<style id="create-app-no-autoload-final">
+#createAppOverlay{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+#createAppOverlay.create-app-user-open{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+</style>
+
+<script id="create-app-no-autoload-final-js">
+(function(){
+  var userRequestedCreateApp=false;
+
+  function forceClosed(){
+    var o=document.getElementById('createAppOverlay');
+    if(!o)return;
+    o.classList.remove('create-app-user-open','open','show');
+    o.style.setProperty('display','none','important');
+    o.style.setProperty('visibility','hidden','important');
+    o.style.setProperty('opacity','0','important');
+    o.style.setProperty('pointer-events','none','important');
+  }
+
+  /* Close it immediately, including after older load scripts execute. */
+  forceClosed();
+  document.addEventListener('DOMContentLoaded',function(){
+    forceClosed();
+    setTimeout(forceClosed,0);
+    setTimeout(forceClosed,100);
+    setTimeout(forceClosed,500);
+  },{once:true});
+  window.addEventListener('load',function(){
+    forceClosed();
+    setTimeout(forceClosed,100);
+  },{once:true});
+
+  /* Only allow the modal to open from a real Create/New App click. */
+  window.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('button,a');
+    if(!b)return;
+    var text=(b.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+    if(text==='create new app'||text==='+ create new app'||text==='new app'||text==='+ new app'){
+      userRequestedCreateApp=true;
+    }
+  },true);
+
+  var oldOpenCreateApp=window.openCreateApp;
+  window.openCreateApp=function(){
+    if(!userRequestedCreateApp)return;
+    var o=document.getElementById('createAppOverlay');
+    if(!o)return;
+    o.classList.add('create-app-user-open');
+    o.style.setProperty('display','flex','important');
+    o.style.setProperty('visibility','visible','important');
+    o.style.setProperty('opacity','1','important');
+    o.style.setProperty('pointer-events','auto','important');
+    userRequestedCreateApp=false;
+  };
+
+  window.closeCreateApp=function(){
+    forceClosed();
+    userRequestedCreateApp=false;
+  };
+})();
+</script>
+
 </body>
 </html>
 <style>
