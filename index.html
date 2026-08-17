@@ -2016,6 +2016,405 @@ td.subscriptions-cell small {
 }
 </style>
 
+<style id="app-management-icons-match-clients-final">
+#appMgmtView .appmgmt-actions{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:6px!important}
+#appMgmtView .appmgmt-actions button{width:34px!important;height:34px!important;min-width:34px!important;padding:0!important;border:0!important;border-radius:7px!important;background:transparent!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
+#appMgmtView .appmgmt-actions button svg{width:18px!important;height:18px!important;flex:none!important}
+</style>
+
+<style id="all-action-icons-match-meetings-invoices">
+/* Standardize table action icons to the Meetings / Invoices icon-button size. */
+.content table td:last-child .icon-btn,
+.content table td:last-child .btn-icon,
+.content table td:last-child .app-action-btn,
+.content table td:last-child .client-action-btn,
+.content table td:last-child button[title],
+.content table td:last-child button[aria-label]{
+  width:32px!important;
+  height:32px!important;
+  min-width:32px!important;
+  min-height:32px!important;
+  padding:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+  flex:0 0 32px!important;
+}
+.content table td:last-child .icon-btn svg,
+.content table td:last-child .btn-icon svg,
+.content table td:last-child .app-action-btn svg,
+.content table td:last-child .client-action-btn svg,
+.content table td:last-child button[title] svg,
+.content table td:last-child button[aria-label] svg{
+  width:16px!important;
+  height:16px!important;
+  min-width:16px!important;
+  min-height:16px!important;
+  flex:0 0 16px!important;
+}
+.content table td:last-child .actions,
+.content table td:last-child .appmgmt-actions,
+.content table td:last-child .client-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important;
+}
+</style>
+
+
+<style id="app-clients-exact-meetings-invoices-final">
+#appMgmtView .appmgmt-actions button,
+#clientsView .client-actions button,
+#clientsView td:last-child button{
+  width:32px!important;
+  height:32px!important;
+  min-width:32px!important;
+  min-height:32px!important;
+  max-width:32px!important;
+  max-height:32px!important;
+  padding:0!important;
+  flex:0 0 32px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+}
+#appMgmtView .appmgmt-actions button svg,
+#clientsView .client-actions button svg,
+#clientsView td:last-child button svg{
+  width:16px!important;
+  height:16px!important;
+  min-width:16px!important;
+  min-height:16px!important;
+  max-width:16px!important;
+  max-height:16px!important;
+  flex:0 0 16px!important;
+}
+#appMgmtView .appmgmt-actions,
+#clientsView .client-actions,
+#clientsView td:last-child > div{
+  gap:6px!important;
+  align-items:center!important;
+}
+</style>
+
+
+<style id="global-disabled-button-grey-final">
+/* Unified disabled button state */
+button:disabled,
+button[disabled],
+.btn-save:disabled,
+.btn-primary-navy:disabled,
+.view-all-btn:disabled,
+.native-primary:disabled,
+.primary:disabled,
+.respond-btn:disabled,
+.access-btn:disabled,
+.icon-btn:disabled,
+.invoice-delete-btn:disabled {
+  background:#D0D5DD !important;
+  border-color:#D0D5DD !important;
+  color:#667085 !important;
+  box-shadow:none !important;
+  cursor:not-allowed !important;
+  opacity:1 !important;
+  filter:none !important;
+  pointer-events:none !important;
+}
+button:disabled svg,
+button[disabled] svg {
+  color:#667085 !important;
+  stroke:currentColor !important;
+}
+</style>
+
+
+<style id="disabled-button-reference-style-final">
+/* Disabled buttons: match supplied reference — light grey fill, darker grey icon/text, no border/shadow. */
+button:disabled,
+button[disabled],
+.btn-save:disabled,
+.btn-primary-navy:disabled,
+.view-all-btn:disabled,
+.native-primary:disabled,
+.primary:disabled,
+.respond-btn:disabled,
+.access-btn:disabled,
+.icon-btn:disabled,
+.invoice-delete-btn:disabled {
+  background:#E7E7E7 !important;
+  border-color:transparent !important;
+  color:#737373 !important;
+  box-shadow:none !important;
+  cursor:not-allowed !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+button:disabled svg,
+button[disabled] svg {
+  color:#737373 !important;
+  stroke:currentColor !important;
+}
+button:disabled:hover,
+button[disabled]:hover {
+  background:#E7E7E7 !important;
+  border-color:transparent !important;
+  color:#737373 !important;
+}
+</style>
+
+
+<style id="remove-create-app-bottom-cancel-final">
+#createAppView .form-actions .btn-cancel,
+#createAppView .footer-actions .btn-cancel,
+#createAppView .bottom-actions .btn-cancel{
+  display:none!important;
+}
+</style>
+
+
+<style id="create-app-button-top-final">
+/* Keep the Create App actions at the very top of the Create New App page. */
+#createAppView .create-app-top-actions{
+  position:absolute!important;
+  top:0!important;
+  right:24px!important;
+  margin:0!important;
+  transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  z-index:100!important;
+}
+</style>
+
+
+<style id="edit-match-create-header-position-final">
+/* Edit App: match the Create App page's Back + header positioning exactly. */
+#editAppView .back-btn,
+#editAppView [class*="back"]{
+  position:relative!important;
+  top:-20px!important;
+  transform:none!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+
+#editAppView .page-head,
+#editAppView .detail-header,
+#editAppView .content-header{
+  position:relative!important;
+  top:-20px!important;
+  margin-top:0!important;
+}
+
+/* Keep the Edit page's right-side actions aligned with the same header row. */
+#editAppView .page-actions,
+#editAppView .header-actions,
+#editAppView .detail-actions{
+  margin-top:0!important;
+  align-self:center!important;
+}
+</style>
+
+
+<style id="edit-app-match-create-alignment-v2">
+/* Match Edit App to Create App page spacing/alignment. */
+#editAppView{
+  position:relative!important;
+}
+
+/* Back action uses the same top/left placement as Create App. */
+#editAppView .back-btn,
+#editAppView [class*="back"]{
+  position:relative!important;
+  top:-20px!important;
+  left:0!important;
+  margin:0!important;
+  transform:none!important;
+}
+
+/* Edit header starts at the same horizontal and vertical position as Create header. */
+#editAppView .page-head,
+#editAppView .detail-header,
+#editAppView .content-header{
+  position:relative!important;
+  top:-20px!important;
+  left:0!important;
+  margin:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  width:100%!important;
+}
+
+/* Normalize title/subtitle spacing to Create App. */
+#editAppView .page-head h1,
+#editAppView .page-head h2,
+#editAppView .detail-header h1,
+#editAppView .detail-header h2,
+#editAppView .content-header h1,
+#editAppView .content-header h2{
+  margin-top:0!important;
+}
+</style>
+
+
+<style id="edit-exact-create-real-selectors">
+/* Create + Edit use the exact same real page structure and coordinates. */
+#createAppView,
+#editAppView{
+  position:relative!important;
+}
+
+#createAppView .app-page-top,
+#editAppView .app-page-top{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  width:100%!important;
+  margin:0 0 10px 0!important;
+  padding:0!important;
+  position:relative!important;
+  top:0!important;
+  left:0!important;
+  transform:none!important;
+}
+
+#createAppView .app-page-back,
+#editAppView .app-page-back{
+  position:static!important;
+  top:auto!important;
+  left:auto!important;
+  margin:0!important;
+  transform:none!important;
+}
+
+#createAppView .app-page-title,
+#editAppView .app-page-title{
+  margin:0!important;
+  padding:0!important;
+}
+
+#createAppView .app-page-sub,
+#editAppView .app-page-sub{
+  margin-top:3px!important;
+}
+
+/* Match the title block itself on both pages. */
+#createAppView .app-page-top + div,
+#editAppView .app-page-top + div{
+  margin:0!important;
+  padding:0!important;
+  position:relative!important;
+  top:0!important;
+  left:0!important;
+  transform:none!important;
+}
+</style>
+
+
+<style id="edit-create-back-spacing-exact-final">
+/* Give Edit App the exact same space above Back as Create App. */
+#createAppView,
+#editAppView{
+  padding-top:0!important;
+}
+
+#createAppView .app-page-top,
+#editAppView .app-page-top{
+  margin-top:0!important;
+  padding-top:0!important;
+  top:0!important;
+}
+
+/* Neutralize older Edit-only offsets that were changing the top gap. */
+#editAppView .app-page-back,
+#editAppView .back-btn,
+#editAppView [class*="back"]{
+  position:static!important;
+  top:auto!important;
+  margin-top:0!important;
+  padding-top:0!important;
+  transform:none!important;
+}
+</style>
+
+
+<style id="edit-page-top-spacing-match-create-final">
+/* Edit App: add the same breathing room above Back + header actions as Create App. */
+#editAppView{
+  padding-top:20px!important;
+}
+
+/* Keep Back and the right-side action on the same top row. */
+#editAppView .app-page-top{
+  margin-top:0!important;
+  padding-top:0!important;
+  top:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+}
+
+/* Neutralize older negative offsets on Edit App. */
+#editAppView .app-page-back,
+#editAppView .back-btn,
+#editAppView [class*="back"],
+#editAppView .app-page-top button,
+#editAppView .app-page-top .btn-save,
+#editAppView .app-page-top .btn-primary-navy{
+  position:static!important;
+  top:auto!important;
+  margin-top:0!important;
+  transform:none!important;
+}
+</style>
+
+
+<style id="create-app-back-spacing-fixed-final">
+/* Create App: restore consistent breathing room above the Back action. */
+#createAppView{
+  padding-top:20px!important;
+}
+
+#createAppView .app-page-top{
+  margin-top:0!important;
+  padding-top:0!important;
+  top:0!important;
+  transform:none!important;
+}
+
+/* Remove older negative offsets that were pulling Back too close to the top. */
+#createAppView .app-page-back,
+#createAppView .back-btn,
+#createAppView [class*="back"]{
+  position:static!important;
+  top:auto!important;
+  margin-top:0!important;
+  padding-top:0!important;
+  transform:none!important;
+}
+
+/* Keep the top-right Create/Cancel actions aligned with the same top row. */
+#createAppView .real-create-header-actions,
+#createAppView .create-app-top-actions{
+  top:20px!important;
+}
+</style>
+
+
+<style id="create-app-more-top-spacing-final">
+/* Create App: add a little more breathing room above Back. */
+#createAppView{
+  padding-top:28px!important;
+}
+#createAppView .real-create-header-actions,
+#createAppView .create-app-top-actions{
+  top:28px!important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2296,7 +2695,7 @@ td.subscriptions-cell small {
     <div class="app-page-section"><div class="app-page-section-title">Marketplace Information</div><div class="app-page-grid"><div class="app-page-field"><label>Category *</label><select id="capCategory" onchange="validateCreateAppPage()"><option value="">Select category...</option><option>Zoo Office</option><option>Workplace</option><option>HR &amp; People</option><option>Security</option><option>Safety Management</option></select></div><div class="app-page-field"><label>Website URL</label><input id="capWebsite" placeholder="https://yourapp.com"></div><div class="app-page-field full"><label>App Features</label><textarea id="capFeatures" placeholder="List key features — one per line"></textarea></div></div></div>
     <div class="app-page-section"><div class="app-page-section-title">Pricing</div><div class="app-page-choice-grid"><div class="app-page-choice selected" data-price="Free" onclick="selectCreatePrice(this)"><strong>Free</strong><small>No charge to Marketplace users.</small></div><div class="app-page-choice" data-price="Paid" onclick="selectCreatePrice(this)"><strong>Paid</strong><small>Create one or more plans after the app is registered.</small></div></div></div>
     <div class="app-page-section"><div class="app-page-section-title">Deployment Type *</div><div class="app-page-deploy-grid"><div class="app-page-deploy selected" data-deploy="Shared" onclick="selectCreateDeploy(this)"><strong>Shared</strong><small>All clients share one URL and database.</small></div><div class="app-page-deploy" data-deploy="Multi-Tenant" onclick="selectCreateDeploy(this)"><strong>Multi-Tenant</strong><small>Shared infrastructure with a unique tenant key per client.</small></div><div class="app-page-deploy" data-deploy="Dedicated" onclick="selectCreateDeploy(this)"><strong>Dedicated</strong><small>Custom subdomain and database for each client.</small></div></div></div>
-    <div class="app-page-footer"><button class="btn-cancel" onclick="cancelCreateAppPage()">Cancel</button><button class="btn-save" id="createAppPageBtn" onclick="createAppFromPage()" disabled>Create App</button></div>
+    <div class="app-page-footer"><button class="btn-save" id="createAppPageBtn" onclick="createAppFromPage()" disabled>Create App</button></div>
   </div>
 </div>
 <div class="content app-editor-page" id="editAppView" style="display:none;">
@@ -2714,6 +3113,374 @@ document.addEventListener('DOMContentLoaded',function(){normalizeVisibleZooDates
       }
     }
   };
+})();
+</script>
+
+
+<style id="create-app-header-actions-demo">
+/* Create New App: Back on the left, Cancel + Create App grouped at top right. */
+#createAppView .create-app-header-actions-demo{
+  position:absolute;
+  top:20px;
+  right:24px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:20;
+}
+#createAppView .create-app-header-actions-demo .demo-cancel{
+  height:36px;
+  padding:0 16px;
+  border:1px solid var(--zo-line-input,#D0D5DD);
+  border-radius:8px;
+  background:#fff;
+  color:var(--zo-text,#101828);
+  font-family:var(--zo-font);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+#createAppView .create-app-header-actions-demo .demo-create{
+  height:36px;
+  padding:0 16px;
+  border:1px solid var(--zo-navy,#173B8F);
+  border-radius:8px;
+  background:var(--zo-navy,#173B8F);
+  color:#fff;
+  font-family:var(--zo-font);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+#createAppView .create-app-header-actions-demo .demo-create:disabled{
+  background:#E7E7E7!important;
+  border-color:transparent!important;
+  color:#737373!important;
+  cursor:not-allowed!important;
+}
+</style>
+<script id="create-app-header-actions-demo-js">
+(function(){
+  function installCreateActions(){
+    var view=document.getElementById('createAppView');
+    if(!view || view.querySelector('.create-app-header-actions-demo')) return;
+
+    view.style.position='relative';
+
+    var actions=document.createElement('div');
+    actions.className='create-app-header-actions-demo';
+    actions.innerHTML=
+      '<button type="button" class="demo-cancel">Cancel</button>'+
+      '<button type="button" class="demo-create">Create App</button>';
+
+    view.appendChild(actions);
+
+    actions.querySelector('.demo-cancel').onclick=function(){
+      if(typeof showView==='function') showView('appmgmt');
+    };
+
+    actions.querySelector('.demo-create').onclick=function(){
+      var existing=[].slice.call(view.querySelectorAll('button')).find(function(b){
+        return b!==this && b.textContent.trim()==='Create App' &&
+          !b.closest('.create-app-header-actions-demo');
+      });
+      if(existing) existing.click();
+    };
+
+    /* Remove/hide any remaining bottom Create App action so actions only exist in header. */
+    [].slice.call(view.querySelectorAll('button')).forEach(function(b){
+      if(b.closest('.create-app-header-actions-demo')) return;
+      var txt=b.textContent.trim();
+      if(txt==='Create App'){
+        var parent=b.parentElement;
+        b.style.setProperty('display','none','important');
+        if(parent && /form-actions|footer-actions|bottom-actions/.test(parent.className||'')){
+          parent.style.setProperty('display','none','important');
+        }
+      }
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',installCreateActions);
+  }else{
+    installCreateActions();
+  }
+})();
+</script>
+
+
+<style id="create-app-top-actions-authoritative">
+#createAppView .create-app-top-actions{
+  position:absolute!important;
+  top:20px!important;
+  right:24px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  z-index:50!important;
+}
+#createAppView .create-app-top-actions button{
+  height:36px!important;
+  padding:0 16px!important;
+  border-radius:8px!important;
+  font-size:13px!important;
+  font-weight:600!important;
+}
+</style>
+<script id="create-app-top-actions-authoritative-js">
+(function(){
+  function fixCreateAppActions(){
+    var view=document.getElementById('createAppView');
+    if(!view)return;
+    view.style.position='relative';
+
+    /* Remove the previously injected demo action group. */
+    view.querySelectorAll('.create-app-header-actions-demo,.create-app-top-actions').forEach(function(x){
+      x.remove();
+    });
+
+    var buttons=[].slice.call(view.querySelectorAll('button'));
+    var createButtons=buttons.filter(function(b){
+      return b.textContent.trim()==='Create App';
+    });
+    var cancelButtons=buttons.filter(function(b){
+      return b.textContent.trim()==='Cancel';
+    });
+
+    /* Use the original form submit Create App button so existing behavior is preserved. */
+    var create=createButtons.length ? createButtons[createButtons.length-1] : null;
+    var cancel=cancelButtons.length ? cancelButtons[0] : null;
+
+    var actions=document.createElement('div');
+    actions.className='create-app-top-actions';
+
+    if(cancel){
+      cancel.style.removeProperty('display');
+      cancel.style.removeProperty('position');
+      cancel.style.removeProperty('top');
+      cancel.style.removeProperty('transform');
+      actions.appendChild(cancel);
+    }
+
+    if(create){
+      create.style.removeProperty('display');
+      create.style.removeProperty('position');
+      create.style.removeProperty('top');
+      create.style.removeProperty('transform');
+      actions.appendChild(create);
+    }
+
+    view.appendChild(actions);
+
+    /* Remove any duplicate Create App / Cancel buttons left in bottom form actions. */
+    [].slice.call(view.querySelectorAll('button')).forEach(function(b){
+      if(b.closest('.create-app-top-actions'))return;
+      var text=b.textContent.trim();
+      if(text==='Create App' || text==='Cancel') b.remove();
+    });
+
+    /* Hide an empty bottom action wrapper after moving the real submit button. */
+    view.querySelectorAll('.form-actions,.footer-actions,.bottom-actions').forEach(function(row){
+      if(!row.querySelector('button')) row.style.setProperty('display','none','important');
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',fixCreateAppActions,{once:true});
+  }else{
+    fixCreateAppActions();
+  }
+})();
+</script>
+
+
+<style id="create-app-next-to-cancel-final">
+/* Create App page: Cancel + Create App grouped together at top right. */
+#createAppView .create-app-top-actions{
+  position:absolute!important;
+  top:0!important;
+  right:24px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  margin:0!important;
+  transform:none!important;
+  z-index:200!important;
+}
+#createAppView .create-app-top-actions .btn-cancel,
+#createAppView .create-app-top-actions button{
+  position:static!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  margin:0!important;
+}
+</style>
+<script id="create-app-next-to-cancel-final-js">
+(function(){
+  function alignActions(){
+    var view=document.getElementById('createAppView');
+    if(!view)return;
+
+    var actions=view.querySelector('.create-app-top-actions');
+    if(!actions)return;
+
+    var buttons=[].slice.call(actions.querySelectorAll('button'));
+    var cancel=buttons.find(function(b){return b.textContent.trim()==='Cancel';});
+    var create=buttons.find(function(b){return b.textContent.trim()==='Create App';});
+
+    if(cancel && create){
+      actions.innerHTML='';
+      actions.appendChild(cancel);
+      actions.appendChild(create);
+    }
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',alignActions,{once:true});
+  }else{
+    alignActions();
+  }
+})();
+</script>
+
+
+<style id="create-app-button-top-right-visible-final">
+#createAppView{
+  position:relative!important;
+}
+#createAppView .create-app-top-actions{
+  position:absolute!important;
+  top:0!important;
+  right:0!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  width:auto!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  z-index:999!important;
+}
+#createAppView .create-app-top-actions button{
+  position:static!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  transform:none!important;
+}
+</style>
+<script id="create-app-button-top-right-visible-final-js">
+(function(){
+  function forceTopActions(){
+    var view=document.getElementById('createAppView');
+    if(!view)return;
+
+    var actions=view.querySelector('.create-app-top-actions');
+    if(!actions){
+      actions=document.createElement('div');
+      actions.className='create-app-top-actions';
+      view.insertBefore(actions,view.firstChild);
+    }
+
+    var all=[].slice.call(view.querySelectorAll('button'));
+    var cancel=all.find(function(b){
+      return b.textContent.trim()==='Cancel' && !b.closest('.create-app-top-actions');
+    }) || [].slice.call(actions.querySelectorAll('button')).find(function(b){
+      return b.textContent.trim()==='Cancel';
+    });
+
+    var create=all.find(function(b){
+      return b.textContent.trim()==='Create App' && !b.closest('.create-app-top-actions');
+    }) || [].slice.call(actions.querySelectorAll('button')).find(function(b){
+      return b.textContent.trim()==='Create App';
+    });
+
+    if(cancel && cancel.parentNode!==actions) actions.appendChild(cancel);
+    if(create && create.parentNode!==actions) actions.appendChild(create);
+
+    /* Remove duplicates left elsewhere on the page. */
+    [].slice.call(view.querySelectorAll('button')).forEach(function(b){
+      if(b.closest('.create-app-top-actions'))return;
+      var t=b.textContent.trim();
+      if(t==='Cancel' || t==='Create App')b.remove();
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',forceTopActions,{once:true});
+  }else{
+    forceTopActions();
+  }
+  window.addEventListener('load',forceTopActions,{once:true});
+})();
+</script>
+
+
+<style id="enable-toggles-working-final">
+/* Ensure enable/active toggle controls are interactive. */
+.toggle,
+.toggle input,
+.toggle-slider,
+.switch,
+.switch input,
+input[type="checkbox"]{
+  pointer-events:auto!important;
+}
+.toggle,
+.switch{
+  cursor:pointer!important;
+}
+</style>
+
+<script id="enable-toggles-working-final-js">
+(function(){
+  function syncToggle(input){
+    if(!input)return;
+    var wrap=input.closest('.toggle,.switch');
+    if(wrap){
+      wrap.classList.toggle('active',input.checked);
+      wrap.classList.toggle('enabled',input.checked);
+      wrap.setAttribute('aria-checked',input.checked?'true':'false');
+    }
+  }
+
+  function initToggles(){
+    document.querySelectorAll('.toggle input[type="checkbox"], .switch input[type="checkbox"]').forEach(function(input){
+      syncToggle(input);
+      input.addEventListener('change',function(){
+        syncToggle(input);
+      });
+    });
+  }
+
+  /* Handle custom toggle wrappers that do not have a label/input click behavior. */
+  document.addEventListener('click',function(e){
+    var wrap=e.target.closest && e.target.closest('.toggle,.switch');
+    if(!wrap)return;
+
+    var input=wrap.querySelector('input[type="checkbox"]');
+    if(!input || input.disabled)return;
+
+    /* Native clicks on the checkbox/label already toggle it. */
+    if(e.target===input || e.target.closest('label'))return;
+
+    e.preventDefault();
+    input.checked=!input.checked;
+    input.dispatchEvent(new Event('change',{bubbles:true}));
+  });
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initToggles,{once:true});
+  }else{
+    initToggles();
+  }
 })();
 </script>
 
@@ -4862,7 +5629,133 @@ function selectEditPricing(type,el){document.querySelectorAll('.pricing-choice-b
 function selectPricingMode(mode,el){document.querySelectorAll('.pricing-mode-btn').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');document.getElementById('fixedPricePanel').style.display=mode==='fixed'?'block':'none';document.getElementById('subscriptionPricingPanel').style.display=mode==='subscription'?'block':'none';}
 function toggleFixedPrice(){if(document.getElementById('hasFixedPrice').checked){var b=document.querySelector('.pricing-mode-btn[data-mode="fixed"]');selectPricingMode('fixed',b)}}
 var _openEditAppPage=openEditAppPage;openEditAppPage=function(name,tab){_openEditAppPage(name,tab);var d=appDrafts[name]||{};if(!d.code)d.code=makeAppCode(name);document.getElementById('editAppCode').value=d.code;document.querySelectorAll('.edit-deploy-card').forEach(x=>x.classList.toggle('selected',x.dataset.deploy===(d.deployment||'Shared')));var pricing=d.price||((d.plans&&d.plans.length)?'paid':'free');var pb=document.querySelector('.pricing-choice-btn[data-pricing="'+pricing+'"]');if(pb)selectEditPricing(pricing,pb);setTimeout(function(){var c=document.getElementById('editPlanCount'),badge=document.getElementById('pricingPlanBadge');if(c&&badge){var m=c.textContent.match(/\d+/);badge.textContent=m?m[0]:'0'}},0)};
-</script></body>
+</script>
+<style id="create-app-real-header-actions-v2">
+#createAppView .real-create-header-actions{
+  position:absolute!important;
+  top:16px!important;
+  right:24px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  z-index:99999!important;
+}
+#createAppView .real-create-header-actions button{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  margin:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+</style>
+<script id="create-app-real-header-actions-v2-js">
+(function(){
+  function moveRealButtons(){
+    var view=document.getElementById('createAppView');
+    if(!view)return;
+
+    view.style.setProperty('position','relative','important');
+
+    /* Remove prior injected wrappers but keep their buttons available. */
+    var old=view.querySelectorAll('.create-app-top-actions,.create-app-header-actions-demo,.real-create-header-actions');
+    var saved=[];
+    old.forEach(function(w){
+      w.querySelectorAll('button').forEach(function(b){ saved.push(b); });
+      w.remove();
+    });
+
+    var candidates=saved.concat([].slice.call(view.querySelectorAll('button')));
+    var cancel=candidates.find(function(b){ return b.textContent.trim()==='Cancel'; });
+    var create=candidates.find(function(b){ return b.textContent.trim()==='Create App'; });
+
+    if(!create)return;
+
+    var wrap=document.createElement('div');
+    wrap.className='real-create-header-actions';
+
+    if(cancel) wrap.appendChild(cancel);
+    wrap.appendChild(create);
+    view.insertBefore(wrap,view.firstChild);
+
+    /* Remove only duplicate Cancel/Create App buttons outside the new top group. */
+    [].slice.call(view.querySelectorAll('button')).forEach(function(b){
+      if(b.closest('.real-create-header-actions'))return;
+      var t=b.textContent.trim();
+      if(t==='Cancel'||t==='Create App')b.remove();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    moveRealButtons();
+    setTimeout(moveRealButtons,50);
+    setTimeout(moveRealButtons,250);
+  });
+  window.addEventListener('load',moveRealButtons);
+})();
+</script>
+
+
+<style id="actual-toggle-switch-fix">
+.toggle-switch{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  user-select:none!important;
+}
+</style>
+<script id="actual-toggle-switch-fix-js">
+(function(){
+  function setState(t){
+    var row=t.closest('.app-record');
+    if(row){
+      row.dataset.status=t.classList.contains('on')?'active':'inactive';
+    }
+    t.setAttribute('role','switch');
+    t.setAttribute('tabindex','0');
+    t.setAttribute('aria-checked',t.classList.contains('on')?'true':'false');
+  }
+
+  function toggle(t){
+    if(!t || t.classList.contains('role-toggle-locked')) return;
+    t.classList.toggle('on');
+    setState(t);
+    if(t.closest('.app-record') && typeof filterManagedApps==='function'){
+      filterManagedApps();
+    }
+  }
+
+  function init(){
+    document.querySelectorAll('.toggle-switch').forEach(setState);
+  }
+
+  /* Capture phase prevents accumulated/duplicate inline handlers from double-toggling. */
+  document.addEventListener('click',function(e){
+    var t=e.target.closest && e.target.closest('.toggle-switch');
+    if(!t || t.classList.contains('role-toggle-locked')) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    toggle(t);
+  },true);
+
+  document.addEventListener('keydown',function(e){
+    var t=e.target.closest && e.target.closest('.toggle-switch');
+    if(!t || t.classList.contains('role-toggle-locked')) return;
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      toggle(t);
+    }
+  },true);
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init,{once:true});
+  }else{
+    init();
+  }
+})();
+</script>
+
+</body>
 </html>
 <style>
 #meetingsView.meetings-redesign{
