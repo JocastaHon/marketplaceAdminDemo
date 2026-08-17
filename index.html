@@ -2565,6 +2565,29 @@ button[disabled]:hover {
 }
 </style>
 
+
+<style id="promo-remove-kpi-cards-final">
+/* Promo Codes page: remove KPI / summary cards at the top. */
+#promoView .promo-kpis,
+#promoView .promo-stats,
+#promoView .kpi-grid,
+#promoView .stats-grid,
+#promoView .summary-cards,
+#promoView [class*="kpi-card"],
+#promoView [class*="stat-card"]{
+  display:none!important;
+}
+
+/* Remove the space left behind by the KPI section. */
+#promoView .promo-kpis + *,
+#promoView .promo-stats + *,
+#promoView .kpi-grid + *,
+#promoView .stats-grid + *,
+#promoView .summary-cards + *{
+  margin-top:0!important;
+}
+</style>
+
 </head>
 
 <body>
