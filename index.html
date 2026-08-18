@@ -3075,7 +3075,7 @@ button[disabled]:hover {
 
 
     <button class="btn-primary-navy" id="createAppBtn" style="display:none;" onclick="openCreateAppPage()">+ Create New App</button>
-    <button class="btn-primary-navy" id="addClientHeaderBtn" style="display:none;" type="button" onclick="alert('Add New Client')">+ Add New Client</button>
+    <button class="btn-primary-navy" id="addClientHeaderBtn" style="display:none;" type="button" onclick="openClientEditor('create')">+ Add New Client</button>
     <button class="btn-primary-navy" id="newInvoiceBtn" style="display:none;" onclick="openNewInvoice()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Invoice</button>
   </div>
 
@@ -3445,6 +3445,59 @@ button[disabled]:hover {
     <div class="clients-footer"><span>1–9 of 9</span><span>Clients only · roles managed elsewhere</span></div>
   </div>
 </div>
+
+  <div class="content client-editor-page" id="clientEditorView" style="display:none;">
+    <div class="drilldown-header client-editor-header">
+      <div class="drilldown-header-top">
+        <button class="drilldown-back" type="button" onclick="closeClientEditor()">← Back to Clients</button>
+        <div class="drilldown-actions">
+          <button class="drilldown-cancel" type="button" onclick="closeClientEditor()">Cancel</button>
+          <button class="drilldown-primary" id="clientEditorSubmit" type="button" onclick="saveClientEditor()">Create Client</button>
+        </div>
+      </div>
+      <div class="drilldown-title" id="clientEditorTitle">Add New Client</div>
+      <div class="drilldown-subtitle" id="clientEditorSubtitle">Create a client account and choose what they can access.</div>
+    </div>
+
+    <div class="client-editor-layout">
+      <section class="client-editor-card">
+        <div class="client-editor-card-head"><div><h3>Client details</h3><p>Profile, organization, location, and account status.</p></div></div>
+        <div class="client-editor-card-body client-editor-fields">
+          <label class="client-editor-field"><span>Full name <b>*</b></span><input id="clientPageName" placeholder="Enter the client's full name"></label>
+          <label class="client-editor-field"><span>Email address <b>*</b></span><input id="clientPageEmail" type="email" placeholder="name@company.com"></label>
+          <label class="client-editor-field"><span>Organization</span><input id="clientPageCompany" placeholder="Company or organization"></label>
+          <label class="client-editor-field"><span>Phone number</span><input id="clientPagePhone" placeholder="+1 (555) 000-0000"></label>
+          <label class="client-editor-field"><span>Country <b>*</b></span><select id="clientPageCountry"><option>Canada</option><option>United States</option><option>United Kingdom</option></select></label>
+          <label class="client-editor-field"><span>Timezone <b>*</b></span><select id="clientPageTimezone"><option>America/Toronto</option><option>America/New_York</option><option>America/Chicago</option><option>America/Los_Angeles</option></select></label>
+          <label class="client-editor-field full"><span>Temporary password</span><input id="clientPagePassword" type="password" placeholder="Leave blank to send a password setup link"><small>The client can use SSO or create a password from their welcome email.</small></label>
+          <div class="client-account-setting full"><div><strong>Active account</strong><small>Allow this client to sign in immediately.</small></div><label class="client-page-switch"><input id="clientPageActive" type="checkbox" checked><span></span></label></div>
+          <div class="client-account-setting full"><div><strong>Send welcome email</strong><small>Email login and onboarding instructions after saving.</small></div><label class="client-page-switch"><input id="clientPageWelcome" type="checkbox" checked><span></span></label></div>
+        </div>
+      </section>
+
+      <section class="client-editor-card permissions-card">
+        <div class="client-editor-card-head"><div><h3>Permissions</h3><p>Choose which pages and tools this client can see in their portal.</p></div><span class="permission-summary" id="permissionSummary">6 enabled</span></div>
+        <div class="client-editor-card-body">
+          <div class="permission-group-title">Core — always on</div>
+          <div class="permission-grid">
+            <div class="permission-item locked"><div><strong>App Launcher <span class="permission-lock">▣</span></strong><small>Open assigned Zoo Office applications</small></div><label class="client-page-switch"><input type="checkbox" checked disabled><span></span></label></div>
+            <div class="permission-item locked"><div><strong>Dashboard <span class="permission-lock">▣</span></strong><small>See their account overview</small></div><label class="client-page-switch"><input type="checkbox" checked disabled><span></span></label></div>
+            <div class="permission-item locked"><div><strong>My Profile <span class="permission-lock">▣</span></strong><small>Manage profile and security</small></div><label class="client-page-switch"><input type="checkbox" checked disabled><span></span></label></div>
+          </div>
+          <div class="permission-group-title manage">Manage</div>
+          <div class="permission-grid">
+            <div class="permission-item"><div><strong>Marketplace</strong><small>Browse and purchase available apps</small></div><label class="client-page-switch"><input class="client-permission" data-permission="marketplace" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item"><div><strong>Demo Requests</strong><small>Request product demonstrations</small></div><label class="client-page-switch"><input class="client-permission" data-permission="demos" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item"><div><strong>Invoices</strong><small>View and download invoices</small></div><label class="client-page-switch"><input class="client-permission" data-permission="invoices" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item"><div><strong>Sales Meetings</strong><small>Book and manage meetings</small></div><label class="client-page-switch"><input class="client-permission" data-permission="meetings" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item" id="servicePermissionItem"><div><strong>Service Management</strong><small id="servicePermissionHelp">Requires Marketplace access</small></div><label class="client-page-switch"><input class="client-permission" data-permission="services" type="checkbox" onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item"><div><strong>Support</strong><small>Create and track support tickets</small></div><label class="client-page-switch"><input class="client-permission" data-permission="support" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+            <div class="permission-item"><div><strong>Help Center</strong><small>Access help articles and guides</small></div><label class="client-page-switch"><input class="client-permission" data-permission="help" type="checkbox" checked onchange="syncClientPermissions()"><span></span></label></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 
   <div class="content" id="salesOpsView" style="display:none;">
     <div class="kpi-row">
@@ -8381,5 +8434,112 @@ window.openInsight=openInsight;
   #marketingView .funnel-row{grid-template-columns:74px minmax(70px,1fr) 44px 48px!important;gap:7px!important}
 }
 </style>
+<style id="client-full-page-editor-final">
+#addClientModalOverlay{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body:has(#clientEditorView[style*="display: block"]) .page-header-row{display:none!important}
+#clientEditorView.client-editor-page{height:calc(100vh - 60px)!important;overflow:auto!important;padding:64px 28px 40px!important;background:var(--zo-bg)!important}
+#clientEditorView .client-editor-header{margin-bottom:20px!important}
+.client-editor-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);gap:16px;align-items:start}
+.client-editor-card{background:#fff;border:1px solid var(--zo-line);border-radius:13px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.client-editor-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:17px 19px;border-bottom:1px solid var(--zo-line)}
+.client-editor-card-head h3{margin:0;color:var(--zo-heading);font-size:14px}.client-editor-card-head p{margin:4px 0 0;color:var(--zo-muted);font-size:11.5px}
+.client-editor-card-body{padding:19px}.client-editor-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.client-editor-field{display:flex;flex-direction:column;gap:6px;min-width:0}.client-editor-field.full,.client-account-setting.full{grid-column:1/-1}
+.client-editor-field>span{font-size:11.5px;font-weight:700;color:var(--zo-heading)}.client-editor-field b{color:var(--zo-danger)}
+.client-editor-field input,.client-editor-field select{width:100%;height:41px;border:1px solid var(--zo-line-input);border-radius:9px;background:#fff;padding:0 12px;font:inherit;font-size:12.5px;color:#344054;outline:0}
+.client-editor-field input:focus,.client-editor-field select:focus{border-color:var(--zo-navy);box-shadow:0 0 0 3px rgba(30,59,138,.08)}
+.client-editor-field small{font-size:10.5px;color:var(--zo-muted)}
+.client-account-setting{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--zo-line);padding-top:14px}.client-account-setting strong{display:block;font-size:12px}.client-account-setting small{display:block;color:var(--zo-muted);font-size:10.5px;margin-top:3px}
+.permission-summary{display:inline-flex;align-items:center;white-space:nowrap;height:27px;padding:0 9px;border-radius:999px;background:#ECFDF3;color:#027A48;font-size:10.5px;font-weight:800}
+.permission-group-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#667085;margin:0 0 10px}.permission-group-title.manage{margin-top:18px}
+.permission-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.permission-item{min-height:67px;border:1px solid #A6E7D2;background:#F1FCF8;border-radius:10px;padding:12px 13px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.permission-item strong{display:block;font-size:12px;color:var(--zo-heading)}.permission-item small{display:block;font-size:10.5px;color:#667085;margin-top:4px;line-height:1.3}.permission-lock{font-size:10px;color:#667085;margin-left:3px}
+.permission-item.locked{background:#F5FBF9;border-color:#B9EBD9}.permission-item.permission-disabled{background:#F8F9FB;border-color:#DCE1E8}.permission-item.permission-disabled strong,.permission-item.permission-disabled small{color:#98A2B3}
+.client-page-switch{position:relative;width:38px;height:22px;flex:0 0 38px}.client-page-switch input{position:absolute;opacity:0;pointer-events:none}.client-page-switch span{position:absolute;inset:0;border-radius:999px;background:#CBD2DC;transition:.15s;cursor:pointer}.client-page-switch span:after{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.18);transition:.15s}.client-page-switch input:checked+span{background:#12B886}.client-page-switch input:checked+span:after{transform:translateX(16px)}.client-page-switch input:disabled+span{cursor:not-allowed;opacity:.58}
+#clientsView .client-page-edit-action{position:relative!important;width:32px!important;height:32px!important;min-width:32px!important;padding:0!important;border:0!important;border-radius:7px!important;background:transparent!important;color:var(--zo-navy)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}
+#clientsView .client-page-edit-action:hover{background:var(--zo-accent-tint)!important}#clientsView .client-page-edit-action svg{display:block!important;width:16px!important;height:16px!important;stroke:currentColor!important}
+@media(max-width:1100px){.client-editor-layout{grid-template-columns:1fr}.permission-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){#clientEditorView.client-editor-page{padding:54px 18px 30px!important}.client-editor-fields,.permission-grid{grid-template-columns:1fr}.client-editor-field.full,.client-account-setting.full{grid-column:auto}.client-editor-header .drilldown-header-top{align-items:flex-start;gap:12px}.client-editor-header .drilldown-actions{gap:7px}.client-editor-header .drilldown-cancel,.client-editor-header .drilldown-primary{padding:0 11px}}
+</style>
+<style id="client-editor-stacked-blue-final">
+#clientEditorView .client-editor-layout{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:16px!important;
+}
+#clientEditorView .client-editor-card{
+  width:100%!important;
+  max-width:none!important;
+}
+#clientEditorView .permission-item{
+  background:#F3F7FF!important;
+  border-color:#D5DFF4!important;
+}
+#clientEditorView .permission-item.locked{
+  background:#F7F9FE!important;
+  border-color:#DDE4F2!important;
+}
+#clientEditorView .permission-item.permission-disabled{
+  background:#F7F8FB!important;
+  border-color:#E1E5EC!important;
+}
+#clientEditorView .client-page-switch input:checked+span{
+  background:#1E3B8A!important;
+}
+#clientEditorView .permission-summary{
+  background:#EEF2FF!important;
+  color:#1E3B8A!important;
+}
+</style>
+<script id="client-full-page-editor-final-js">
+(function(){
+var editorMode='create',editingClientRow=null;
+var defaultPermissions={marketplace:true,demos:true,invoices:true,meetings:true,services:false,support:true,help:true};
+function setEditorShell(open){
+ var header=document.querySelector('.page-header-row');
+ if(header)header.style.display=open?'none':'flex';
+ ['createAppBtn','newInvoiceBtn'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none'});
+ var add=document.getElementById('addClientHeaderBtn');if(add)add.style.display=open?'none':'inline-flex';
+}
+function permissionData(){var data={};document.querySelectorAll('#clientEditorView .client-permission').forEach(function(i){data[i.dataset.permission]=i.checked});return data}
+function setPermissions(data){data=Object.assign({},defaultPermissions,data||{});document.querySelectorAll('#clientEditorView .client-permission').forEach(function(i){i.checked=!!data[i.dataset.permission]});syncClientPermissions()}
+window.syncClientPermissions=function(){
+ var market=document.querySelector('#clientEditorView [data-permission="marketplace"]'),service=document.querySelector('#clientEditorView [data-permission="services"]'),item=document.getElementById('servicePermissionItem'),help=document.getElementById('servicePermissionHelp');
+ if(market&&service){service.disabled=!market.checked;if(!market.checked)service.checked=false;if(item)item.classList.toggle('permission-disabled',!market.checked);if(help)help.textContent=market.checked?'Manage purchased services':'Requires Marketplace access'}
+ var enabled=3+Array.from(document.querySelectorAll('#clientEditorView .client-permission')).filter(function(i){return i.checked}).length;
+ var summary=document.getElementById('permissionSummary');if(summary)summary.textContent=enabled+' enabled';
+};
+function clearClientForm(){
+ ['clientPageName','clientPageEmail','clientPageCompany','clientPagePhone','clientPagePassword'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=''});
+ document.getElementById('clientPageCountry').value='Canada';document.getElementById('clientPageTimezone').value='America/Toronto';document.getElementById('clientPageActive').checked=true;document.getElementById('clientPageWelcome').checked=true;setPermissions(defaultPermissions);
+}
+window.openClientEditor=function(mode,row){
+ editorMode=mode||'create';editingClientRow=row||null;
+ document.querySelectorAll('.content').forEach(function(el){el.style.display='none'});
+ var view=document.getElementById('clientEditorView');view.style.display='block';view.scrollTop=0;setEditorShell(true);
+ var edit=editorMode==='edit';document.getElementById('clientEditorTitle').textContent=edit?'Edit Client':'Add New Client';document.getElementById('clientEditorSubtitle').textContent=edit?'Update client details and control what they can access.':'Create a client account and choose what they can access.';document.getElementById('clientEditorSubmit').textContent=edit?'Save Changes':'Create Client';
+ clearClientForm();
+ if(edit&&row){var person=row.querySelector('.client-person');document.getElementById('clientPageName').value=(person.querySelector('strong')||{}).textContent||'';document.getElementById('clientPageEmail').value=(person.querySelector('small')||{}).textContent||'';document.getElementById('clientPageActive').checked=!!row.querySelector('.toggle-switch.on');try{setPermissions(JSON.parse(row.dataset.permissions||'{}'))}catch(e){setPermissions(defaultPermissions)}}
+};
+window.closeClientEditor=function(){
+ document.getElementById('clientEditorView').style.display='none';document.getElementById('clientsView').style.display='block';setEditorShell(false);var t=document.getElementById('pageTitle'),s=document.getElementById('pageSub');if(t)t.textContent='Clients';if(s)s.textContent='View and manage every client account on Zoo Office.';var nav=document.getElementById('navClients');if(nav)nav.classList.add('active');
+};
+function initials(name){return name.split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x.charAt(0).toUpperCase()}).join('')||'CL'}
+function actionsHtml(){return '<div class="client-actions"><button class="client-page-edit-action" type="button" data-tooltip="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button><button class="client-action delete" type="button" data-tooltip="Delete" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button></div>'}
+window.saveClientEditor=function(){
+ var name=document.getElementById('clientPageName').value.trim(),email=document.getElementById('clientPageEmail').value.trim();if(!name||!email){alert('Please enter the client name and email address.');return}
+ var active=document.getElementById('clientPageActive').checked,perms=permissionData();
+ if(editorMode==='edit'&&editingClientRow){var p=editingClientRow.querySelector('.client-person');p.querySelector('.client-avatar').textContent=initials(name);p.querySelector('strong').textContent=name;p.querySelector('small').textContent=email;var status=editingClientRow.querySelector('.client-status');status.innerHTML='<span class="toggle-switch '+(active?'on':'')+'"></span>'+(active?'Active':'Inactive');editingClientRow.dataset.permissions=JSON.stringify(perms)}
+ else{var table=document.querySelector('#clientsView .clients-table'),footer=table.querySelector('.clients-footer'),row=document.createElement('div');row.className='clients-row';row.dataset.permissions=JSON.stringify(perms);row.innerHTML='<div class="client-person"><span class="client-avatar">'+initials(name)+'</span><div><strong>'+name.replace(/</g,'&lt;')+'</strong><small>'+email.replace(/</g,'&lt;')+'</small></div></div><div><span class="source-pill">Manual</span></div><div class="client-status"><span class="toggle-switch '+(active?'on':'')+'"></span>'+(active?'Active':'Inactive')+'</div><div>Just now</div>'+actionsHtml();table.insertBefore(row,footer)}
+ closeClientEditor();if(typeof showPromoToast==='function')showPromoToast(editorMode==='edit'?'Client updated':'Client created');
+};
+document.querySelectorAll('#clientsView .client-action[aria-label="Edit"],#clientsView .client-action[data-tooltip="Edit"]').forEach(function(button){button.classList.remove('client-action');button.classList.add('client-page-edit-action')});
+window.addEventListener('click',function(e){
+ var add=e.target.closest&&e.target.closest('#addClientHeaderBtn,#addClientBtn,#addNewClientBtn,.add-client-btn');if(add){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();openClientEditor('create');return}
+ var edit=e.target.closest&&e.target.closest('#clientsView .client-page-edit-action');if(edit){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();openClientEditor('edit',edit.closest('.clients-row'))}
+},true);
+})();
+</script>
 
 
