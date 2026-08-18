@@ -8076,3 +8076,90 @@ body.roles-active #rolesHeaderNewBtn{
 }
 .icon-action[title]::before,.icon-btn[title]::before,.promo-action-btn[title]::before,.app-action-icon[title]::before,.action-icon-btn[title]::before,.meeting-view-icon[title]::before {
   content:""; position:absolute; left:50%; bottom:calc(100% + 2px); transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:#101828; opacity:0; visibility:hidden; pointer-events:none; z-index:3000;
+}
+.icon-action[title]:hover::after,.icon-btn[title]:hover::after,.promo-action-btn[title]:hover::after,.app-action-icon[title]:hover::after,.action-icon-btn[title]:hover::after,.meeting-view-icon[title]:hover::after,
+.icon-action[title]:hover::before,.icon-btn[title]:hover::before,.promo-action-btn[title]:hover::before,.app-action-icon[title]:hover::before,.action-icon-btn[title]:hover::before,.meeting-view-icon[title]:hover::before { opacity:1; visibility:visible; }
+</style>
+<style id="github-static-create-app-header-fallback">
+/* Static-hosting-safe placement: does not depend on script execution order. */
+#createAppView.content.app-editor-page{
+  position:relative!important;
+  padding:84px 28px 40px!important;
+}
+#createAppView .drilldown-header,
+#createAppView .drilldown-header-top{
+  position:static!important;
+  transform:none!important;
+}
+#createAppView .drilldown-header-top{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  min-height:42px!important;
+  margin:0 0 18px!important;
+}
+#createAppView .drilldown-back{
+  display:inline-flex!important;
+  position:static!important;
+  visibility:visible!important;
+  opacity:1!important;
+  transform:none!important;
+}
+#createAppView .drilldown-actions{
+  display:flex!important;
+  position:static!important;
+  width:auto!important;
+  height:40px!important;
+  gap:10px!important;
+}
+/* Fallback for the legacy wrapper when JavaScript has not moved it yet. */
+#createAppView>.create-app-top-actions,
+#createAppView>.create-app-header-actions-demo{
+  position:absolute!important;
+  top:84px!important;
+  right:28px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  width:auto!important;
+  height:40px!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  z-index:50!important;
+}
+</style>
+<style id="create-app-drilldown-header-final">
+#createAppView.content.app-editor-page{padding-top:84px!important;position:relative!important}
+#createAppView .drilldown-header{display:block!important;position:static!important;margin:0 0 22px!important}
+#createAppView .drilldown-header-top{display:flex!important;position:static!important;min-height:42px!important;margin-bottom:18px!important}
+#createAppView .drilldown-actions{display:flex!important;position:static!important;width:auto!important;height:40px!important;gap:10px!important}
+#createAppView .drilldown-actions>button{position:static!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;transform:none!important;margin:0!important}
+</style>
+<script id="create-app-drilldown-header-final-js">
+(function(){
+  function normalizeCreateAppHeader(){
+    var view=document.getElementById('createAppView');
+    if(!view)return;
+    var host=view.querySelector('.drilldown-actions');
+    if(!host)return;
+    var legacy=view.querySelector('.create-app-top-actions');
+    var buttons=legacy?[].slice.call(legacy.querySelectorAll('button')):[];
+    if(!buttons.length)buttons=[].slice.call(view.querySelectorAll('button')).filter(function(b){var t=b.textContent.trim();return (t==='Cancel'||t==='Create App')&&!b.closest('.drilldown-actions');});
+    buttons.forEach(function(b){
+      var text=b.textContent.trim();
+      b.className=text==='Cancel'?'drilldown-cancel':'drilldown-primary';
+      if(text==='Create App')b.id='createAppPageBtn';
+      host.appendChild(b);
+    });
+    if(legacy)legacy.remove();
+    var back=view.querySelector('.drilldown-back');if(back)back.style.removeProperty('display');
+    if(typeof resetDrilldownScroll==='function')resetDrilldownScroll('createAppView');
+  }
+  var originalOpenCreateAppPage=window.openCreateAppPage;
+  if(typeof originalOpenCreateAppPage==='function')window.openCreateAppPage=function(){var result=originalOpenCreateAppPage.apply(this,arguments);normalizeCreateAppHeader();return result;};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',normalizeCreateAppHeader);else normalizeCreateAppHeader();
+  window.addEventListener('load',normalizeCreateAppHeader,{once:true});
+})();
+</script>
